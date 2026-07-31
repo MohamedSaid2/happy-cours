@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Politique de Confidentialité - Happy Cours</title>
+
+  <!-- 1. Consent Mode v2 par défaut -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      'analytics_storage': 'denied',
+      'ad_storage': 'denied'
+    });
+  </script>
+
+  <!-- 2. Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-M3MLBNSS');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- 3. Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YXYJPWK3RZ"></script>
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'G-YXYJPWK3RZ');
+  </script>
+
+  <style>
+    /* Reset & Base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f8f9fa;
+      color: #1a1a1a;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* En-tête / Barre supérieure */
+    .top-bar {
+      background-color: #ffffff;
+      border-bottom: 1px solid #e9ecef;
+      padding: 16px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-logo {
+      font-size: 22px;
+      font-weight: 800;
+      color: #5c3ebd;
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    .btn-back {
+      color: #495057;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 20px;
+      border: 1px solid #ced4da;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .btn-back:hover {
+      background-color: #f1f3f5;
+      color: #1a1a1a;
+      border-color: #adb5bd;
+    }
+
+    /* Zone de Titre */
+    .header-page {
+      text-align: center;
+      padding: 35px 20px 15px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .header-page h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #1a1a1a;
+      margin: 0 0 10px 0;
+      letter-spacing: -0.5px;
+    }
+
+    .header-page h1 span {
+      color: #5c3ebd;
+    }
+
+    /* Carte de contenu */
+    .container-privacy {
+      max-width: 900px;
+      width: 100%;
+      margin: 20px auto 50px;
+      padding: 0 20px;
+      flex-grow: 1;
+    }
+
+    .privacy-card {
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+      border: 1px solid #e9ecef;
+      padding: 40px;
+      line-height: 1.7;
+    }
+
+    .privacy-card .intro {
+      font-size: 1.1rem;
+      color: #333333;
+      margin-bottom: 25px;
+      font-weight: 500;
+    }
+
+    .privacy-card h2 {
+      font-size: 1.3rem;
+      color: #5c3ebd;
+      margin-top: 30px;
+      margin-bottom: 12px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid #f1f3f5;
+    }
+
+    .privacy-card h2:first-of-type {
+      margin-top: 0;
+    }
+
+    .privacy-card p {
+      color: #495057;
+      margin: 0 0 12px 0;
+      font-size: 1rem;
+    }
+
+    .privacy-card a {
+      color: #5c3ebd;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .privacy-card a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer Violet Sombre (#160c28) */
+    /* Footer Violet Sombre Optimizé */
+footer {
+  background-color: #160c28;
+  color: #ffffff;
+  padding: 50px 20px 25px;
+  margin-top: auto;
+  font-size: 14px;
+}
+
+.footer-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 35px;
+  padding-bottom: 35px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.footer-col h3 {
+  margin: 0 0 10px 0;
+  font-size: 20px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.footer-col h4 {
+  margin: 0 0 15px 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #a78bfa; /* Violet clair contrasté */
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.footer-slogan {
+  color: #a78bfa;
+  margin: 0;
+  font-size: 14px;
+}
+
+.footer-col p, 
+.footer-col a, 
+.btn-cookie-manage {
+  color: #e2e8f0;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 10px;
+  font-size: 14px;
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+.footer-col a:hover, 
+.btn-cookie-manage:hover {
+  color: #a78bfa;
+  text-decoration: underline;
+}
+
+/* Optimisation des Icônes Réseaux Sociaux */
+.social-links {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.social-links a {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  margin-bottom: 0 !important;
+  transition: all 0.25s ease-in-out;
+}
+
+.social-icon {
+  width: 20px;
+  height: 20px;
+  color: #ffffff;
+}
+
+/* Effet au survol des icônes */
+.social-links a:hover {
+  background-color: #5c3ebd; /* Couleur violette de votre marque */
+  border-color: #5c3ebd;
+  transform: translateY(-4px);
+  box-shadow: 0 5px 15px rgba(92, 62, 189, 0.4);
+}
+
+.footer-bottom {
+  max-width: 1100px;
+  margin: 25px auto 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #a78bfa;
+  font-size: 13px;
+}
+
+/* Adaptabilité Mobile */
+@media (max-width: 600px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+}
+
+    /* Pop-up Cookies */
+    .cookie-banner {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      max-width: 480px;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 20px 24px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      z-index: 9999;
+      border: 1px solid #e9ecef;
+      display: none;
+      color: #1a1a1a;
+    }
+
+    .cookie-banner h4 { 
+      margin: 0 0 8px 0; 
+      font-size: 16px; 
+    }
+
+    .cookie-banner p { 
+      margin: 0 0 16px 0; 
+      font-size: 13px; 
+      color: #6c757d; 
+      line-height: 1.4; 
+    }
+
+    .cookie-buttons { 
+      display: flex; 
+      gap: 10px; 
+    }
+
+    .btn-cookie {
+      flex: 1;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: background-color 0.2s;
+    }
+
+    .btn-cookie-accept { 
+      background-color: #5c3ebd; 
+      color: #ffffff; 
+    }
+
+    .btn-cookie-accept:hover { 
+      background-color: #4a30a0; 
+    }
+
+    .btn-cookie-deny { 
+      background-color: #e9ecef; 
+      color: #495057; 
+    }
+
+    .btn-cookie-deny:hover { 
+      background-color: #dee2e6; 
+    }
+
+    /* Bouton WhatsApp Flottant */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background-color: #25D366;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 16px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      z-index: 9998;
+      transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+
+    .whatsapp-float:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      color: #ffffff;
+    }
+
+    .whatsapp-icon {
+      width: 28px;
+      height: 28px;
+      background-color: #ffffff;
+      color: #25D366;
+      border-radius: 50%;
+      padding: 4px;
+      box-sizing: border-box;
+    }
+
+    @media (max-width: 768px) {
+      .footer-content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .footer-col-right {
+        align-items: flex-start;
+      }
+      .privacy-card { 
+        padding: 24px; 
+      }
+      .whatsapp-float {
+        bottom: 15px;
+        right: 15px;
+        padding: 10px 18px;
+        font-size: 14px;
+      }
+      .whatsapp-icon {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3MLBNSS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- Navigation supérieure -->
+  <header class="top-bar">
+    <a href="happy-cours.html" class="brand-logo">Happy Cours</a>
+    <a href="happy-cours.html" class="btn-back">← Retour à l'accueil</a>
+  </header>
+
+  <!-- Titre -->
+  <div class="header-page">
+    <h1>Politique de <span>Confidentialité</span></h1>
+  </div>
+
+  <!-- Contenu Politique de Confidentialité -->
+  <main class="container-privacy">
+    <div class="privacy-card">
+      <p class="intro">Cette page explique comment les informations transmises depuis le site sont utilisées.</p>
+
+      <h2>Formulaire de contact</h2>
+      <p>Le formulaire ne stocke pas vos données sur le site. Il prépare un e-mail dans votre application de messagerie. Les informations sont alors transmises directement à xxxxxxxxxxxx afin de répondre à votre demande.</p>
+
+      <h2>Réservation</h2>
+      <p>La réservation est gérée par Google Agenda. Les informations saisies sur la page de réservation sont soumises aux règles de confidentialité de Google.</p>
+
+      <h2>Paiement</h2>
+      <p>Le paiement est réalisé directement sur PayPal. Le site ne collecte ni ne conserve de données bancaires.</p>
+
+      <h2>Mesure d’audience et cookies</h2>
+      <p>Le site utilise Google Analytics 4 afin de mesurer le nombre de visites et de mieux comprendre l’utilisation générale du site. Google Analytics ne se charge qu’après votre accord dans le bandeau de consentement.</p>
+      <p>Vous pouvez accepter ou refuser cette mesure d’audience. Votre choix est conservé dans votre navigateur et peut être modifié à tout moment grâce au lien « Gérer les cookies » présent en bas du site.</p>
+      <p>L’identifiant de mesure utilisé est <strong>G-YXYJPWK3RZ</strong>. Vous pouvez accepter, refuser ou modifier votre choix à tout moment grâce au lien « Gérer les cookies » présent dans le pied de page.</p>
+
+      <h2>Vos droits</h2>
+      <p>Pour toute demande relative à vos données personnelles, écrivez à <a href="mailto:xxxxxxxxxxxxxx@gmail.com">xxxxxxxxxxxxxxx@gmail.com</a>.</p>
+    </div>
+  </main>
+
+  <!-- Footer Violet Sombre -->
+  <!-- Pied de page -->
+<footer>
+
+  <div class="footer-content">
+    
+    <!-- Colonne 1 : Marque & Slogan -->
+    <div class="footer-col">
+      <h3>Happy Cours</h3>
+      <p class="footer-slogan">Réfléchir, Comprendre, Réussir.</p>
+    </div>
+
+    <!-- Colonne 2 : Contact -->
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p>+33 (0)7 71 85 48 04</p>
+      <p><a href="mailto:contact@happycours.com">contact@happycours.com</a></p>
+    </div>
+
+    <!-- Colonne 3 : Liens Légaux -->
+    <div class="footer-col">
+      <h4>Informations</h4>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="politique-confidentialite.html">Politique de confidentialité</a>
+      <button class="btn-cookie-manage" onclick="openCookieBanner()">Gérer les cookies</button>
+    </div>
+
+    <!-- Colonne 4 : Réseaux Sociaux (Optimisés & Très visibles) -->
+    <div class="footer-col">
+      <h4>Suivez-nous</h4>
+      <div class="social-links">
+        <!-- Facebook -->
+        <a href="https://facebook.com/votrepage" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <svg class="social-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10 10 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z"/></svg>
+        </a>
+        <!-- Instagram -->
+        <a href="https://instagram.com/votrecompte" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <svg class="social-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <!-- TikTok -->
+        <a href="https://tiktok.com/@votrecompte" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+          <svg class="social-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.98-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.28-2.36.54-4.74 2.22-6.41 1.57-1.58 3.8-2.4 6.03-2.22.01 1.44-.02 2.88-.02 4.32-1.02-.15-2.08.15-2.89.81-.88.7-1.33 1.81-1.22 2.93.1 1.19.83 2.23 1.91 2.71 1.05.47 2.31.33 3.22-.34.8-.57 1.28-1.5 1.34-2.48.06-2.92.02-5.84.03-8.75.01-1.15.01-2.3.01-3.45z"/></svg>
+        </a>
+        <!-- Snapchat -->
+        <a href="https://snapchat.com/add/votrecompte" target="_blank" rel="noopener noreferrer" aria-label="Snapchat">
+          <svg class="social-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12.002 2c-3.987 0-6.19 2.898-6.19 5.86 0 1.251.385 2.502.835 3.391.137.27.127.352-.07.525-.561.492-1.272.768-2.018.768-.344 0-.649-.071-.85-.18-.179-.098-.313-.081-.418.082-.143.222-.437 1.058-.517 1.32-.058.192.028.328.232.393 1.072.342 2.164.552 3.193.308.283-.067.433.05.517.32.339 1.089 1.146 3.197 5.286 3.197 4.137 0 4.947-2.108 5.286-3.197.084-.27.234-.387.517-.32 1.029.244 2.121.034 3.193-.308.204-.065.29-.201.232-.393-.08-.262-.374-1.098-.517-1.32-.105-.163-.239-.18-.418-.082-.201.109-.506.18-.85.18-.746 0-1.457-.276-2.018-.768-.197-.173-.207-.255-.07-.525.45-.889.835-2.14.835-3.391 0-2.962-2.203-5.86-6.19-5.86z"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <div>&copy; 2026 Happy Cours</div>
+    <div>Tous droits réservés</div>
+  </div>
+
+</footer>
+  <!-- Bouton WhatsApp Flottant -->
+  <a href="https://wa.me/33771854804?text=Bonjour,%20j'ai%20une%20question%20concernant%20Happy%20Cours." 
+     class="whatsapp-float" 
+     target="_blank" 
+     rel="noopener noreferrer"
+     aria-label="Contacter sur WhatsApp">
+    <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+      <path fill="currentColor" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3 18.6-68.1-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.9-186.6 184.9zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+    </svg>
+    <span>WhatsApp</span>
+  </a>
+
+  <!-- Bandeau Cookies Popup -->
+  <div id="cookieBanner" class="cookie-banner">
+    <h4>Gestion des cookies & Audience</h4>
+    <p>Nous utilisons des cookies analytiques pour mesurer l'audience et améliorer votre expérience sur le site.</p>
+    <div class="cookie-buttons">
+      <button class="btn-cookie btn-cookie-deny" onclick="setConsent(false)">Refuser</button>
+      <button class="btn-cookie btn-cookie-accept" onclick="setConsent(true)">Accepter</button>
+    </div>
+  </div>
+
+  <!-- Script Cookies avec sauvegarde (Apparaît UNE SEULE FOIS) -->
+  <script>
+    function checkCookieConsent() {
+      // Vérifie si l'utilisateur a déjà répondu dans le passé
+      const consent = localStorage.getItem('happy_cours_cookie_consent');
+      if (consent === null) {
+        // N'a pas encore répondu -> Affiche la bannière
+        document.getElementById('cookieBanner').style.display = 'block';
+      } else if (consent === 'granted') {
+        updateGoogleAnalyticsConsent(true);
+      } else {
+        updateGoogleAnalyticsConsent(false);
+      }
+    }
+
+    function setConsent(accepted) {
+      const status = accepted ? 'granted' : 'denied';
+      // Enregistre le choix dans le navigateur pour ne plus lui demander
+      localStorage.setItem('happy_cours_cookie_consent', status);
+      updateGoogleAnalyticsConsent(accepted);
+      document.getElementById('cookieBanner').style.display = 'none';
+    }
+
+    function openCookieBanner() {
+      // Permet de réouvrir la bannière via le bouton "Gérer les cookies"
+      document.getElementById('cookieBanner').style.display = 'block';
+    }
+
+    function updateGoogleAnalyticsConsent(accepted) {
+      if (typeof gtag === 'function') {
+        gtag('consent', 'update', {
+          'analytics_storage': accepted ? 'granted' : 'denied'
+        });
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', checkCookieConsent);
+  </script>
+
+</body>
+</html>
