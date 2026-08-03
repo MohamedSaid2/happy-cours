@@ -5,16 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Cours — Laisser un avis</title>
   
-  <!-- LIAISON DU FICHIER CSS EXTERNE -->
   <link rel="stylesheet" href="style.css">
-
-  <!-- INCLUSION DES POLICES GOOGLE FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* VARIABLES GLOBALES HARMONISÉES */
     :root {
       --bg: #FFFFFF;
       --panel: #FAF8FE;
@@ -31,7 +27,6 @@
       --radius: 18px;
       --maxw: 1140px;
       
-      /* COULEURS SPÉCIFIQUES FOOTER SOMBRE */
       --footer-bg: #0C081A;
       --footer-text: #FFFFFF;
       --footer-muted: #A098B8;
@@ -67,7 +62,6 @@
       width: 100%;
     }
 
-    /* HEADER & NAVIGATION STICKY */
     header {
       position: sticky;
       top: 0;
@@ -126,7 +120,6 @@
       color: var(--violet-primary);
     }
 
-    /* ONGLET ACTIF (AVIS) */
     #navList a.nav-active {
       color: var(--violet-primary);
       font-weight: 800;
@@ -174,7 +167,6 @@
       cursor: pointer;
     }
 
-    /* CONTENU MAIN & CARTE DE FORMULAIRE */
     main {
       flex: 1;
       display: flex;
@@ -244,7 +236,6 @@
       box-shadow: 0 0 0 3px rgba(108, 76, 216, 0.15);
     }
 
-    /* SYSTÈME D'ÉTOILES INTERACTIF */
     .star-rating {
       display: flex;
       flex-direction: row-reverse;
@@ -338,7 +329,6 @@
       box-sizing: border-box;
     }
 
-    /* FOOTER SOMBRE DE HAPPY COURS */
     footer.dark-footer {
       background-color: var(--footer-bg);
       color: var(--footer-text);
@@ -473,7 +463,6 @@
 
 <body>
 
-  <!-- EN-TÊTE / NAVIGATION STICKY -->
   <header>
     <div class="wrap nav">
       <a href="index.html" class="logo" aria-label="Retour à l'accueil Happy Cours">
@@ -491,14 +480,12 @@
         </ul>
       </nav>
       <div class="nav-actions">
-        <!-- REDIRECTION VERS RESERVATION.HTML -->
         <a href="reservation.html" class="btn btn-solid">Réserver</a>
         <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu mobile">☰</button>
       </div>
     </div>
   </header>
 
-  <!-- CONTENU PRINCIPAL DE LA PAGE D'AVIS -->
   <main>
     <div class="review-page-card">
       
@@ -507,7 +494,6 @@
         <p>Nous serions ravis de connaître votre avis sur Happy Cours.</p>
       </div>
 
-      <!-- Formulaire interne -->
       <form id="reviewForm" onsubmit="submitReviewToInternal(event)">
         
         <div class="form-group">
@@ -543,10 +529,9 @@
           </div>
         </div>
 
-        <button type="submit" class="submit-review-btn">Envoyer l'avis</button>
+        <button type="submit" class="submit-review-btn" id="submitBtn">Envoyer l'avis</button>
       </form>
 
-      <!-- Message de confirmation -->
       <div id="successMessage">
         <h2>🎉 Merci beaucoup !</h2>
         <p>Votre avis a bien été enregistré.</p>
@@ -556,7 +541,6 @@
     </div>
   </main>
 
-  <!-- FOOTER SOMBRE CONFORME À L'IMAGE -->
   <footer class="dark-footer">
     <div class="wrap">
       <div class="footer-grid-4">
@@ -605,7 +589,6 @@
   </footer>
 
   <script>
-    // SCRIPT MENU MOBILE
     document.addEventListener('DOMContentLoaded', () => {
       const menuToggle = document.getElementById('menuToggle');
       const navList = document.getElementById('navList');
@@ -616,33 +599,41 @@
       }
     });
 
-    // ENVOI FORMULAIRE AVEC GOOGLE APPS SCRIPT
     async function submitReviewToInternal(event) {
       event.preventDefault();
 
-      const formData = {
-        rating: document.querySelector('input[name="rating"]:checked').value,
-        comment: document.getElementById('comment').value,
-        fullName: document.getElementById('fullName').value,
-        authorization: document.querySelector('input[name="authorization"]:checked').value
-      };
+      const btn = document.getElementById('submitBtn');
+      btn.innerText = "Envoi en cours...";
+      btn.disabled = true;
 
-      const scriptURL = 'https://script.google.com/macros/s/AKfycbzYdiacPSRAho1bmblfOd1THdmEKyenK6AVk1D7Ny0/dev';
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbzfd3-jM58RS3LdD4TA3-pdR2CgBwq_8nwSIYn_WQwpr4ZYCKeJSksowaTAbmbBsInV/exec';
+
+      // Formatting des données en URL-SearchParams pour éviter le blocage CORS
+      const formData = new URLSearchParams();
+      formData.append('rating', document.querySelector('input[name="rating"]:checked').value);
+      formData.append('comment', document.getElementById('comment').value);
+      formData.append('fullName', document.getElementById('fullName').value);
+      formData.append('authorization', document.querySelector('input[name="authorization"]:checked').value);
 
       try {
         await fetch(scriptURL, {
           method: 'POST',
           mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(formData)
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: formData.toString()
         });
-      } catch (error) {
-        console.log("Erreur d'envoi en arrière-plan");
-      }
 
-      document.getElementById('reviewForm').style.display = 'none';
-      document.getElementById('headerContent').style.display = 'none';
-      document.getElementById('successMessage').style.display = 'block';
+        // Succès : Masque le formulaire et affiche le message de remerciement
+        document.getElementById('reviewForm').style.display = 'none';
+        document.getElementById('headerContent').style.display = 'none';
+        document.getElementById('successMessage').style.display = 'block';
+
+      } catch (error) {
+        console.error("Erreur d'envoi", error);
+        alert("Une erreur est survenue lors de l'envoi.");
+        btn.innerText = "Envoyer l'avis";
+        btn.disabled = false;
+      }
     }
   </script>
 

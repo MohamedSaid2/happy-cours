@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- STYLES CSS INTÉGRÉS (UNIFIÉS AVEC TON SITE PRINCIPAL) -->
+  <!-- STYLES CSS INTÉGRÉS -->
   <style>
     /* VARIABLES GLOBALES */
     :root {
@@ -21,17 +21,17 @@
       --line: #E9E3F5;
       --text: #110C24;
       --muted: #5C5575;
-      --violet-primary: #6C4CD8;
-      --violet-deep: #3A1C93;
+      --violet-primary: #5C3EBD;
+      --violet-deep: #4A30A0;
       --violet-glow: #8B5CF6;
       --glam-pink: #D946EF;
       --glam-gradient: linear-gradient(135deg, #7C3AED 0%, #D946EF 100%);
       --glam-shadow: 0 12px 30px -5px rgba(124, 58, 237, 0.45);
       --radius: 18px;
-      --maxw: 1140px;
+      --maxw: 1200px;
     }
 
-    * {
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -44,7 +44,7 @@
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       line-height: 1.65;
       -webkit-font-smoothing: antialiased;
       min-height: 100vh;
@@ -60,102 +60,158 @@
     .wrap {
       max-width: var(--maxw);
       margin: 0 auto;
-      padding: 0 28px;
+      padding: 0 24px;
       width: 100%;
     }
 
-    /* HEADER & NAVIGATION STICKY */
+    /* ==========================================================================
+       HEADER UNIFIÉ ET IDENTIQUE (AVEC EFFET SURVOL PILULE)
+       ========================================================================== */
     header {
+      background-color: #ffffff;
+      border-bottom: 1px solid #e9ecef;
       position: sticky;
       top: 0;
-      z-index: 50;
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--line);
+      z-index: 1000;
     }
 
-    .nav {
+    .wrap.nav {
+      height: 72px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      height: 78px;
+      align-items: center;
     }
 
+    /* Logo */
     .logo {
       display: flex;
       align-items: center;
       gap: 10px;
-      font-weight: 800;
       font-size: 20px;
+      font-weight: 800;
+      color: #1a1a1a;
+      text-decoration: none;
+      letter-spacing: -0.5px;
     }
 
     .logo-mark {
-      width: 38px;
-      height: 38px;
-      border-radius: 12px;
-      background: var(--glam-gradient);
+      background-color: #5c3ebd;
+      color: #ffffff;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 17px;
-      color: #fff;
-      font-weight: 900;
-      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
-    }
-
-    #navList {
-      display: flex;
-      gap: 8px;
-      list-style: none;
-    }
-
-    #navList a {
-      font-size: 14.5px;
-      color: var(--text);
-      font-weight: 600;
-      padding: 9px 16px;
-      border-radius: 100px;
-      transition: all 0.2s ease;
-    }
-
-    #navList a:hover {
-      background-color: var(--panel-2);
-      color: var(--violet-primary);
-    }
-
-    #navList a.nav-highlight {
-      color: var(--violet-glow);
+      font-size: 18px;
       font-weight: 800;
     }
 
+    /* Navigation avec survol Pilule */
+    nav ul {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      color: #1a1a1a;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: 99px;
+      transition: all 0.2s ease-in-out;
+    }
+
+    /* Effet pilule violette au survol */
+    nav a:hover {
+      background-color: #e8e3f9;
+      color: #4a30a0;
+    }
+
+    .nav-highlight {
+      color: #5c3ebd !important;
+    }
+
+    /* Actions Header */
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
     .btn {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-weight: 700;
-      font-size: 14px;
-      padding: 10px 22px;
-      border-radius: 100px;
-      border: 1px solid var(--violet-primary);
-      color: var(--violet-primary);
-      background: transparent;
-      cursor: pointer;
-      transition: all .25s ease;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      padding: 10px 22px;
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s ease-in-out;
+      cursor: pointer;
     }
 
     .btn-solid {
-      background: var(--violet-primary);
-      color: #fff;
-      border-color: var(--violet-primary);
+      background-color: #5c3ebd;
+      color: #ffffff;
+      border: 2px solid #5c3ebd;
+      box-shadow: 0 4px 12px rgba(92, 62, 189, 0.2);
     }
 
     .btn-solid:hover {
-      background: var(--violet-deep);
-      border-color: var(--violet-deep);
+      background-color: #4a30a0;
+      border-color: #4a30a0;
+      transform: translateY(-1px);
     }
 
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: #1a1a1a;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    /* Mobile Responsive Header */
+    @media (max-width: 900px) {
+      nav {
+        display: none;
+      }
+      nav.is-open {
+        display: block;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: #ffffff;
+        padding: 20px 24px;
+        border-bottom: 1px solid #e9ecef;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      }
+      nav.is-open ul {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+      }
+      nav.is-open a {
+        display: block;
+      }
+      .menu-toggle {
+        display: block;
+      }
+    }
+
+    /* ==========================================================================
+       STYLES PAGE FORMATION & CARTE DE COURS
+       ========================================================================== */
     .btn-glam {
       background: var(--glam-gradient) !important;
       color: #FFFFFF !important;
@@ -172,21 +228,6 @@
       box-shadow: 0 16px 32px -5px rgba(124, 58, 237, 0.5);
     }
 
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 24px;
-      cursor: pointer;
-    }
-
-    /* EYEBROW & BADGES */
     .eyebrow {
       display: inline-flex;
       align-items: center;
@@ -219,10 +260,9 @@
       100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(217, 70, 239, 0); }
     }
 
-    /* SECTION HERO */
     .hero-section {
       text-align: center;
-      padding: 70px 0 40px;
+      padding: 50px 0 30px;
       max-width: 780px;
       margin: 0 auto;
     }
@@ -246,7 +286,6 @@
       font-weight: 500;
     }
 
-    /* GRILLE DE CARTES VIDÉO */
     main {
       flex: 1;
       padding-bottom: 90px;
@@ -259,7 +298,6 @@
       margin-top: 30px;
     }
 
-    /* CARTE DE COURS VIDÉO */
     .video-card {
       background: var(--panel);
       border: 1px solid var(--line);
@@ -276,7 +314,6 @@
       box-shadow: 0 20px 40px -15px rgba(108, 76, 216, 0.2);
     }
 
-    /* MINIATURE ET BADGES */
     .video-thumb {
       position: relative;
       width: 100%;
@@ -297,7 +334,6 @@
       transform: scale(1.04);
     }
 
-    /* BOUTON PLAY AU SURVOL */
     .play-overlay {
       position: absolute;
       inset: 0;
@@ -342,7 +378,6 @@
       text-transform: uppercase;
     }
 
-    /* CONTENU DE LA CARTE */
     .card-body {
       padding: 24px;
       display: flex;
@@ -409,7 +444,7 @@
       font-weight: 500;
     }
 
-    /* BOUTON FLOTTANT WHATSAPP */
+    /* WHATSAPP */
     .whatsapp-exact-pill {
       position: fixed;
       bottom: 25px;
@@ -437,37 +472,12 @@
       height: 20px;
       fill: currentColor;
     }
-
-    @media (max-width: 768px) {
-      #navList {
-        position: fixed;
-        top: 78px;
-        left: 0;
-        right: 0;
-        background: var(--bg);
-        border-bottom: 1px solid var(--line);
-        flex-direction: column;
-        padding: 24px 28px;
-        gap: 12px;
-        transform: translateY(-150%);
-        transition: transform .25s ease;
-      }
-      #navList.open {
-        transform: translateY(0);
-      }
-      .menu-toggle {
-        display: block;
-      }
-      .nav-actions .btn:not(.menu-toggle) {
-        display: none;
-      }
-    }
   </style>
 </head>
 
 <body>
 
-  <!-- HEADER ET NAVIGATION -->
+  <!-- HEADER ET NAVIGATION UNIFIÉS -->
   <header>
     <div class="wrap nav">
       <a href="index.html" class="logo" aria-label="Retour à l'accueil Happy Cours">
@@ -475,9 +485,9 @@
         Happy Cours
       </a>
 
-      <nav aria-label="Navigation principale">
+      <nav aria-label="Navigation principale" id="mainNav">
         <ul id="navList">
-          <li><a href="index.html#cours">Matières</a></li>
+          <li><a href="index.html#cours">Cours particuliers</a></li>
           <li><a href="formations.html" class="nav-highlight">Formations</a></li>
           <li><a href="index.html#apropos">À propos</a></li>
           <li><a href="index.html#tarif">Tarif</a></li>
@@ -487,7 +497,7 @@
       </nav>
 
       <div class="nav-actions">
-        <a href="index.html#contact" class="btn btn-solid">Réserver</a>
+        <a href="reservation.html" class="btn btn-solid">Réserver</a>
         <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu mobile">☰</button>
       </div>
     </div>
@@ -510,7 +520,6 @@
         <!-- CARTE 1 -->
         <article class="video-card">
           <div class="video-thumb">
-            <!-- Remplace par l'image de ta vidéo -->
             <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=600&q=80" alt="Terminale Maths Récurrence">
             <span class="tag-badge">Maths — Terminale</span>
             <div class="play-overlay">
@@ -526,7 +535,6 @@
             </div>
             <div class="card-footer">
               <div class="card-price">9.81 €</div>
-              <!-- Coller ici le lien Stripe du produit 1 -->
               <a href="https://buy.stripe.com/TON_LIEN_STRIPE_1" class="btn btn-glam" target="_blank" rel="noopener">Acheter la vidéo</a>
             </div>
           </div>
@@ -549,7 +557,6 @@
             </div>
             <div class="card-footer">
               <div class="card-price">9.81 €</div>
-              <!-- Coller ici le lien Stripe du produit 2 -->
               <a href="https://buy.stripe.com/TON_LIEN_STRIPE_2" class="btn btn-glam" target="_blank" rel="noopener">Acheter la vidéo</a>
             </div>
           </div>
@@ -573,7 +580,6 @@
             </div>
             <div class="card-footer">
               <div class="card-price">14.90 €</div>
-              <!-- Coller ici le lien Stripe du produit 3 -->
               <a href="https://buy.stripe.com/TON_LIEN_STRIPE_3" class="btn btn-glam" target="_blank" rel="noopener">Acheter la vidéo</a>
             </div>
           </div>
@@ -605,10 +611,10 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const menuToggle = document.getElementById('menuToggle');
-      const navList = document.getElementById('navList');
-      if (menuToggle && navList) {
+      const mainNav = document.getElementById('mainNav');
+      if (menuToggle && mainNav) {
         menuToggle.addEventListener('click', () => {
-          navList.classList.toggle('open');
+          mainNav.classList.toggle('is-open');
         });
       }
     });
