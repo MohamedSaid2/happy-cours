@@ -499,14 +499,13 @@
     const formData = new FormData(contactForm);
 
     try {
-      // Ton adresse e-mail est directement renseignée ici :
       const response = await fetch("https://formsubmit.co/ajax/bouhssinamohamedsaid@gmail.com", {
         method: "POST",
         body: formData
       });
 
       if (response.ok) {
-        formStatus.style.color = "#10B981"; // Vert
+        formStatus.style.color = "#8B5CF6"; // Couleur violette (Violet moderne / Accent)
         formStatus.innerText = "✓ Votre message a bien été envoyé ! Je vous réponds sous 24h.";
         formStatus.style.display = "block";
         contactForm.reset();
@@ -514,7 +513,7 @@
         throw new Error();
       }
     } catch (error) {
-      formStatus.style.color = "#EF4444"; // Rouge
+      formStatus.style.color = "#EF4444"; // Rouge pour les erreurs
       formStatus.innerText = "Une erreur est survenue. Veuillez réessayer.";
       formStatus.style.display = "block";
     } finally {
@@ -522,6 +521,12 @@
       submitBtn.disabled = false;
     }
   });
+
+
+
+
+
+
 
 
   document.addEventListener('DOMContentLoaded', () => {
