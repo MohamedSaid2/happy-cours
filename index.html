@@ -320,8 +320,10 @@
         <div>
           <div class="eyebrow">Contact direct</div>
           <h2 style="margin-bottom: 28px;"><span class="gradient-text title-underline">Une question ? Écrivez-moi</span></h2>
-          
-          <form id="contactForm" action="#" method="POST">
+          <!-- Adapter l'address mail pour qu'il pointe vers happy-cours@gmail.com -->
+          <form id="contactForm" action="https://formsubmit.co/bouhssinamohamedsaid@gmail.com" method="POST">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_subject" value="Nouveau message depuis Happy Cours">
             <div class="field">
               <label for="nom">Nom complet</label>
               <input type="text" id="nom" name="nom" placeholder="Votre nom et prénom" required autocomplete="name">
@@ -336,6 +338,7 @@
             </div>
             <button type="submit" class="btn btn-solid" style="width: 100%;">Envoyer le message</button>
           </form>
+
         </div>
 
         <!-- NOS ENGAGEMENTS : SECTION ANIMÉE ET DYNAMIQUE -->
@@ -410,8 +413,8 @@
         <div>
           <div class="footer-col-title">INFORMATIONS</div>
           <ul class="footer-links">
-            <li><a href="#">Mentions légales</a></li>
-            <li><a href="#">Politique de confidentialité</a></li>
+            <li><a href="mentions-legales.html">Mentions légales</a></li>
+            <li><a href="politique-confidentialite.html">Politique de confidentialité</a></li>
             <li><a href="#" id="manageCookiesBtn">Gérer les cookies</a></li>
           </ul>
         </div>
