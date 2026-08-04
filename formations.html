@@ -428,22 +428,127 @@
     }
 
     /* FOOTER */
-    footer.exact-footer {
-      background: var(--panel);
-      border-top: 1px solid var(--line);
-      padding: 30px 0;
+    /* ==========================================================================
+       FOOTER & WHATSAPP
+       ========================================================================== */
+    footer {
+      background-color: #160c28;
+      color: #ffffff;
+      padding: 50px 20px 25px;
       margin-top: auto;
+      font-size: 14px;
     }
 
-    .footer-bottom-bar {
+    .footer-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 35px;
+      padding-bottom: 35px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .footer-col h3 {
+      margin: 0 0 10px 0;
+      font-size: 20px;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .footer-col h4 {
+      margin: 0 0 15px 0;
+      font-size: 15px;
+      font-weight: 700;
+      color: #a78bfa;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .footer-slogan {
+      color: #a78bfa;
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .footer-col p, 
+    .footer-col a, 
+    .btn-cookie-manage {
+      color: #e2e8f0;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 10px;
+      font-size: 14px;
+      background: none;
+      border: none;
+      padding: 0;
+      text-align: left;
+      cursor: pointer;
+      transition: color 0.2s ease-in-out;
+    }
+
+    .footer-col a:hover, 
+    .btn-cookie-manage:hover {
+      color: #a78bfa;
+      text-decoration: underline;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .social-links a {
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 50%;
+      margin-bottom: 0 !important;
+      transition: all 0.25s ease-in-out;
+    }
+
+    .social-icon {
+      width: 20px;
+      height: 20px;
+      color: #ffffff;
+    }
+
+    .social-links a:hover {
+      background-color: #5c3ebd;
+      border-color: #5c3ebd;
+      transform: translateY(-4px);
+      box-shadow: 0 5px 15px rgba(92, 62, 189, 0.4);
+    }
+
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 25px auto 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      color: var(--muted);
-      font-size: 14px;
-      font-weight: 500;
+      color: #a78bfa;
+      font-size: 13px;
     }
 
+    @media (max-width: 600px) {
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+    }
+
+    
     /* WHATSAPP */
     .whatsapp-exact-pill {
       position: fixed;
@@ -472,6 +577,12 @@
       height: 20px;
       fill: currentColor;
     }
+
+
+
+
+
+
   </style>
 </head>
 
