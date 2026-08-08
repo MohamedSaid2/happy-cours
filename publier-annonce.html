@@ -1,0 +1,1532 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Cours — Trouvez votre professeur particulier</title>
+  <meta name="description" content="Trouvez le professeur particulier idéal en Mathématiques, Physique et SI chez Happy Cours.">
+  
+  <!-- POLICES GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- STYLES CSS INTÉGRÉS -->
+  <style>
+    /* VARIABLES GLOBALES HAPPY COURS */
+    :root {
+      --bg: #FFFFFF;
+      --panel: #FAF8FE;
+      --panel-2: #F3EEFC;
+      --line: #E9E3F5;
+      --text: #110C24;
+      --muted: #5C5575;
+      --violet-primary: #6C4CD8;
+      --violet-deep: #3A1C93;
+      --violet-glow: #8B5CF6;
+      --glam-pink: #D946EF;
+      --glam-gradient: linear-gradient(135deg, #7C3AED 0%, #D946EF 100%);
+      --glam-shadow: 0 12px 30px -5px rgba(124, 58, 237, 0.45);
+      --radius: 18px;
+      --maxw: 1140px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .wrap {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 28px;
+      width: 100%;
+    }
+
+    /* HEADER & NAVIGATION STICKY */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 78px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 20px;
+    }
+
+    .logo-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: var(--glam-gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+      color: #fff;
+      font-weight: 900;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+    }
+
+    #navList {
+      display: flex;
+      gap: 8px;
+      list-style: none;
+    }
+
+    #navList a {
+      font-size: 14.5px;
+      color: var(--text);
+      font-weight: 600;
+      padding: 9px 16px;
+      border-radius: 100px;
+      transition: all 0.2s ease;
+    }
+
+    #navList a:hover {
+      background-color: var(--panel-2);
+      color: var(--violet-primary);
+    }
+
+    #navList a.nav-highlight {
+      color: var(--violet-glow);
+      font-weight: 800;
+    }
+
+    .btn {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 10px 22px;
+      border-radius: 100px;
+      border: 1px solid var(--violet-primary);
+      color: var(--violet-primary);
+      background: transparent;
+      cursor: pointer;
+      transition: all .25s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-solid {
+      background: var(--violet-primary);
+      color: #fff;
+      border-color: var(--violet-primary);
+    }
+
+    .btn-solid:hover {
+      background: var(--violet-deep);
+      border-color: var(--violet-deep);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    /* SECTION HERO & RECHERCHE */
+    .hero-search-section {
+      background: linear-gradient(180deg, var(--panel) 0%, var(--bg) 100%);
+      padding: 50px 0 30px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-title {
+      text-align: center;
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 900;
+      margin-bottom: 30px;
+    }
+
+    .hero-title .accent {
+      background: var(--glam-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .search-bar-container {
+      background: #FFFFFF;
+      border: 1px solid var(--line);
+      border-radius: 100px;
+      padding: 8px 12px 8px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 10px 30px rgba(108, 76, 216, 0.08);
+      max-width: 850px;
+      margin: 0 auto 40px;
+    }
+
+    .search-input-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .search-input-group input {
+      border: none;
+      outline: none;
+      width: 100%;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .search-divider {
+      width: 1px;
+      height: 30px;
+      background: var(--line);
+    }
+
+    .btn-search {
+      background: var(--text);
+      color: #fff;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 100px;
+      font-weight: 700;
+      font-size: 14.5px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-search:hover {
+      background: var(--violet-primary);
+    }
+
+    /* ÉTAPES SIMPLE */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .step-card {
+      background: #FFFFFF;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 13.5px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .step-number {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: var(--panel-2);
+      color: var(--violet-primary);
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* CONTENU PRINCIPAL : FILTRES + GRILLE */
+    main {
+      flex: 1;
+      padding: 40px 0 80px;
+    }
+
+    .layout-grid {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 40px;
+    }
+
+    /* SIDEBAR FILTRES */
+    .filters-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .filter-group h3 {
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .filter-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .filter-option input[type="radio"],
+    .filter-option input[type="checkbox"] {
+      accent-color: var(--violet-primary);
+      width: 16px;
+      height: 16px;
+    }
+
+    .price-range-inputs {
+      display: flex;
+      gap: 10px;
+    }
+
+    .price-input {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      font-size: 13.5px;
+      font-family: inherit;
+      font-weight: 600;
+    }
+
+    /* EN-TÊTE RÉSULTATS */
+    .results-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .results-count {
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .results-sort select {
+      border: 1px solid var(--line);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-family: inherit;
+      font-weight: 600;
+      color: var(--violet-primary);
+      background: transparent;
+      cursor: pointer;
+    }
+
+    /* GRILLE PROFESSEURS */
+    .profs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 24px;
+    }
+
+    /* CARTE PROFESSEUR */
+    .prof-card {
+      background: #FFFFFF;
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .prof-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 32px -10px rgba(108, 76, 216, 0.15);
+    }
+
+    /* PHOTO & EN-TÊTE D'ANNOUNCE */
+    .prof-photo-wrap {
+      position: relative;
+      height: 280px;
+      background-size: cover;
+      background-position: center;
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 12px;
+    }
+
+    .prof-photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.85) 100%);
+    }
+
+    .badge-fast {
+      position: relative;
+      z-index: 2;
+      align-self: flex-start;
+      background: #FF9F1C;
+      color: #FFFFFF;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 100px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .btn-heart {
+      position: relative;
+      z-index: 2;
+      align-self: flex-end;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(4px);
+      border: none;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .prof-name-bar {
+      position: relative;
+      z-index: 2;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .prof-name-bar h2 {
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .check-badge {
+      width: 18px;
+      height: 18px;
+      background: #3B82F6;
+      color: #fff;
+      border-radius: 50%;
+      font-size: 11px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+    }
+
+    /* CORPS DE LA CARTE */
+    .prof-card-body {
+      padding: 14px 4px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .prof-info-line {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .prof-info-line span {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .prof-badge-new {
+      background: #E6F4EA;
+      color: #137333;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+      width: fit-content;
+    }
+
+    .prof-rating {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .prof-rating .star {
+      color: #FFB800;
+    }
+
+    .prof-description {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 500;
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .prof-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .prof-tag {
+      background: var(--panel-2);
+      color: var(--violet-primary);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+
+    .prof-price-line {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text);
+      margin-top: 4px;
+    }
+
+    /* LABELS DES MATIÈRES DANS LE PROFIL */
+    .prof-subjects {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
+    }
+
+    .subject-tag {
+    background: #F0EBFB;
+    color: #6C4CD8; /* Votre couleur primaire */
+    font-size: 11.5px;
+    font-weight: 800;
+    padding: 3px 9px;
+    border-radius: 8px;
+    border: 1px solid rgba(108, 76, 216, 0.15);
+    }
+
+       /* Footer Violet Sombre (#160c28) */
+   /* Footer Violet Sombre Optimizé */
+footer {
+  background-color: #160c28;
+  color: #ffffff;
+  padding: 50px 20px 25px;
+  margin-top: auto;
+  font-size: 14px;
+}
+
+.footer-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 35px;
+  padding-bottom: 35px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.footer-col h3 {
+  margin: 0 0 10px 0;
+  font-size: 20px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.footer-col h4 {
+  margin: 0 0 15px 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #a78bfa; /* Violet clair contrasté */
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.footer-slogan {
+  color: #a78bfa;
+  margin: 0;
+  font-size: 14px;
+}
+
+.footer-col p, 
+.footer-col a, 
+.btn-cookie-manage {
+  color: #e2e8f0;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 10px;
+  font-size: 14px;
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+.footer-col a:hover, 
+.btn-cookie-manage:hover {
+  color: #a78bfa;
+  text-decoration: underline;
+}
+
+/* Optimisation des Icônes Réseaux Sociaux */
+.social-links {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.social-links a {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  margin-bottom: 0 !important;
+  transition: all 0.25s ease-in-out;
+}
+
+.social-icon {
+  width: 20px;
+  height: 20px;
+  color: #ffffff;
+}
+
+/* Effet au survol des icônes */
+.social-links a:hover {
+  background-color: #5c3ebd; /* Couleur violette de votre marque */
+  border-color: #5c3ebd;
+  transform: translateY(-4px);
+  box-shadow: 0 5px 15px rgba(92, 62, 189, 0.4);
+}
+
+.footer-bottom {
+  max-width: 1100px;
+  margin: 25px auto 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #a78bfa;
+  font-size: 13px;
+}
+
+/* Adaptabilité Mobile */
+@media (max-width: 600px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+}
+
+    /* BOUTON FLOTTANT WHATSAPP */
+    .whatsapp-exact-pill {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background-color: #25d366;
+      color: white;
+      border-radius: 50px;
+      padding: 12px 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+      z-index: 999;
+      font-weight: 700;
+      font-size: 14.5px;
+      transition: transform 0.2s ease;
+    }
+
+    .whatsapp-exact-pill:hover {
+      transform: scale(1.04);
+    }
+
+    .whatsapp-exact-pill svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    /* MEDIA QUERIES RESPONSIVE */
+    @media (max-width: 900px) {
+      .layout-grid {
+        grid-template-columns: 1fr;
+      }
+      .filters-sidebar {
+        display: none; /* Masqué sur mobile pour clarté */
+      }
+      .steps-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      #navList {
+        position: fixed;
+        top: 78px;
+        left: 0;
+        right: 0;
+        background: var(--bg);
+        border-bottom: 1px solid var(--line);
+        flex-direction: column;
+        padding: 24px 28px;
+        gap: 12px;
+        transform: translateY(-150%);
+        transition: transform .25s ease;
+      }
+      #navList.open {
+        transform: translateY(0);
+      }
+      .menu-toggle {
+        display: block;
+      }
+      .nav-actions .btn:not(.menu-toggle) {
+        display: none;
+      }
+      .search-bar-container {
+        flex-direction: column;
+        border-radius: 20px;
+        padding: 16px;
+      }
+      .search-divider {
+        display: none;
+      }
+      .btn-search {
+        width: 100%;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .footer-bottom-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER ET NAVIGATION OFFICIEL HAPPY COURS -->
+  <header>
+    <div class="wrap nav">
+      <a href="index.html" class="logo" aria-label="Retour à l'accueil Happy Cours">
+        <span class="logo-mark" aria-hidden="true">H</span>
+        Happy Cours
+      </a>
+
+      <nav aria-label="Navigation principale">
+        <ul id="navList">
+          <li><a href="index.html#cours">Matières</a></li>
+          <li><a href="professeurs.html" class="nav-highlight">Trouver un prof</a></li>
+          <li><a href="formations.html">Formations</a></li>
+          <li><a href="index.html#apropos">À propos</a></li>
+          <li><a href="index.html#tarif">Tarif</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="index.html#contact" class="btn btn-solid">Réserver</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu mobile">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- RECHERCHE & HERO -->
+  <section class="hero-search-section">
+    <div class="wrap">
+      <h1 class="hero-title">Trouvez le professeur particulier <span class="accent">idéal !</span></h1>
+      
+      <!-- BARRE DE RECHERCHE -->
+      <div class="search-bar-container">
+        <div class="search-input-group">
+          <span>🔍</span>
+          <input type="text" id="searchSubject" placeholder="Matière (ex: Maths, Physique...)" value="Maths">
+        </div>
+        <div class="search-divider"></div>
+        <div class="search-input-group">
+          <span>📍</span>
+          <input type="text" id="searchLocation" placeholder="Ville ou adresse" value="">
+        </div>
+        <button class="btn-search" id="searchBtn">Rechercher</button>
+      </div>
+
+      <!-- ÉTAPES RAPIDES -->
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <div>Choisissez votre professeur certifié parmi notre sélection rigoureuse.</div>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <div>Planifiez votre cours d'essai en ligne ou à domicile sur mesure.</div>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <div>Échangez avec l'équipe pédagogique pour un accompagnement optimal.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENU PRINCIPAL DE RECHERCHE -->
+  <main>
+    <div class="wrap">
+      <div class="layout-grid">
+        
+        <!-- SIDEBAR DE FILTRES -->
+        <aside class="filters-sidebar">
+        <div class="filter-group">
+            <h3>Lieux des cours</h3>
+            <label class="filter-option">
+                <input type="radio" name="lieu" value="all" checked> Indifférent ✨
+            </label>
+            <label class="filter-option">
+                <input type="radio" name="lieu" value="en-ligne"> En ligne 💻
+            </label>
+            <label class="filter-option">
+                <input type="radio" name="lieu" value="a-domicile"> À domicile 🏡
+            </label>
+        </div>
+
+        <div class="filter-group">
+            <h3>Niveau</h3>
+            <label class="filter-option"><input type="checkbox" class="filter-level" value="primaire"> Primaire</label>
+            <label class="filter-option"><input type="checkbox" class="filter-level" value="college"> Collège</label>
+            <label class="filter-option"><input type="checkbox" class="filter-level" value="lycee"> Lycée</label>
+            <label class="filter-option"><input type="checkbox" class="filter-level" value="prepa"> Prépa</label>
+            <label class="filter-option"><input type="checkbox" class="filter-level" value="superieur"> Supérieur</label>
+        </div>
+
+    <div class="filter-group">
+            <h3>Tarif horaire</h3>
+        <div class="price-range-inputs">
+        <input type="text" id="priceMin" class="price-input" placeholder="Min €" value="15 €">
+        <input type="text" id="priceMax" class="price-input" placeholder="Max €" value="60 €">
+    </div>
+    </div>
+
+        <div class="filter-group">
+        <h3>Options</h3>
+        <label class="filter-option">
+        <input type="checkbox" id="filterVerified" class="filter-option-checkbox" value="verified"> Professeurs vérifiés ✓
+        </label>
+        <label class="filter-option">
+        <input type="checkbox" id="filterFastResponse" class="filter-option-checkbox" value="fast"> Réponse rapide ⚡
+        </label>
+        </div>
+
+
+        </aside>
+
+        <!-- COLONNE DES ANNONCES PROFESSEURS -->
+        <section>
+          <div class="results-header">
+            <div class="results-count">529 professeurs particuliers disponibles</div>
+            <div class="results-sort">
+              <select>
+                <option>Trier par pertinence</option>
+                <option>Prix croissant</option>
+                <option>Prix décroissant</option>
+                <option>Les mieux notés</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- GRILLE DES ANNONCES DE PROFESSEURS -->
+          <div class="profs-grid">
+
+            <!-- CARTE PROFESSEURS -->
+            <article class="prof-card" data-levels="college lycee" data-price="15" data-verified="true" data-fast="true">
+              <div class="prof-photo-wrap" style="background-image: url('https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=500&q=80');">
+                <div class="prof-photo-overlay"></div>
+                <div style="display:flex; justify-size: space-between; width:100%;">
+                  <button class="btn-heart" aria-label="Favoris">♡</button>
+                </div>
+                <div class="prof-name-bar">
+                  <h2>Paolo</h2>
+                  <span class="check-badge">✓</span>
+                </div>
+              </div>
+              <div class="prof-card-body">
+                <div class="prof-info-line">
+                  <span>📍 Paris</span>
+                  <span>🎓 École Polytechnique</span>
+                </div>
+                <div class="prof-badge-new">Nouveau professeur</div>
+                <p class="prof-description">Professeur particulier de maths tous niveaux en ligne, étudiant à l'EPFL avec 3 ans d'expérience...</p>
+                <div class="prof-tags">
+                  <span class="prof-tag">En ligne</span>
+                </div>
+                <div class="prof-price-line">10,90 €/h</div>
+              </div>
+            </article>
+
+            <!-- CARTE PROFESSEUR 2 -->
+            <article class="prof-card" data-levels="lycee prepa" data-price="20" data-verified="false" data-fast="false">
+              <div class="prof-photo-wrap" style="background-image: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=500&q=80');">
+                <div class="prof-photo-overlay"></div>
+                <div style="display:flex; justify-content: space-between; width:100%;">
+                  <span class="badge-fast">⚡ Répond rapidement</span>
+                  <button class="btn-heart" aria-label="Favoris">♡</button>
+                </div>
+                <div class="prof-name-bar">
+                  <h2>Sarah</h2>
+                  <span class="check-badge">✓</span>
+                </div>
+              </div>
+              <div class="prof-card-body">
+                <div class="prof-info-line">
+                  <span>📍 Évry</span>
+                  <span>🎓 École d'ingénieurs</span>
+                </div>
+                <div class="prof-info-line" style="color:var(--violet-primary);">⏱️ 1h donnée</div>
+                <p class="prof-description">Étudiante en école d'ingénieur, cours de maths, physique et chimie. Pédagogie adaptée...</p>
+                <div class="prof-tags">
+                  <span class="prof-tag">En ligne</span>
+                  <span class="prof-tag">À domicile</span>
+                </div>
+                <div class="prof-price-line">À partir de 25,90 €/h</div>
+              </div>
+            </article>
+
+            <!-- CARTE PROFESSEUR 3 -->
+            <article class="prof-card" data-levels="college lycee prepa superieur" data-price="24" data-verified="true" data-fast="false">
+
+              <div class="prof-photo-wrap" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80');">
+                <div class="prof-photo-overlay"></div>
+                <div style="display:flex; justify-content: space-between; width:100%;">
+                  <span class="badge-fast">⚡ Répond rapidement</span>
+                  <button class="btn-heart" aria-label="Favoris">♡</button>
+                </div>
+                <div class="prof-name-bar">
+                  <h2>Aymen</h2>
+                  <span class="check-badge">✓</span>
+                </div>
+                <!-- 🟢 AJOUTER LES BADGES DE MATIÈRES ICI -->
+                <div class="prof-subjects">
+                    <span class="subject-tag">Mathématiques</span>
+                    <span class="subject-tag">Informatique</span>
+                </div>
+              </div>
+
+              <div class="prof-card-body">
+                <div class="prof-info-line">
+                  <span>📍 Bron</span>
+                  <span>🎓 EMLYON Business School</span>
+                </div>
+                <div class="prof-rating">
+                  <span class="star">★</span> 5.0 <span style="color:var(--muted); font-weight:500;">(1 avis · 74h données)</span>
+                </div>
+                <p class="prof-description">Cours particuliers d'été de Maths pour collégien, lycéen, CPGE ECG à distance...</p>
+                <div class="prof-tags">
+                  <span class="prof-tag">En ligne</span>
+                </div>
+                <div class="prof-price-line">À partir de 20,90 €/h</div>
+              </div>
+            </article>
+
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+<!-- Footer Violet Sombre identique à l'image -->
+<footer>
+
+  <div class="footer-content">
+    
+    <!-- Colonne 1 : Marque & Slogan -->
+    <div class="footer-col">
+      <h3>Happy Cours</h3>
+      <p class="footer-slogan">Réfléchir, Comprendre, Réussir.</p>
+    </div>
+
+    <!-- Colonne 2 : Contact -->
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p>+33 (0)7 71 85 48 04</p>
+      <p><a href="mailto:happy.cours.2026@gmail.com">happy.cours.2026@gmail.com</a></p>
+    </div>
+
+    <!-- Colonne 3 : Liens Légaux -->
+    <div class="footer-col">
+      <h4>Informations</h4>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="politique-confidentialite.html">Politique de confidentialité</a>
+      <button class="btn-cookie-manage" onclick="openCookieBanner()">Gérer les cookies</button>
+    </div>
+
+    <!-- Colonne 4 : Réseaux Sociaux (Optimisés & Très visibles) -->
+    <div class="footer-col">
+      <h4>Suivez-nous</h4>
+      <div class="social-links">
+        <!-- Facebook -->
+        <a href="https://facebook.com/votrepage" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <svg class="social-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10 10 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z"/></svg>
+        </a>
+        <!-- Instagram -->
+        <a href="https://instagram.com/votrecompte" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <svg class="social-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <!-- TikTok -->
+        <a href="https://tiktok.com/@votrecompte" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+          <svg class="social-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.98-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.28-2.36.54-4.74 2.22-6.41 1.57-1.58 3.8-2.4 6.03-2.22.01 1.44-.02 2.88-.02 4.32-1.02-.15-2.08.15-2.89.81-.88.7-1.33 1.81-1.22 2.93.1 1.19.83 2.23 1.91 2.71 1.05.47 2.31.33 3.22-.34.8-.57 1.28-1.5 1.34-2.48.06-2.92.02-5.84.03-8.75.01-1.15.01-2.3.01-3.45z"/></svg>
+        </a>
+        <!-- Snapchat -->
+        <a href="https://snapchat.com/add/votrecompte" target="_blank" rel="noopener noreferrer" aria-label="Snapchat">
+          <svg class="social-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12.002 2c-3.987 0-6.19 2.898-6.19 5.86 0 1.251.385 2.502.835 3.391.137.27.127.352-.07.525-.561.492-1.272.768-2.018.768-.344 0-.649-.071-.85-.18-.179-.098-.313-.081-.418.082-.143.222-.437 1.058-.517 1.32-.058.192.028.328.232.393 1.072.342 2.164.552 3.193.308.283-.067.433.05.517.32.339 1.089 1.146 3.197 5.286 3.197 4.137 0 4.947-2.108 5.286-3.197.084-.27.234-.387.517-.32 1.029.244 2.121.034 3.193-.308.204-.065.29-.201.232-.393-.08-.262-.374-1.098-.517-1.32-.105-.163-.239-.18-.418-.082-.201.109-.506.18-.85.18-.746 0-1.457-.276-2.018-.768-.197-.173-.207-.255-.07-.525.45-.889.835-2.14.835-3.391 0-2.962-2.203-5.86-6.19-5.86z"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <div>&copy; 2026 Happy Cours</div>
+    <div>Tous droits réservés</div>
+  </div>
+</footer>
+
+
+  <!-- BOUTON FLOTTANT WHATSAPP -->
+  <a href="https://wa.me/33771854804" class="whatsapp-exact-pill" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24">
+      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-1.14 4.162 4.195-1.102z"/>
+    </svg>
+    <span>WhatsApp</span>
+  </a>
+
+<!-- SCRIPT 1 : MENU MOBILE -->
+<script>
+  // Attente du chargement complet du DOM HTML avant d'exécuter le script
+  document.addEventListener('DOMContentLoaded', () => {
+    // Récupération du bouton d'ouverture du menu (burger)
+    const menuToggle = document.getElementById('menuToggle');
+    // Récupération de la liste de liens de navigation
+    const navList = document.getElementById('navList');
+
+    // Vérification que les deux éléments existent bien dans la page
+    if (menuToggle && navList) {
+      // Ajout d'un écouteur d'événement au clic sur le bouton
+      menuToggle.addEventListener('click', () => {
+        // Alterne (ajoute ou enlève) la classe CSS 'open' sur la liste du menu
+        navList.classList.toggle('open');
+      });
+    }
+  });
+</script>
+
+<!-- SCRIPT 2 : TRI DES PROFESSEURS -->
+<script>
+  // Attente du chargement complet du DOM HTML
+  document.addEventListener('DOMContentLoaded', () => {
+    // Sélection du menu déroulant <select> du tri
+    const sortSelect = document.querySelector('.results-sort select') || document.getElementById('sortSelect');
+    // Sélection du conteneur parent qui héberge toutes les cartes
+    const profsContainer = document.querySelector('.profs-grid') || document.getElementById('profsContainer');
+
+    // Exécution du code uniquement si le select et le conteneur existent
+    if (sortSelect && profsContainer) {
+      // Transformation des enfants du conteneur en tableau JavaScript
+      const originalCards = Array.from(profsContainer.children);
+
+      // Attribution d'un index d'origine à chaque carte pour pouvoir rétablir l'ordre initial
+      originalCards.forEach((card, index) => {
+        if (!card.hasAttribute('data-original-index')) {
+          card.setAttribute('data-original-index', index);
+        }
+      });
+
+      // Fonction d'extraction du prix d'une carte (depuis data-price ou le texte HTML)
+      function getCardPrice(card) {
+        // 1. Priorité au champ data-price s'il existe
+        if (card.dataset.price) return parseFloat(card.dataset.price);
+        
+        // 2. Sinon recherche dans l'élément de texte .prof-price-line
+        const priceElement = card.querySelector('.prof-price-line');
+        if (priceElement) {
+          // Expression régulière pour extraire les chiffres et la virgule/point
+          const match = priceElement.textContent.match(/(\d+[\.,]?\d*)/);
+          if (match) return parseFloat(match[0].replace(',', '.'));
+        }
+        return 0; // Valeur par défaut si aucun prix n'est trouvé
+      }
+
+      // Fonction d'extraction de la note d'une carte
+      function getCardRating(card) {
+        // 1. Priorité au champ data-rating s'il existe
+        if (card.dataset.rating) return parseFloat(card.dataset.rating);
+
+        // 2. Sinon recherche dans l'élément textuel .prof-rating
+        const ratingElement = card.querySelector('.prof-rating');
+        if (ratingElement) {
+          const match = ratingElement.textContent.match(/(\d+[\.,]?\d*)/);
+          if (match) return parseFloat(match[0].replace(',', '.'));
+        }
+        return 0; // Valeur par défaut si aucune note n'est trouvée
+      }
+
+      // Écoute des changements de sélection dans le menu déroulant
+      sortSelect.addEventListener('change', () => {
+        // Récupération de l'état actuel de toutes les cartes
+        const cards = Array.from(profsContainer.children);
+        // Lecture de la valeur de l'option choisie en minuscules
+        const selectedOption = sortSelect.value.toLowerCase().trim();
+        // Lecture du texte visible de l'option choisie
+        const selectedText = sortSelect.options[sortSelect.selectedIndex].text.toLowerCase().trim();
+
+        // Algorithme de tri des cartes selon l'option sélectionnée
+        cards.sort((a, b) => {
+          const priceA = getCardPrice(a);
+          const priceB = getCardPrice(b);
+          const ratingA = getCardRating(a);
+          const ratingB = getCardRating(b);
+          const indexA = parseInt(a.getAttribute('data-original-index'));
+          const indexB = parseInt(b.getAttribute('data-original-index'));
+
+          // Tri par Prix croissant
+          if (selectedOption.includes('asc') || (selectedText.includes('croissant') && !selectedText.includes('décroissant'))) {
+            return priceA - priceB;
+          } 
+          // Tri par Prix décroissant
+          else if (selectedOption.includes('desc') || selectedText.includes('décroissant')) {
+            return priceB - priceA;
+          } 
+          // Tri par Note décroissante (les mieux notés d'abord)
+          else if (selectedOption.includes('rating') || selectedText.includes('noté')) {
+            return ratingB - ratingA;
+          } 
+          // Tri par Pertinence (ordre initial)
+          else {
+            return indexA - indexB;
+          }
+        });
+
+        // Ré-insertion dans le DOM des cartes réordonnées
+        cards.forEach(card => profsContainer.appendChild(card));
+      });
+    }
+  });
+</script>
+
+<!-- SCRIPT 3 : FILTRAGE MULTI-CRITÈRES COMBINÉ -->
+<!-- SCRIPT 3 : FILTRAGE MULTI-CRITÈRES COMBINÉ (SIDEBAR + BARRE PRINCIPALE) -->
+<script>
+  // Attente du chargement complet du DOM
+  document.addEventListener('DOMContentLoaded', () => {
+    // Récupération du conteneur des cartes de professeurs
+    const profsContainer = document.querySelector('.profs-grid') || document.getElementById('profsContainer');
+    if (!profsContainer) return; // Arrêt si la grille n'existe pas
+
+    // Nettoyage et conversion d'une valeur texte en chiffre (ex: "25 €" -> 25)
+    function parsePrice(val) {
+      if (!val) return null;
+      const clean = val.toString().replace(',', '.').replace(/[^0-9.]/g, '');
+      const parsed = parseFloat(clean);
+      return isNaN(parsed) ? null : parsed;
+    }
+
+    // Fonction globale qui évalue simultanément la BARRE PRINCIPALE et la SIDEBAR
+    function applyGlobalFilters() {
+      const cards = Array.from(profsContainer.children);
+
+      // --- 0. RECHERCHE PRINCIPALE (MATIÈRE & VILLE) ---
+      const subjectInput = document.getElementById('searchSubject') || document.querySelector('.hero-search input[placeholder*="physique"], .hero-search input[type="text"]:first-of-type');
+      const locationInput = document.getElementById('searchLocation') || document.querySelector('.hero-search input[placeholder*="Toulouse"], .hero-search input[type="text"]:last-of-type');
+
+      const searchSubject = subjectInput ? subjectInput.value.toLowerCase().trim() : '';
+      const searchLocation = locationInput ? locationInput.value.toLowerCase().trim() : '';
+
+      // --- 1. FILTRE SIDEBAR : LIEU DE COURS ---
+      const activeLocationRadio = document.querySelector('input[name="lieu"]:checked');
+      const locationValue = activeLocationRadio ? (activeLocationRadio.value || activeLocationRadio.parentElement.textContent).toLowerCase() : 'all';
+
+      // --- 2. FILTRE SIDEBAR : NIVEAUX SCOLAIRES ---
+      const selectedLevels = Array.from(document.querySelectorAll('.filter-level:checked')).map(cb => cb.value.toLowerCase());
+
+      // --- 3. FILTRE SIDEBAR : TRANCHE DE TARIF ---
+      const inputMin = document.getElementById('priceMin');
+      const inputMax = document.getElementById('priceMax');
+      const minPrice = inputMin ? (parsePrice(inputMin.value) ?? 0) : 0;
+      const maxPrice = inputMax ? (parsePrice(inputMax.value) ?? Infinity) : Infinity;
+
+      // --- 4. FILTRE SIDEBAR : OPTIONS (VÉRIFIÉ & RÉPONSE RAPIDE) ---
+      const chkVerified = document.getElementById('filterVerified');
+      const chkFast = document.getElementById('filterFastResponse');
+      const needVerified = chkVerified ? chkVerified.checked : false;
+      const needFast = chkFast ? chkFast.checked : false;
+
+      // Evaluation individuelle de chaque professeur dans la grille
+      cards.forEach(card => {
+        let isVisible = true; // La carte est présumée visible au départ
+        const cardText = card.textContent.toLowerCase();
+
+        // A. ÉVALUATION DE LA MATIÈRE (Barre Principale)
+        if (searchSubject !== '') {
+          const cardSubject = (card.getAttribute('data-subject') || cardText).toLowerCase();
+          if (!cardSubject.includes(searchSubject)) isVisible = false;
+        }
+
+        // B. ÉVALUATION DE LA VILLE / LOCALISATION (Barre Principale)
+        if (isVisible && searchLocation !== '') {
+          const cardCity = (card.getAttribute('data-city') || cardText).toLowerCase();
+          if (!cardCity.includes(searchLocation)) isVisible = false;
+        }
+
+        // C. ÉVALUATION DU LIEU DE COURS (Sidebar)
+        if (isVisible && locationValue !== 'all' && !locationValue.includes('indifférent')) {
+          const tagsText = Array.from(card.querySelectorAll('.prof-tag, .prof-tags')).map(t => t.textContent.toLowerCase()).join(' ');
+          if (locationValue.includes('ligne') && !tagsText.includes('en ligne')) isVisible = false;
+          if (locationValue.includes('domicile') && !tagsText.includes('domicile')) isVisible = false;
+        }
+
+        // D. ÉVALUATION DU NIVEAU (Sidebar)
+        if (isVisible && selectedLevels.length > 0) {
+          const profLevels = (card.getAttribute('data-levels') || cardText).toLowerCase();
+          const matchesLevel = selectedLevels.some(lvl => profLevels.includes(lvl));
+          if (!matchesLevel) isVisible = false;
+        }
+
+        // E. ÉVALUATION DU TARIF (Sidebar)
+        if (isVisible) {
+          let cardPrice = 0;
+          if (card.dataset.price) {
+            cardPrice = parseFloat(card.dataset.price);
+          } else {
+            const priceElem = card.querySelector('.prof-price-line');
+            if (priceElem) cardPrice = parsePrice(priceElem.textContent) || 0;
+          }
+          if (cardPrice < minPrice || cardPrice > maxPrice) isVisible = false;
+        }
+
+        // F. ÉVALUATION DES OPTIONS (Sidebar)
+        if (isVisible) {
+          const isVerified = card.getAttribute('data-verified') === 'true' || 
+                             card.querySelector('.check-badge') !== null || 
+                             cardText.includes('✓');
+
+          const isFast = card.getAttribute('data-fast') === 'true' || 
+                         card.querySelector('.badge-fast') !== null || 
+                         cardText.includes('⚡') || 
+                         cardText.includes('répond rapidement');
+
+          if (needVerified && !isVerified) isVisible = false;
+          if (needFast && !isFast) isVisible = false;
+        }
+
+        // Application finale de l'affichage sur le DOM
+        card.style.display = isVisible ? 'flex' : 'none';
+      });
+    }
+
+    // Écouteur sur tous les éléments de filtre de la Sidebar
+    document.addEventListener('change', (e) => {
+      if (e.target.matches('input[name="lieu"], .filter-level, #priceMin, #priceMax, #filterVerified, #filterFastResponse')) {
+        applyGlobalFilters();
+      }
+    });
+
+    document.addEventListener('input', (e) => {
+      if (e.target.matches('#priceMin, #priceMax, #searchSubject, #searchLocation')) {
+        applyGlobalFilters();
+      }
+    });
+
+    // Écouteur du clic sur le bouton "Rechercher" de la bannière
+    const searchBtn = document.querySelector('.hero-search button') || document.getElementById('searchBtn');
+    if (searchBtn) {
+      searchBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        applyGlobalFilters();
+      });
+    }
+
+    // Écouteur de la touche Entrée dans les champs de recherche
+    document.addEventListener('keyup', (e) => {
+      if (e.key === 'Enter' && (e.target.id === 'searchSubject' || e.target.id === 'searchLocation')) {
+        e.preventDefault();
+        applyGlobalFilters();
+      }
+    });
+
+    // Événement personnalisé déclenché par d'autres scripts si besoin
+    window.addEventListener('apply-all-filters', applyGlobalFilters);
+  });
+</script>
+
+<!-- SCRIPT 4 : COMPTEUR DYNAMIQUE -->
+<script>
+  // Attente du chargement du DOM
+  document.addEventListener('DOMContentLoaded', () => {
+    // Récupération du conteneur des cartes
+    const profsContainer = document.querySelector('.profs-grid') || document.getElementById('profsContainer');
+    // Récupération de l'élément HTML affichant la phrase du total
+    const resultsHeader = document.querySelector('.results-count');
+
+    if (profsContainer && resultsHeader) {
+      // Fonction de mise à jour du texte
+      function updateProfCountMessage() {
+        const allCards = Array.from(profsContainer.children);
+        // Filtrage pour ne garder que les cartes dont display n'est pas 'none'
+        const visibleCards = allCards.filter(card => window.getComputedStyle(card).display !== 'none');
+        const count = visibleCards.length;
+
+        // Gestion de l'accord grammatical au singulier ou au pluriel
+        const labelProf = count > 1 ? 'professeurs particuliers disponibles' : 'professeur particulier disponible';
+        
+        // Injection de la chaîne formatée dans le header
+        resultsHeader.innerHTML = `<span id="profCount">${count}</span> ${labelProf}`;
+      }
+
+      // Exécution initiale
+      updateProfCountMessage();
+
+      // Création d'un observateur de mutations pour détecter tout changement de style CSS sur les cartes
+      const observer = new MutationObserver(() => {
+        updateProfCountMessage(); // Recalcul immédiat du total dès qu'une carte se masque/s'affiche
+      });
+
+      // Démarrage de l'observation sur le conteneur des professeurs
+      observer.observe(profsContainer, { 
+        childList: true, 
+        subtree: true, 
+        attributes: true, 
+        attributeFilter: ['style', 'class'] 
+      });
+    }
+  });
+</script>
+
+
+<!-- SCRIPT 5 : SYNCHRONISATION DU PRIX -->
+<script>
+  // Attente du chargement du DOM
+  document.addEventListener('DOMContentLoaded', () => {
+    // Récupération du conteneur principal
+    const profsContainer = document.querySelector('.profs-grid') || document.getElementById('profsContainer');
+
+    if (profsContainer) {
+      // Récupération de toutes les cartes d'enseignants
+      const cards = Array.from(profsContainer.querySelectorAll('.prof-card'));
+
+      // Parcours de chaque carte
+      cards.forEach(card => {
+        // Lecture de l'attribut data-price (ex: "20.9")
+        const rawPrice = card.getAttribute('data-price');
+
+        if (rawPrice !== null) {
+          // Conversion en nombre réel
+          const priceNum = parseFloat(rawPrice);
+          // Formatage avec 2 décimales et remplacement du point par une virgule (ex: "20,90")
+          const formattedPrice = priceNum.toFixed(2).replace('.', ',');
+
+          // Recherche de l'élément cible pour le prix
+          let priceLine = card.querySelector('.prof-price-line');
+          
+          // Si l'élément n'existe pas dans le HTML, création automatique
+          if (!priceLine) {
+            priceLine = document.createElement('div');
+            priceLine.className = 'prof-price-line';
+            const body = card.querySelector('.prof-card-body') || card;
+            body.appendChild(priceLine);
+          }
+
+          // Mise à jour du texte exact
+          priceLine.textContent = `${formattedPrice} €/h`;
+        }
+      });
+    }
+  });
+</script>
+
+<!-- SCRIPT 6 : BADGES VISUELS "RÉPOND RAPIDEMENT" -->
+<script>
+  // Attente du chargement du DOM
+  document.addEventListener('DOMContentLoaded', () => {
+    // Sélection de toutes les cartes d'enseignants
+    const profCards = document.querySelectorAll('.prof-card');
+
+    if (profCards.length > 0) {
+      // Parcours de chaque carte
+      profCards.forEach(card => {
+        // Vérification de la présence de data-fast="true"
+        const isFast = card.getAttribute('data-fast') === 'true';
+        // Sélection du conteneur de photo de profil
+        const photoWrap = card.querySelector('.prof-photo-wrap');
+
+        if (photoWrap) {
+          // Recherche du badge s'il est déjà présent
+          let badge = photoWrap.querySelector('.badge-fast');
+
+          if (isFast) {
+            // Si data-fast est true mais que le badge n'existe pas encore, création de l'élément HTML
+            if (!badge) {
+              badge = document.createElement('span');
+              badge.className = 'badge-fast';
+              badge.innerHTML = '⚡ Répond rapidement';
+              // Insertion du badge en premier enfant de la zone photo
+              photoWrap.insertBefore(badge, photoWrap.firstChild);
+            }
+            // Affichage du badge
+            badge.style.display = 'inline-flex';
+          } else if (badge) {
+            // Si data-fast est false, masque du badge existant
+            badge.style.display = 'none';
+          }
+        }
+      });
+
+      // Notification globale pour réévaluer le filtrage
+      window.dispatchEvent(new Event('apply-all-filters'));
+    }
+  });
+</script>
+<!-- SCRIPT 7 : BARRE DE RECHERCHE PRINCIPALE (MATIÈRE & VILLE) -->
+<script>
+  // Attente du chargement complet du DOM
+  document.addEventListener('DOMContentLoaded', () => {
+    // Récupération de la grille des professeurs
+    const profsContainer = document.querySelector('.profs-grid') || document.getElementById('profsContainer');
+    if (!profsContainer) return;
+
+    // Récupération des deux champs d'entrée et du bouton "Rechercher"
+    // (Ajustez les IDs/sélecteurs si vos champs ont des noms spécifiques)
+    const subjectInput = document.querySelector('.hero-search input[placeholder*="physique"], .hero-search input[type="text"]:first-of-type') || document.getElementById('searchSubject');
+    const locationInput = document.querySelector('.hero-search input[placeholder*="Toulouse"], .hero-search input[type="text"]:last-of-type') || document.getElementById('searchLocation');
+    const searchBtn = document.querySelector('.hero-search button') || document.getElementById('searchBtn');
+
+    // Fonction qui applique le filtre textuel Matière / Ville
+    function filterByHeroSearch() {
+      const subjectTerm = subjectInput ? subjectInput.value.toLowerCase().trim() : '';
+      const locationTerm = locationInput ? locationInput.value.toLowerCase().trim() : '';
+      const cards = Array.from(profsContainer.children);
+
+      cards.forEach(card => {
+        const cardText = card.textContent.toLowerCase();
+        const cardSubject = (card.getAttribute('data-subject') || cardText).toLowerCase();
+        const cardCity = (card.getAttribute('data-city') || cardText).toLowerCase();
+
+        let matchesSubject = true;
+        let matchesLocation = true;
+
+        // Verification de la matière saisi (ex: "physique")
+        if (subjectTerm !== '') {
+          matchesSubject = cardSubject.includes(subjectTerm);
+        }
+
+        // Verification de la ville saisie (ex: "toulouse")
+        if (locationTerm !== '') {
+          matchesLocation = cardCity.includes(locationTerm);
+        }
+
+        // Si la carte ne correspond pas à la recherche principale, on lui ajoute un marqueur
+        if (matchesSubject && matchesLocation) {
+          card.classList.remove('search-hidden');
+        } else {
+          card.classList.add('search-hidden');
+        }
+      });
+
+      // Relance le filtre global pour combiner la recherche avec la sidebar (prix, niveau, etc.)
+      if (typeof window.dispatchEvent === 'function') {
+        window.dispatchEvent(new Event('apply-all-filters'));
+      }
+    }
+
+    // 1. Écoute du clic sur le bouton "Rechercher"
+    if (searchBtn) {
+      searchBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        filterByHeroSearch();
+      });
+    }
+
+    // 2. Écoute de la touche "Entrée" dans les champs de texte
+    [subjectInput, locationInput].forEach(input => {
+      if (input) {
+        input.addEventListener('keyup', (e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            filterByHeroSearch();
+          }
+        });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
