@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profil Professeur - Happy Cours</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    /* =========================================================
+       1. CHARTE ET VARIABLES HAPPY COURS
+       ========================================================= */
+    :root {
+      --happy-purple: #7C5CFC;          /* Violet principal */
+      --happy-purple-hover: #6543ed;    /* Violet survol */
+      --happy-purple-light: #F3EFFE;    /* Fond violet doux */
+      --happy-dark-bg: #120D26;         /* Fond sombre exact du Footer */
+      --happy-text-dark: #0F0C20;       /* Texte foncé */
+      --happy-gray-bg: #FAFAFB;         /* Fond de page léger */
+      --happy-card-border: #E5E7EB;     /* Bordure fine */
+      --happy-text-main: #2D3748;       /* Texte principal */
+      --happy-text-muted: #6B7280;      /* Texte secondaire */
+      --happy-green-bg: #DCFCE7;        /* Fond vert offre */
+      --happy-green-text: #15803D;      /* Texte vert offre */
+      --happy-yellow: #F59E0B;          /* Étoiles */
+      --radius-large: 18px;
+      --radius-medium: 12px;
+      --shadow-card: 0 4px 15px rgba(0, 0, 0, 0.03);
+      --shadow-sticky: 0 10px 25px rgba(124, 92, 252, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background-color: var(--happy-gray-bg);
+      color: var(--happy-text-main);
+      line-height: 1.6;
+    }
+
+    /* =========================================================
+       2. HEADER OFFICIEL HAPPY COURS
+       ========================================================= */
+    .happy-header {
+      background: white;
+      border-bottom: 1px solid var(--happy-card-border);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 12px 20px;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--happy-text-dark);
+      font-weight: 800;
+      font-size: 1.25rem;
+    }
+
+    .logo-badge {
+      background: linear-gradient(135deg, #A855F7, #7C5CFC);
+      color: white;
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 10px rgba(124, 92, 252, 0.3);
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: var(--happy-text-dark);
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover {
+      color: var(--happy-purple);
+    }
+
+    .nav-link.active {
+      color: var(--happy-purple);
+      font-weight: 700;
+    }
+
+    .btn-header-reserve {
+      background: var(--happy-purple);
+      color: white;
+      padding: 10px 24px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: background 0.2s;
+    }
+
+    .btn-header-reserve:hover {
+      background: var(--happy-purple-hover);
+    }
+
+    /* =========================================================
+       3. CONTENU PRINCIPAL (PAGE PROFIL)
+       ========================================================= */
+    .profile-container {
+      max-width: 1200px;
+      margin: 30px auto 40px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 30px;
+      align-items: start;
+    }
+
+    .banner-offer {
+      background-color: var(--happy-green-bg);
+      color: var(--happy-green-text);
+      text-align: center;
+      padding: 12px 16px;
+      font-weight: 700;
+      border-radius: var(--radius-medium);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .hero-header h1 {
+      font-size: 2.2rem;
+      color: var(--happy-text-dark);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .verified-icon {
+      color: var(--happy-purple);
+      font-size: 1.5rem;
+    }
+
+    .hero-subtitle {
+      color: var(--happy-text-muted);
+      font-weight: 600;
+      margin: 4px 0 12px 0;
+    }
+
+    .hero-headline {
+      font-size: 1.05rem;
+      color: var(--happy-text-main);
+      margin-bottom: 16px;
+    }
+
+    .tags-container {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+
+    .tag-item {
+      background: var(--happy-purple-light);
+      color: var(--happy-purple);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .stat-card {
+      background: white;
+      border: 1px solid var(--happy-card-border);
+      border-radius: var(--radius-medium);
+      padding: 18px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .stat-card.full-width {
+      grid-column: span 2;
+    }
+
+    .stat-card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--happy-text-dark);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .stat-card-title i {
+      color: var(--happy-purple);
+    }
+
+    .cert-list {
+      list-style: none;
+    }
+
+    .cert-list li {
+      margin-bottom: 6px;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cert-list li i {
+      color: #10B981;
+    }
+
+    .stat-number {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--happy-text-dark);
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--happy-text-muted);
+    }
+
+    .content-box {
+      background: white;
+      border: 1px solid var(--happy-card-border);
+      border-radius: var(--radius-large);
+      padding: 24px;
+      margin-bottom: 25px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .content-box h2 {
+      font-size: 1.4rem;
+      color: var(--happy-text-dark);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+    }
+
+    .avail-box {
+      background: var(--happy-purple-light);
+      border-radius: var(--radius-medium);
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .avail-icon {
+      background: var(--happy-purple);
+      color: white;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 8px;
+      text-align: center;
+    }
+
+    .day-header {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--happy-text-muted);
+    }
+
+    .time-slot {
+      background: #F3F4F6;
+      padding: 6px 0;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      margin-top: 5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .time-slot:hover {
+      background: var(--happy-purple);
+      color: white;
+    }
+
+    /* Styles sous-éléments (Diplômes / Expériences) */
+    .timeline-item {
+      margin-bottom: 20px;
+    }
+
+    .timeline-item:not(:last-child) {
+      padding-bottom: 20px;
+      border-bottom: 1px solid #F3F4F6;
+    }
+
+    .item-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--happy-text-dark);
+    }
+
+    .item-subtitle {
+      color: var(--happy-text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+
+    .item-desc {
+      font-size: 0.92rem;
+      color: #374151;
+      margin-bottom: 12px;
+    }
+
+    .verified-badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #E6F4EA;
+      color: #137333;
+      padding: 4px 12px;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .btn-see-more {
+      display: block;
+      margin: 15px auto 5px auto;
+      background: transparent;
+      border: none;
+      color: var(--happy-text-dark);
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+
+    .level-tags-container {
+      margin-top: 20px;
+    }
+
+    .level-tags-label {
+      font-size: 0.9rem;
+      color: var(--happy-text-muted);
+      margin-bottom: 8px;
+    }
+
+    .level-pill-group {
+      display: flex;
+      gap: 10px;
+    }
+
+    .level-pill {
+      background: #F3F4F6;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--happy-text-dark);
+    }
+
+    /* Avis & Evaluations */
+    .review-card-item {
+      background: #FAFAFA;
+      border: 1px solid var(--happy-card-border);
+      border-radius: var(--radius-medium);
+      padding: 16px;
+      margin-top: 15px;
+    }
+
+    .review-user-info {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .user-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .avatar-circle {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #10B981;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+
+    .avatar-circle.g {
+      background: #059669;
+    }
+
+    .user-name {
+      font-weight: 700;
+      color: var(--happy-text-dark);
+    }
+
+    .post-date {
+      font-size: 0.75rem;
+      color: var(--happy-text-muted);
+    }
+
+    .star-score {
+      color: var(--happy-yellow);
+      font-weight: 700;
+    }
+
+    /* Carte de Réservation Sticky */
+    .sticky-sidebar {
+      position: sticky;
+      top: 90px;
+      background: white;
+      border: 1px solid var(--happy-card-border);
+      border-radius: var(--radius-large);
+      overflow: hidden;
+      box-shadow: var(--shadow-sticky);
+    }
+
+    .prof-image-header {
+      position: relative;
+      height: 260px;
+    }
+
+    .prof-image-header img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .badge-fast-resp {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--happy-yellow);
+      color: #000;
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 6px 12px;
+      border-radius: 20px;
+    }
+
+    .btn-fav {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(255,255,255,0.85);
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      color: var(--happy-text-dark);
+    }
+
+    .prof-name-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 20px 15px 10px 15px;
+      background: linear-gradient(transparent, rgba(18, 13, 38, 0.85));
+      color: white;
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+
+    .sidebar-body {
+      padding: 20px;
+    }
+
+    .sidebar-meta {
+      font-size: 0.85rem;
+      color: var(--happy-text-muted);
+      margin-bottom: 12px;
+    }
+
+    .rating-line {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .mode-toggle {
+      display: flex;
+      background: #F3F4F6;
+      border-radius: 25px;
+      padding: 3px;
+      margin-bottom: 20px;
+    }
+
+    .mode-btn {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 8px 0;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border-radius: 20px;
+      cursor: pointer;
+      color: var(--happy-text-muted);
+      transition: 0.3s;
+    }
+
+    .mode-btn.active {
+      background: var(--happy-text-dark);
+      color: white;
+    }
+
+    .price-list {
+      margin-bottom: 20px;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .free-trial-badge {
+      background: var(--happy-purple-light);
+      color: var(--happy-purple);
+      border: 1px dashed var(--happy-purple);
+      text-align: center;
+      padding: 8px;
+      border-radius: var(--radius-medium);
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-bottom: 15px;
+    }
+
+    .btn-cta {
+      width: 100%;
+      background: var(--happy-purple);
+      color: white;
+      border: none;
+      padding: 14px;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(124, 92, 252, 0.3);
+      transition: background 0.3s;
+    }
+
+    .btn-cta:hover {
+      background: var(--happy-purple-hover);
+    }
+
+    .response-footer {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--happy-text-muted);
+      margin-top: 10px;
+    }
+
+    /* =========================================================
+       4. SECTION PROFESSEURS SIMILAIRES
+       ========================================================= */
+    .similar-section {
+      max-width: 1200px;
+      margin: 0 auto 60px auto;
+      padding: 0 20px;
+    }
+
+    .similar-section h2 {
+      font-size: 1.6rem;
+      color: var(--happy-text-dark);
+      margin-bottom: 20px;
+      font-weight: 800;
+    }
+
+    .similar-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .similar-card {
+      background: white;
+      border: 1px solid var(--happy-card-border);
+      border-radius: var(--radius-large);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      transition: transform 0.2s;
+    }
+
+    .similar-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .similar-img-wrapper {
+      position: relative;
+      height: 220px;
+    }
+
+    .similar-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .similar-info {
+      padding: 15px;
+    }
+
+    .similar-name {
+      position: absolute;
+      bottom: 10px;
+      left: 12px;
+      color: white;
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .similar-location {
+      font-size: 0.85rem;
+      color: var(--happy-text-muted);
+      margin-bottom: 6px;
+    }
+
+    .similar-rating {
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .similar-desc {
+      font-size: 0.82rem;
+      color: var(--happy-text-main);
+      line-height: 1.4;
+      margin-bottom: 12px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .similar-tag {
+      display: inline-block;
+      background: #F3F4F6;
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .similar-tag.green {
+      background: #DCFCE7;
+      color: #15803D;
+    }
+
+    .similar-price {
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: var(--happy-text-dark);
+    }
+
+    /* =========================================================
+       5. FOOTER OFFICIEL HAPPY COURS
+       ========================================================= */
+    .happy-footer {
+      background-color: var(--happy-dark-bg);
+      color: white;
+      padding: 60px 20px 30px 20px;
+    }
+
+    .footer-top {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-col h3 {
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+      font-weight: 800;
+    }
+
+    .footer-col h4 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #A78BFA;
+      margin-bottom: 18px;
+      font-weight: 700;
+    }
+
+    .footer-col p {
+      font-size: 0.9rem;
+      color: #D1D5DB;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+    }
+
+    .footer-col ul li a {
+      color: #D1D5DB;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul li a:hover {
+      color: white;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 12px;
+    }
+
+    .social-icon {
+      width: 38px;
+      height: 38px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      transition: background 0.3s;
+      font-size: 0.95rem;
+    }
+
+    .social-icon:hover {
+      background: var(--happy-purple);
+    }
+
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 25px auto 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+    }
+
+    .footer-bottom .brand-purple {
+      color: #A78BFA;
+      font-weight: 600;
+    }
+
+    .footer-bottom .rights {
+      color: #A78BFA;
+    }
+
+    @media (max-width: 900px) {
+      .profile-container {
+        grid-template-columns: 1fr;
+      }
+      .sticky-sidebar {
+        position: relative;
+        top: 0;
+        order: -1;
+      }
+      .header-nav {
+        display: none;
+      }
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .footer-top {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER OFFICIEL -->
+  <header class="happy-header">
+    <div class="header-container">
+      <a href="#" class="header-logo">
+        <span class="logo-badge">H</span>
+        <span>Happy Cours</span>
+      </a>
+
+      <nav class="header-nav">
+        <a href="#" class="nav-link">Matières</a>
+        <a href="#" class="nav-link active">Trouver un prof</a>
+        <a href="#" class="nav-link">Formations</a>
+        <a href="#" class="nav-link">À propos</a>
+        <a href="#" class="nav-link">Tarif</a>
+        <a href="#" class="nav-link">Contact</a>
+        <a href="#" class="btn-header-reserve">Réserver</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENU PRINCIPAL -->
+  <div class="profile-container">
+
+    <!-- COLONNE GAUCHE -->
+    <main class="main-profile">
+
+      <div class="banner-offer">
+        <i class="fa-solid fa-gift"></i> Cours d'essai offert par Happy Cours 🎁
+      </div>
+
+      <!-- SECTION : À PROPOS (EN-TÊTE) -->
+      <header class="hero-header">
+        <h1>
+          Abdel Majid 
+          <i class="fa-solid fa-circle-check verified-icon" title="Profil Vérifié Happy Cours"></i>
+        </h1>
+        <div class="hero-subtitle">Brest • Maths & Physique</div>
+        <p class="hero-headline">
+          Docteur en Physique et Sciences des Matériaux propose des cours particuliers sur mesure.
+        </p>
+        
+        <div class="tags-container">
+          <span class="tag-item"><i class="fa-solid fa-video"></i> En ligne</span>
+          <span class="tag-item"><i class="fa-solid fa-house"></i> À domicile</span>
+        </div>
+      </header>
+
+      <!-- SECTION : DISPONIBILITÉS (PLACÉE DIRECTEMENT APRÈS À PROPOS) -->
+      <section class="content-box">
+        <h2><i class="fa-solid fa-calendar-days" style="color:var(--happy-purple);"></i> Disponibilités pour un essai</h2>
+        <div class="avail-box">
+          <div class="avail-icon"><i class="fa-solid fa-calendar-check"></i></div>
+          <div>
+            <strong>Disponibilité confirmée</strong>
+            <p style="font-size:0.85rem; color: var(--happy-text-muted);">Mis à jour cette semaine sur Happy Cours.</p>
+          </div>
+        </div>
+
+        <div class="calendar-grid">
+          <div><span class="day-header">LUN</span><div class="time-slot">09:00</div><div class="time-slot">10:00</div></div>
+          <div><span class="day-header">MAR</span><div class="time-slot">09:00</div><div class="time-slot">10:30</div></div>
+          <div><span class="day-header">MER</span><div class="time-slot">09:00</div><div class="time-slot">14:00</div></div>
+          <div><span class="day-header">JEU</span><div class="time-slot">10:00</div><div class="time-slot">11:00</div></div>
+          <div><span class="day-header">VEN</span><div class="time-slot">09:00</div><div class="time-slot">16:00</div></div>
+          <div><span class="day-header">SAM</span><div class="time-slot">10:00</div><div class="time-slot">14:00</div></div>
+          <div><span class="day-header">DIM</span><div class="time-slot">-</div></div>
+        </div>
+      </section>
+
+      <!-- STATISTIQUES ET BADGE DE CONFIANCE -->
+      <div class="stats-grid">
+        <div class="stat-card full-width">
+          <div class="stat-card-title">
+            <i class="fa-solid fa-shield-halved"></i> Profil Certifié Happy Cours
+          </div>
+          <p style="font-size: 0.85rem; color: var(--happy-text-muted); margin-bottom: 10px;">
+            Ce professeur a été vérifié par notre équipe pédagogique Happy Cours pour vous garantir un enseignement de qualité.
+          </p>
+          <ul class="cert-list">
+            <li><i class="fa-solid fa-check-circle"></i> Identité vérifiée</li>
+            <li><i class="fa-solid fa-check-circle"></i> Diplômes contrôlés</li>
+            <li><i class="fa-solid fa-check-circle"></i> Entretien pédagogique validé</li>
+          </ul>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-number">8</div>
+          <div class="stat-label">Élèves accompagnés</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-number">4.94 <span style="font-size:1rem; color: var(--happy-yellow);">★</span></div>
+          <div class="stat-label">Moyenne sur 17 avis</div>
+        </div>
+      </div>
+
+      <!-- SECTION : MÉTHODOLOGIE -->
+      <section class="content-box">
+        <h2>Méthodologie 🧠</h2>
+        <p style="margin-bottom: 15px;">Mes cours s'adressent aux élèves du primaire, du collège et du lycée en mathématiques.</p>
+        <p style="margin-bottom: 15px;">Les séances peuvent se dérouler en ligne, à mon domicile à Brest, ou chez l'élève.</p>
+        <p style="margin-bottom: 10px;"><strong>Déroulé type d'un cours :</strong></p>
+        <p>Analyse du besoin : j'évalue les points forts, les difficultés et les objectifs de l'élève.</p>
+        
+        <button class="btn-see-more">Voir plus</button>
+
+        <div class="level-tags-container">
+          <div class="level-tags-label">Niveau(x) enseigné(s)</div>
+          <div class="level-pill-group">
+            <span class="level-pill"><i class="fa-solid fa-building-columns"></i> Primaire</span>
+            <span class="level-pill"><i class="fa-solid fa-building-columns"></i> Collège</span>
+            <span class="level-pill"><i class="fa-solid fa-building-columns"></i> Lycée</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION : DIPLÔMES -->
+      <section class="content-box">
+        <h2>Diplômes 🎓</h2>
+
+        <div class="timeline-item">
+          <div class="item-title">Université de Bretagne Occidentale - UFR Sciences et Techniques</div>
+          <div class="item-subtitle">Doctorat en Physique et Sciences des matériaux<br>Novembre 2016 - Mars 2020 • 3 an(s) 5 mois</div>
+          <div class="item-desc">
+            Je suis Docteur en physique et sciences des matériaux depuis 2020, diplômé de l'Université de Bretagne Occidentale (UBO). Ma thèse portait sur l'élaboration et la caractérisation des nanostructures magnétiques de FeCoB pour des applications en radiofréquence. Au cours de ce travail, j'ai acquis une expertise approfondie dans : La synthèse et optimisation des matériaux magnétiques, La caractérisation structurale, magnétique et magnéto-optique des couches minces, L'utilisation de techniques avancées telles que XRD, XRR, AFM, VSM, MFM, MOKE, FMR, ERP, La simulation électromagnétique 3D avec des logiciels comme Ansys HFSS. Cette formation et cette expérience m'ont permis de développer des compétences solides en physique appliquée et en sciences des matériaux, que je mets aujourd'hui au service de mes élèves pour les aider à comprendre les notions complexes de physique et d'électronique de manière claire et progressive.
+          </div>
+          <span class="verified-badge-pill"><i class="fa-solid fa-circle-check"></i> Vérifié</span>
+        </div>
+
+        <div class="timeline-item">
+          <div class="item-title">Université de Bretagne Occidentale - UFR Sciences et Techniques</div>
+          <div class="item-subtitle">Master en Physique - parcours Physique & Instrumentation<br>Septembre 2015 - Juin 2016 • 10 mois</div>
+          <div class="item-desc">
+            J'ai obtenu un Master en Physique, spécialité Physique & Instrumentation, à l'Université de Bretagne Occidentale. Cette formation m'a permis de développer des compétences solides en métrologie, capteurs, acquisition et traitement de données, ainsi qu'en instrumentation expérimentale, renforçant ma capacité à transmettre des concepts complexes de manière claire et concrète.
+          </div>
+          <span class="verified-badge-pill"><i class="fa-solid fa-circle-check"></i> Vérifié</span>
+        </div>
+      </section>
+
+      <!-- SECTION : EXPÉRIENCES PROFESSIONNELLES -->
+      <section class="content-box">
+        <h2>Expériences professionnelles 🏢</h2>
+
+        <div class="timeline-item">
+          <div class="item-title">Attaché Temporaire d'Enseignement et de Recherche (ATER)</div>
+          <div class="item-subtitle">LabSTICC-UBO - CDD<br>Septembre 2020 - Août 2022 • 2 an(s)</div>
+          <div class="item-desc">
+            Durant mon poste d'ATER, j'ai enseigné et encadré des cours, TD et TP dans plusieurs domaines : Physique : mécanique du point, optique géométrique, électricité Électronique : analogique, numérique, FPGA et VHDL Mathématiques appliquées Parallèlement, j'ai poursuivi des travaux de recherche sur un nouveau matériau, afin de le comparer avec celui étudié durant ma thèse (FeCoB). Cette expérience m'a permis de renforcer mes compétences en physique, en particulier dans le domaine des matériaux magnétiques, et de développer des méthodes pédagogiques adaptées à différents niveaux. J'ai également eu l'occasion d'encadrer des stagiaires de Master 2 en physique, ce qui m'a permis de perfectionner mes compétences en supervision et transmission de savoirs scientifiques.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="item-title">Postdoc CNRS</div>
+          <div class="item-subtitle">LabSTICC - UBO - CDD<br>Janvier 2023 - Août 2023 • 8 mois</div>
+          <div class="item-desc">
+            Lors de mon post-doctorat au CNRS, j'ai poursuivi mes travaux sur la fabrication et la caractérisation de couches minces magnétiques, cette fois sur un matériau largement utilisé en spintronique. Cette expérience m'a permis de renforcer mes compétences en physique appliquée, en particulier dans les domaines de la physique quantique, l'optique et la magnétique, tout en approfondissant mon expertise en caractérisation expérimentale et instrumentation avancée.
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION : ÉVALUATIONS -->
+      <section class="content-box">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+          <h2 style="margin:0;">17 évaluations sur Abdel Majid ⭐️</h2>
+          <span style="font-size: 1.8rem; font-weight: 800; color: var(--happy-text-dark);">★ 4.9</span>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--happy-text-muted); margin-bottom: 20px;">
+          Toutes nos évaluations sont collectées par nos services et sont fiables à 100%. Elles correspondent à une vraie expérience vécue par les élèves du professeur.
+        </p>
+
+        <!-- Avis 1 -->
+        <div class="review-card-item">
+          <div class="review-user-info">
+            <div class="user-left">
+              <div class="avatar-circle">A</div>
+              <div>
+                <div class="user-name">Ayat</div>
+                <div class="post-date">Posté il y a 3 mois</div>
+              </div>
+            </div>
+            <div class="star-score">★ 5</div>
+          </div>
+          <p style="font-size:0.9rem;">Très bonne explication j'ai tout de suite compris grâce à lui merci beaucoup 😊</p>
+        </div>
+
+        <!-- Avis 2 -->
+        <div class="review-card-item">
+          <div class="review-user-info">
+            <div class="user-left">
+              <div class="avatar-circle g">G</div>
+              <div>
+                <div class="user-name">Ghania</div>
+                <div class="post-date">Posté il y a 4 mois</div>
+              </div>
+            </div>
+            <div class="star-score">★ 5</div>
+          </div>
+          <p style="font-size:0.9rem;">Impeccable il explique très bien et est très compréhensif 👍</p>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- COLONNE DROITE STICKY -->
+    <aside class="sticky-sidebar">
+      <div class="prof-image-header">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=600" alt="Professeur Happy Cours">
+        <div class="badge-fast-resp"><i class="fa-solid fa-bolt"></i> Répond rapidement</div>
+        <button class="btn-fav"><i class="fa-regular fa-heart"></i></button>
+        <div class="prof-name-overlay">Abdel Majid ✓</div>
+      </div>
+
+      <div class="sidebar-body">
+        <div class="sidebar-meta">
+          <i class="fa-solid fa-location-dot"></i> Brest • UBO Brest
+        </div>
+
+        <div class="rating-line">
+          <span style="color: var(--happy-yellow);">★ 4.9</span>
+          <span style="color: var(--happy-text-muted); font-size:0.85rem;">(17 avis • 98h données)</span>
+        </div>
+
+        <div class="mode-toggle">
+          <button class="mode-btn" onclick="toggleMode(this)">À domicile</button>
+          <button class="mode-btn active" onclick="toggleMode(this)">En ligne</button>
+        </div>
+
+        <div class="price-list">
+          <div class="price-row"><span>Primaire</span> <span>20,90 €/h</span></div>
+          <div class="price-row"><span>Collège</span> <span>26,60 €/h</span></div>
+          <div class="price-row"><span>Lycée</span> <span>32,30 €/h</span></div>
+        </div>
+
+        <div class="free-trial-badge">
+          🎁 1<sup>er</sup> Cours d'essai offert
+        </div>
+
+        <button class="btn-cta" onclick="alert('Demande envoyée !')">
+          Demander un cours d'essai
+        </button>
+
+        <div class="response-footer">
+          <i class="fa-solid fa-bolt"></i> Répond généralement sous 6h
+        </div>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- SECTION : PROFESSEURS SIMILAIRES -->
+  <section class="similar-section">
+    <h2>Professeurs similaires</h2>
+    <div class="similar-grid">
+      
+      <!-- Prof 1 -->
+      <div class="similar-card">
+        <div class="similar-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=400" alt="Aymen">
+          <div class="badge-fast-resp"><i class="fa-solid fa-bolt"></i> Répond rapidement</div>
+          <button class="btn-fav"><i class="fa-regular fa-heart"></i></button>
+          <div class="similar-name">Aymen <i class="fa-solid fa-circle-check" style="font-size:0.9rem;"></i></div>
+        </div>
+        <div class="similar-info">
+          <div class="similar-location"><i class="fa-solid fa-location-dot"></i> Bron • EMLYON Business Sch...</div>
+          <div class="similar-rating"><span style="color:var(--happy-yellow);">★ 5.0</span> 1 avis • 74h données</div>
+          <p class="similar-desc">Cours Particuliers d'été de Maths pour collégien lycéen CPGE ECG à distance...</p>
+          <span class="similar-tag">En ligne</span>
+          <div class="similar-price">À partir de 20,90 €/h</div>
+        </div>
+      </div>
+
+      <!-- Prof 2 -->
+      <div class="similar-card">
+        <div class="similar-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=400" alt="Emma">
+          <div class="badge-fast-resp"><i class="fa-solid fa-bolt"></i> Répond rapidement</div>
+          <button class="btn-fav"><i class="fa-regular fa-heart"></i></button>
+          <div class="similar-name">Emma <i class="fa-solid fa-circle-check" style="font-size:0.9rem;"></i></div>
+        </div>
+        <div class="similar-info">
+          <div class="similar-location"><i class="fa-solid fa-location-dot"></i> CPE Lyon</div>
+          <span class="similar-tag green">Nouveau professeur</span>
+          <p class="similar-desc">Étudiante ingénieure à CPE Lyon après une prépa scientifique, je donne des co...</p>
+          <span class="similar-tag">En ligne</span>
+          <div class="similar-price">30,40 €/h</div>
+        </div>
+      </div>
+
+      <!-- Prof 3 -->
+      <div class="similar-card">
+        <div class="similar-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400" alt="Kubra">
+          <div class="badge-fast-resp"><i class="fa-solid fa-bolt"></i> Répond rapidement</div>
+          <button class="btn-fav"><i class="fa-regular fa-heart"></i></button>
+          <div class="similar-name">Kubra <i class="fa-solid fa-circle-check" style="font-size:0.9rem;"></i></div>
+        </div>
+        <div class="similar-info">
+          <div class="similar-location"><i class="fa-solid fa-location-dot"></i> Meyzieu • Université Lyon 1</div>
+          <div class="similar-rating"><span style="color:var(--happy-yellow);">★ 5.0</span> 2 avis • 2h données</div>
+          <p class="similar-desc">Enseignante de mathématiques niveau primaire à bts/prépa/licence donne cour...</p>
+          <span class="similar-tag">En ligne</span>
+          <div class="similar-price">À partir de 19,00 €/h</div>
+        </div>
+      </div>
+
+      <!-- Prof 4 -->
+      <div class="similar-card">
+        <div class="similar-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=400" alt="Hana">
+          <div class="badge-fast-resp"><i class="fa-solid fa-bolt"></i> Répond rapidement</div>
+          <button class="btn-fav"><i class="fa-regular fa-heart"></i></button>
+          <div class="similar-name">Hana <i class="fa-solid fa-circle-check" style="font-size:0.9rem;"></i></div>
+        </div>
+        <div class="similar-info">
+          <div class="similar-location"><i class="fa-solid fa-location-dot"></i> Paris • EDHEC Business Scho...</div>
+          <span class="similar-tag green">Nouveau professeur</span>
+          <p class="similar-desc">Ex-consultante, professeure expérimentée, donne cours toute matièr...</p>
+          <span class="similar-tag">À domicile</span>
+          <div class="similar-price">À partir de 24,00 €/h</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER OFFICIEL -->
+  <footer class="happy-footer">
+    <div class="footer-top">
+      <div class="footer-col">
+        <h3>Happy Cours</h3>
+        <p>Réfléchir, Comprendre, Réussir.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>CONTACT</h4>
+        <ul>
+          <li>+33 (0)7 71 85 48 04</li>
+          <li><a href="mailto:happy.cours.2026@gmail.com">happy.cours.2026@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>INFORMATIONS</h4>
+        <ul>
+          <li><a href="#">Mentions légales</a></li>
+          <li><a href="#">Politique de confidentialité</a></li>
+          <li><a href="#">Gérer les cookies</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>SUIVEZ-NOUS</h4>
+        <div class="social-links">
+          <a href="#" class="social-icon" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="social-icon" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-icon" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="#" class="social-icon" title="Snapchat"><i class="fa-brands fa-snapchat"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="brand-purple">© 2026 Happy Cours</div>
+      <div class="rights">Tous droits réservés</div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMode(btnElement) {
+      const buttons = document.querySelectorAll('.mode-btn');
+      buttons.forEach(b => b.classList.remove('active'));
+      btnElement.classList.add('active');
+    }
+  </script>
+</body>
+</html>
