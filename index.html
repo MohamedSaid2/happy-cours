@@ -41,31 +41,30 @@
 <body>
 
   <!-- EN-TÊTE / NAVIGATION STICKY -->
-  <header>
-    <div class="wrap nav">
-      <a href="index.html" class="logo" aria-label="Retour à l'accueil Happy Cours">
-        <span class="logo-mark" aria-hidden="true">H</span>
-        Happy Cours
-      </a>
+<!-- NAVIGATION À METTRE DANS INDEX.HTML -->
+<header>
+  <div class="wrap nav">
+    <a href="index.html" class="logo" aria-label="Retour à l'accueil Happy Cours">
+      <span class="logo-mark" aria-hidden="true">H</span>
+      Happy Cours
+    </a>
 
-      <nav aria-label="Navigation principale">
-        <ul id="navList">
-          <li><a href="#cours">Cours particuliers</a></li>
-          <li><a href="formations.html" class="nav-highlight">Formations</a></li>
-          <li><a href="trouver-un-prof.html" class="nav-highlight">Trouver un prof</a></li>
-          <li><a href="#apropos">À propos</a></li>
-          <li><a href="#tarif">Tarif</a></li>
-          <li><a href="#avis">Avis</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul
-      </nav>
+    <nav aria-label="Navigation principale">
+      <ul id="navList">
+        <li><a href="#cours">Cours particuliers</a></li>
+        <li><a href="formations.html" class="nav-highlight">Formations</a></li>
+        <li><a href="trouver-un-prof.html"> Trouver un professeur</a></li>
+        <li><a href="#avis">Avis</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
 
-      <div class="nav-actions">
-        <a href="reservation.html" class="btn btn-solid">Réserver</a>
-        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu mobile">☰</button>
-      </div>
+    <div class="nav-actions">
+      <a href="#reserver" class="btn btn-solid">Réserver</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu mobile">☰</button>
     </div>
-  </header>
+  </div>
+</header>
 
   <!-- BANNIÈRE VISUELLE TOP -->
   <section class="top-banner" aria-label="Bannière principale">
@@ -97,7 +96,7 @@
 
           <!-- Ratios / KPI key features -->
           <div class="stat-row">
-            <div class="stat"><div class="num">20 €</div><div class="label">par heure</div></div>
+            <div class="stat"><div class="num">30 €</div><div class="label">par heure</div></div>
             <div class="stat"><div class="num">Lycée → BTS</div><div class="label">niveaux couverts</div></div>
             <div class="stat"><div class="num">100 %</div><div class="label">en ligne ou présentiel</div></div>
           </div>
@@ -126,9 +125,9 @@
     <!-- SECTION MATIÈRES -->
     <section id="cours">
       <div class="wrap">
+
         <div class="section-head">
-          <div class="eyebrow">Ce qui est enseigné</div>
-          <h2><span class="gradient-text title-underline">Trois matières, une seule logique : comprendre avant d'appliquer</span></h2>
+          <h2><span class="gradient-text title-underline">Plusieurs matières, une seule logique : comprendre avant d'appliquer</span></h2>
         </div>
 
         <div class="cards3">
@@ -169,14 +168,7 @@
           </article>
         </div>
 
-        <div class="levels">
-          <span class="level-chip">Seconde</span>
-          <span class="level-chip">Première</span>
-          <span class="level-chip">Terminale</span>
-          <span class="level-chip">BTS</span>
-          <span class="level-chip">Prépa</span>
-          <span class="level-chip">Cycle d'ingénieur</span>
-        </div>
+        
       </div>
     </section>
 
@@ -189,7 +181,6 @@
           [ Photo de profil ]<br>Said — Ingénieur systèmes embarqués
         </div>
         <div class="about-copy">
-          <div class="eyebrow">Profil du professeur</div>
           <h2><span class="gradient-text title-underline">Un ingénieur, pas seulement un professeur</span></h2>
           <p style="margin-top: 22px;"><strong>Ingénieur en logiciel embarqué</strong> dans l'automobile, je conçois au quotidien les systèmes électroniques qui équipent les véhicules — de la logique de fonctionnement à la sécurité fonctionnelle. C'est ce regard de terrain que j'apporte aux cours : partir du concret pour aller vers la théorie, pas l'inverse.</p>
           <p>J'accompagne des élèves du lycée au BTS en mathématiques, physique et sciences de l'ingénieur, avec une attention particulière portée à la méthode : comprendre pourquoi une formule fonctionne compte plus que de la mémoriser.</p>
@@ -206,112 +197,125 @@
 
     <hr class="divider">
 
-    <!-- SECTION TARIF -->
-    <section id="tarif">
-      <div class="wrap price-wrap">
-        <div>
-          <div class="eyebrow">Tarif transparent</div>
-          <h2><span class="gradient-text title-underline">Un prix simple, sans engagement</span></h2>
-          <p style="color:var(--muted); margin-top:22px; max-width:440px;">Le créneau est définitivement confirmé après réception du paiement.</p>
-          <ul style="max-width:440px; margin-top:20px; list-style:none; line-height:2;">
-            <li>✓ Cours individuel ou petit groupe</li>
-            <li>✓ Lien Google Meet envoyé automatiquement</li>
-            <li>✓ Réservation depuis le planning en ligne</li>
-          </ul>
+    <!-- SECTION Reservation -->
+    <section id="reserver">
+      <div class="wrap">
+        <div class="section-head">
+          <h2><span class="gradient-text title-underline">Réserver un rendez-vous</span></h2>
         </div>
 
-        <div class="price-card">
-          <div class="price-tag">20 € <span>/ heure</span></div>
-          <ul class="price-list">
-            <li>Cours individuel (groupe possible sur demande)</li>
-            <li>En ligne (visio) ou en présentiel à Toulouse</li>
-            <li>Créneau fixé après échange préalable</li>
-            <li>Paiement sécurisé par virement ou espèces</li>
-          </ul>
-          <a href="reservation.html" class="btn btn-glam" target="_blank" rel="noopener">Choisir un créneau →</a>
+        <!-- EMBED CAL -->
+        <div class="container-cal">
+          <!-- Cal inline embed code begins -->
+          <div style="width:100%;height:100%;overflow:scroll" id="my-cal-inline-happy-cours"></div>
+          <script type="text/javascript">
+            (function (C, A, L) { 
+              let p = function (a, ar) { a.q.push(ar); }; 
+              let d = C.document; 
+              C.Cal = C.Cal || function () { 
+                let cal = C.Cal; 
+                let ar = arguments; 
+                if (!cal.loaded) { 
+                  cal.ns = {}; 
+                  cal.q = cal.q || []; 
+                  let s = d.createElement("script");
+                  s.src = A;
+                  s.async = true;
+                  d.head.appendChild(s); 
+                  cal.loaded = true; 
+                } 
+                if (ar[0] === L) { 
+                  const api = function () { p(api, arguments); }; 
+                  const namespace = ar[1]; 
+                  api.q = api.q || []; 
+                  if(typeof namespace === "string"){
+                    cal.ns[namespace] = cal.ns[namespace] || api;
+                    p(cal.ns[namespace], ar);
+                    p(cal, ["initNamespace", namespace]);
+                  } else p(cal, ar); 
+                  return;
+                } 
+                p(cal, ar); 
+              }; 
+            })(window, "https://app.cal.eu/embed/embed.js", "init");
+
+            Cal("init", "happy-cours", {origin:"https://app.cal.eu"});
+            Cal.config = Cal.config || {};
+            Cal.config.forwardQueryParams = true;
+
+            Cal.ns["happy-cours"]("inline", {
+              elementOrSelector:"#my-cal-inline-happy-cours",
+              config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true"},
+              calLink: "happy-cours/happy-cours",
+            });
+
+            Cal.ns["happy-cours"]("ui", {
+              "cssVarsPerTheme":{"light":{"cal-brand":"#2c07b1"}},
+              "hideEventTypeDetails":false,
+              "layout":"month_view"
+            });
+          </script>
+          <!-- Cal inline embed code ends -->
         </div>
       </div>
     </section>
 
     <hr class="divider">
 
-    <!-- SECTION AVIS (DÉFILEMENT AUTOMATIQUE HORIZONTAL) -->
-     <!-- SECTION AVIS (STYLE 3 CARTES AVEC FLÈCHES ET VIOLET) -->
-<section id="avis">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">Retours d'expérience</div>
-      <h2><span class="gradient-text title-underline">Ce que disent les élèves et les parents</span></h2>
-    </div>
+    <!-- SECTION AVIS -->
+    <section id="avis">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Retours d'expérience</div>
+          <h2><span class="gradient-text title-underline">Ce que disent les élèves et les parents</span></h2>
+        </div>
 
-    <!-- CONTENEUR DU SLIDER -->
-    <div class="reviews-slider-container">
-      
-      <!-- Flèche Gauche (Bouton rond violet) -->
-      <button class="slider-arrow arrow-left" id="prevAvisBtn" aria-label="Avis précédents">
-        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="3" fill="none"><polyline points="15 18 9 12 15 6"></polyline></svg>
-      </button>
-
-      <!-- Zone qui contient les 3 cartes et qui défile -->
-      <div class="reviews-carousel-wrapper" id="reviewsCarousel">
-        <div class="reviews-carousel-track">
-          
-          <div class="review-card-slide">
-            <div class="review-author-name">Mélina</div>
-            <div class="review-stars-gold">★★★★★</div>
-            <p class="review-quote">« Très bonne pédagogie, compétent et sérieux. »</p>
+        <!-- CARTES D'AVIS -->
+        <div class="reviews-grid">
+          <div class="review-card">
+            <div>
+              <div class="review-stars">★★★★★</div>
+              <p class="review-text">« Grâce à Said, mon fils a repris confiance en Physique-Chimie et en Mathématiques dès le premier trimestre de Terminale. Ses explications sont très claires et méthodiques. »</p>
+            </div>
+            <div class="review-author">
+              <div class="avatar-initial">M</div>
+              <div class="author-info">
+                <h4>Marc D.</h4>
+                <span>Parent d'élève (Terminale STI2D)</span>
+              </div>
+            </div>
           </div>
 
-          <div class="review-card-slide">
-            <div class="review-author-name">Édouard</div>
-            <div class="review-stars-gold">★★★★★</div>
-            <p class="review-quote">« Une note de 5/5 laissée après un cours. »</p>
+          <div class="review-card">
+            <div>
+              <div class="review-stars">★★★★★</div>
+              <p class="review-text">« Le fait qu'il soit ingénieur change tout : la SI devient concrète et facile à comprendre. Je suis passé de 9 à 15/20 de moyenne en BTS. Merci infiniment ! »</p>
+            </div>
+            <div class="review-author">
+              <div class="avatar-initial">L</div>
+              <div class="author-info">
+                <h4>Lucas B.</h4>
+                <span>Élève en BTS SN / Systèmes Embarqués</span>
+              </div>
+            </div>
           </div>
 
-          <div class="review-card-slide">
-            <div class="review-author-name">Blandine</div>
-            <div class="review-stars-gold">★★★★★</div>
-            <p class="review-quote">« Il est parfait ! Un professeur qui a une très bonne méthode pour faire comprendre le cours. Je vous le conseille. »</p>
+          <div class="review-card">
+            <div>
+              <div class="review-stars">★★★★★</div>
+              <p class="review-text">« Très pédagogue et patient. Les cours en Visio se passent super bien avec l'écran partagé et la tablette graphique. Je recommande les yeux fermés. »</p>
+            </div>
+            <div class="review-author">
+              <div class="avatar-initial">S</div>
+              <div class="author-info">
+                <h4>Sophie T.</h4>
+                <span>Élève de 1ère Générale (Spé Maths)</span>
+              </div>
+            </div>
           </div>
-
-          <div class="review-card-slide">
-            <div class="review-author-name">Olha</div>
-            <div class="review-stars-gold">★★★★★</div>
-            <p class="review-quote">« Super prof! Il est très réactif et explique tout en détail. »</p>
-          </div>
-
-          <div class="review-card-slide">
-            <div class="review-author-name">Aness</div>
-            <div class="review-stars-gold">★★★★★</div>
-            <p class="review-quote">« Super pédagogue, Said prend vraiment le temps d'expliquer le cours d'une manière ludique et très intéressant! »</p>
-          </div>
-
-          <div class="review-card-slide">
-            <div class="review-author-name">Leyla</div>
-            <div class="review-stars-gold">★★★★★</div>
-            <p class="review-quote">« Said a su m'expliquer parfaitement le cours. Sa patience et sa pédagogie m'ont permis de surmonter mes difficultés. »</p>
-          </div>
-
         </div>
       </div>
-
-      <!-- Flèche Droite (Bouton rond violet) -->
-      <button class="slider-arrow arrow-right" id="nextAvisBtn" aria-label="Avis suivants">
-        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
-      </button>
-
-    </div>
-
-    <!-- Puces (Dots) sous le carrousel -->
-    <div class="slider-dots">
-      <span class="dot active"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-    </div>
-
-  </div>
-</section>
+    </section>
 
     <hr class="divider">
 
@@ -322,33 +326,21 @@
           <div class="eyebrow">Contact direct</div>
           <h2 style="margin-bottom: 28px;"><span class="gradient-text title-underline">Une question ? Écrivez-moi</span></h2>
           
-          <!-- Adapter l'address mail pour qu'il pointe vers happy.cours.2026@gmail.com -->
-    <form id="contactForm">
-  <!-- Configurations masquées -->
-  <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="_subject" value="Nouveau message - Happy Cours">
-  
-  <div class="field">
-    <label for="nom">Nom complet</label>
-    <input type="text" id="nom" name="nom" placeholder="Votre nom et prénom" required>
-  </div>
-
-  <div class="field">
-    <label for="email">Adresse e-mail</label>
-    <input type="email" id="email" name="email" placeholder="votre@email.com" required>
-  </div>
-
-  <div class="field">
-    <label for="message">Message</label>
-    <textarea id="message" name="message" placeholder="Précisez la matière, la classe de l'élève et vos objectifs..." required></textarea>
-  </div>
-  
-  <button type="submit" id="submitBtn" class="btn btn-solid" style="width: 100%;">Envoyer le message</button>
-  
-  <!-- Message de confirmation discret -->
-  <p id="formStatus" style="margin-top: 15px; font-weight: bold; text-align: center; display: none;"></p>
-  </form>
-
+          <form id="contactForm" action="#" method="POST">
+            <div class="field">
+              <label for="nom">Nom complet</label>
+              <input type="text" id="nom" name="nom" placeholder="Votre nom et prénom" required autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="email">Adresse e-mail</label>
+              <input type="email" id="email" name="email" placeholder="votre@email.com" required autocomplete="email">
+            </div>
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Précisez la matière, la classe de l'élève et vos objectifs..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-solid" style="width: 100%;">Envoyer le message</button>
+          </form>
         </div>
 
         <!-- NOS ENGAGEMENTS : SECTION ANIMÉE ET DYNAMIQUE -->
@@ -415,7 +407,7 @@
           <div class="footer-col-title">CONTACT</div>
           <ul class="footer-links">
             <li style="margin-bottom: 8px;"><a href="tel:+33771854804">+33 (0)7 71 85 48 04</a></li>
-            <li><a href="mailto:happy.cours.2026@gmail.com">happy.cours.2026@gmail.com</a></li>
+            <li><a href="mailto:contact@happycours.com">contact@happycours.com</a></li>
           </ul>
         </div>
 
@@ -423,9 +415,9 @@
         <div>
           <div class="footer-col-title">INFORMATIONS</div>
           <ul class="footer-links">
-            <li><a href="mentions-legales.html">Mentions légales</a></li>
-            <li><a href="politique-confidentialite.html">Politique de confidentialité</a></li>
-            <li><a href="#" id="manageCookiesBtn">Gérer les cookies</a></li>
+            <li><a href="#">Mentions légales</a></li>
+            <li><a href="#">Politique de confidentialité</a></li>
+            <li><a href="#">Gérer les cookies</a></li>
           </ul>
         </div>
 
@@ -457,209 +449,56 @@
     </div>
   </footer>
 
-  <!-- BOUTON FLOTTANT WHATSAPP (Vert avec icône dans cercle blanc) -->
-<a href="https://wa.me/33771854804" id="whatsappBtn" class="floating-btn btn-whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp">
-  <div class="whatsapp-icon-circle">
-    <svg viewBox="0 0 24 24" class="whatsapp-svg">
-      <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.51 1.036 3.531l-.678 2.476 2.541-.666c.98.535 2.105.835 3.3.835 3.182 0 5.767-2.585 5.767-5.766 0-3.18-2.585-5.776-5.766-5.776zm3.385 8.169c-.144.405-.837.774-1.17.823-.334.047-.757.072-2.174-.483-1.815-.711-2.986-2.55-3.076-2.67-.09-.12-.734-.976-.734-1.86 0-.884.464-1.32.629-1.485.165-.165.36-.21.48-.21.12 0 .24 0 .345.006.112.007.262-.042.41.314.15.36.51 1.245.555 1.335.045.09.075.195.015.315-.06.12-.09.195-.18.3-.09.105-.19.235-.27.315-.09.09-.185.188-.08.368.105.18.468.772 1.005 1.25.69.615 1.27.806 1.45.896.18.09.285.075.39-.045.105-.12.45-.525.57-.705.12-.18.24-.15.405-.09.165.06 1.05.495 1.23.585.18.09.3.135.345.21.045.075.045.435-.099.84z"/>
+  <!-- BOUTON FLOTTANT WHATSAPP -->
+  <a href="https://wa.me/33771854804" id="whatsappBtn" class="whatsapp-exact-pill" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24">
+      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-1.14 4.162 4.195-1.102z"/>
     </svg>
-  </div>
-  <span>WhatsApp</span>
-</a>
+    <span>WhatsApp</span>
+  </a>
 
-<!-- BOUTON FLOTTANT LAISSER UN AVIS (Violet Glamour) -->
-<a href="avis.html" id="floatingReviewBtn" class="floating-btn btn-review is-hidden" target="_blank" rel="noopener" aria-label="Laisser un avis">
-  <span style="font-size: 1.1em; line-height: 1;">★</span>
-  <span>Laissez un avis</span>
-</a>
+  <!-- BOUTON FLOTTANT LAISSER UN AVIS -->
+  <a href="avis.html" id="floatingReviewBtn" class="whatsapp-exact-pill review-violet-pill" target="_blank" rel="noopener" aria-label="Laisser un avis">
+    <span style="font-size: 1.1em; line-height: 1;">★</span>
+    <span>Laissez un avis</span>
+  </a>
 
-  <!-- BANNIÈRE POP-UP GESTION DES COOKIES -->
-  <div id="cookieBanner" class="cookie-banner" aria-label="Gestion des cookies">
-    <div class="cookie-title">🍪 Gestion des cookies</div>
-    <div class="cookie-text">
-      Nous utilisons des cookies essentiels pour assurer le bon fonctionnement du site et mesurer l'audience afin d'améliorer votre expérience.
-    </div>
-    <div class="cookie-btns">
-      <button id="acceptCookies" class="cookie-btn cookie-btn-accept">Accepter</button>
-      <button id="denyCookies" class="cookie-btn cookie-btn-deny">Refuser</button>
-    </div>
-  </div>
-
-<!-- SCRIPTS JAVASCRIPT UNIFIÉS -->
-<script>
-  const contactForm = document.getElementById('contactForm');
-  const formStatus = document.getElementById('formStatus');
-  const submitBtn = document.getElementById('submitBtn');
-
-  contactForm.addEventListener('submit', async function(e) {
-    e.preventDefault();
-    
-    submitBtn.innerText = "Envoi en cours...";
-    submitBtn.disabled = true;
-
-    const formData = new FormData(contactForm);
-
-    try {
-      const response = await fetch("https://formsubmit.co/ajax/happy.cours.2026@gmail.com", {
-        method: "POST",
-        body: formData
-      });
-
-      if (response.ok) {
-        formStatus.style.color = "#8B5CF6"; // Couleur violette (Violet moderne / Accent)
-        formStatus.innerText = "✓ Votre message a bien été envoyé ! Je vous réponds sous 24h.";
-        formStatus.style.display = "block";
-        contactForm.reset();
-      } else {
-        throw new Error();
-      }
-    } catch (error) {
-      formStatus.style.color = "#6D28D9"; // Rouge pour les erreurs
-      formStatus.innerText = "Une erreur est survenue. Veuillez réessayer.";
-      formStatus.style.display = "block";
-    } finally {
-      submitBtn.innerText = "Envoyer le message";
-      submitBtn.disabled = false;
-    }
-  });
-
-
-
-
-
-
-
-
-  document.addEventListener('DOMContentLoaded', () => {
-
-    // 1. MENU MOBILE
-    const menuToggle = document.getElementById('menuToggle');
-    const navList = document.getElementById('navList');
-    if (menuToggle && navList) {
-      menuToggle.addEventListener('click', () => {
-        navList.classList.toggle('open');
-      });
-    }
-
-    // 2. CARROUSEL D'AVIS (FLÈCHES GAUCHE/DROITE + DRAG MOURIS)
-    const carousel = document.getElementById('reviewsCarousel') || document.querySelector('.reviews-carousel-wrapper');
-    const prevBtn = document.getElementById('prevAvisBtn');
-    const nextBtn = document.getElementById('nextAvisBtn');
-
-    if (carousel) {
-      // Défilement avec les boutons fléchés
-      if (prevBtn) {
-        prevBtn.addEventListener('click', () => {
-          carousel.scrollBy({ left: -340, behavior: 'smooth' });
+  <!-- SCRIPTS JAVASCRIPT UNIFIÉS -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Menu Mobile
+      const menuToggle = document.getElementById('menuToggle');
+      const navList = document.getElementById('navList');
+      if (menuToggle && navList) {
+        menuToggle.addEventListener('click', () => {
+          navList.classList.toggle('open');
         });
       }
 
-      if (nextBtn) {
-        nextBtn.addEventListener('click', () => {
-          carousel.scrollBy({ left: 340, behavior: 'smooth' });
-        });
+      // 2. Basculement dynamique WhatsApp / Bouton Avis
+      const avisSection = document.getElementById('avis');
+      const floatingBtn = document.getElementById('floatingReviewBtn');
+      const whatsappBtn = document.getElementById('whatsappBtn') || document.querySelector('.whatsapp-exact-pill');
+
+      if (avisSection) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              // Dans la section Avis : Masquer WhatsApp & Afficher Avis
+              if (whatsappBtn) whatsappBtn.classList.add('is-hidden');
+              if (floatingBtn) floatingBtn.classList.add('is-visible');
+            } else {
+              // Hors de la section Avis : Réafficher WhatsApp & Masquer Avis
+              if (whatsappBtn) whatsappBtn.classList.remove('is-hidden');
+              if (floatingBtn) floatingBtn.classList.remove('is-visible');
+            }
+          });
+        }, { threshold: 0.15 });
+
+        observer.observe(avisSection);
       }
-
-      // Glisser avec le curseur de la souris (Drag & Drop)
-      let isDown = false;
-      let startX;
-      let scrollLeft;
-
-      carousel.addEventListener('mousedown', (e) => {
-        isDown = true;
-        startX = e.pageX - carousel.offsetLeft;
-        scrollLeft = carousel.scrollLeft;
-      });
-
-      carousel.addEventListener('mouseleave', () => { isDown = false; });
-      carousel.addEventListener('mouseup', () => { isDown = false; });
-
-      carousel.addEventListener('mousemove', (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - carousel.offsetLeft;
-        const walk = (x - startX) * 1.5; // Vitesse de glissement
-        carousel.scrollLeft = scrollLeft - walk;
-      });
-    }
-
-    // 3. BASCULEMENT DYNAMIQUE WHATSAPP / BOUTON AVIS
-    const avisSection = document.getElementById('avis');
-    const floatingBtn = document.getElementById('floatingReviewBtn');
-    const whatsappBtn = document.getElementById('whatsappBtn') || document.querySelector('.whatsapp-exact-pill');
-
-    if (avisSection) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            if (whatsappBtn) whatsappBtn.classList.add('is-hidden');
-            if (floatingBtn) floatingBtn.classList.add('is-visible');
-          } else {
-            if (whatsappBtn) whatsappBtn.classList.remove('is-hidden');
-            if (floatingBtn) floatingBtn.classList.remove('is-visible');
-          }
-        });
-      }, { threshold: 0.15 });
-
-      observer.observe(avisSection);
-    }
-
-    // 4. GESTION DU BANDEAU DE COOKIES (S'AFFICHE À CHAQUE ACTUALISATION)
-    const cookieBanner = document.getElementById('cookieBanner');
-    const acceptBtn = document.getElementById('acceptCookies');
-    const denyBtn = document.getElementById('denyCookies');
-    const manageCookiesBtn = document.getElementById('manageCookiesBtn');
-
-    // Afficher la bannière 1 seconde après chaque chargement de page
-    setTimeout(() => {
-      if (cookieBanner) cookieBanner.classList.add('show');
-    }, 1000);
-
-    // Clic sur Accepter
-    if (acceptBtn) {
-      acceptBtn.addEventListener('click', () => {
-        if (cookieBanner) cookieBanner.classList.remove('show');
-      });
-    }
-
-    // Clic sur Refuser
-    if (denyBtn) {
-      denyBtn.addEventListener('click', () => {
-        if (cookieBanner) cookieBanner.classList.remove('show');
-      });
-    }
-
-    // Clic sur "Gérer les cookies" dans le footer
-    if (manageCookiesBtn) {
-      manageCookiesBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (cookieBanner) cookieBanner.classList.add('show');
-      });
-    }
-
-  });
-
-  window.addEventListener('scroll', () => {
-  const whatsappBtn = document.getElementById('whatsappBtn');
-  const reviewBtn = document.getElementById('floatingReviewBtn');
-  const reviewSection = document.querySelector('#avis'); // Mets l'ID de ta section avis ici
-
-  if (reviewSection) {
-    const rect = reviewSection.getBoundingClientRect();
-    
-    // Si la section avis est visible à l'écran
-    if (rect.top <= window.innerHeight && rect.bottom >= 0) {
-      whatsappBtn.classList.add('is-hidden');
-      reviewBtn.classList.remove('is-hidden');
-      reviewBtn.classList.add('is-visible');
-    } else {
-      whatsappBtn.classList.remove('is-hidden');
-      reviewBtn.classList.add('is-hidden');
-      reviewBtn.classList.remove('is-visible');
-    }
-  }
-});
-</script>
+    });
+  </script>
 
 </body>
 </html>
