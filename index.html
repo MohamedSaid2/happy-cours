@@ -41,7 +41,6 @@
 <body>
 
   <!-- EN-TÊTE / NAVIGATION STICKY -->
-<!-- NAVIGATION À METTRE DANS INDEX.HTML -->
 <header>
   <div class="wrap nav">
     <a href="index.html" class="logo" aria-label="Retour à l'accueil Happy Cours">
@@ -79,41 +78,73 @@
   <main id="contenu">
 
     <!-- HERO SECTION (Accroche principale) -->
+<!-- HERO SECTION (2 colonnes : Texte + Nos Engagements) -->
     <section class="hero" id="accueil">
       <div class="wrap hero-grid">
-        <div>
-          <div class="eyebrow">Cours particuliers 100 % en ligne & Toulouse</div>
+        
+        <!-- Colonne Gauche : Présentation -->
+        <div class="hero-content">
           <h1>Progresser avec <span class="accent">clarté</span>,<br>et sans stress.</h1>
-          <p class="lede">Cours de mathématiques, physique et sciences de l'ingénieur, du lycée (STI2D, générale) au BTS et prépa. Enseignés par un ingénieur en systèmes embarqués basé à Toulouse, habitué à rendre la technique concrète.</p>
+          <p class="lede">Cours de mathématiques, physique, sciences de l'ingénieur, NSI, SIN et I2D, du collège à la licence. Enseignés par un ingénieur logiciel basé à Toulouse, habitué à rendre la technique concrète et méthodique.</p>
           
           <div class="hero-ctas">
-            <a href="reservation.html" class="btn btn-glam" target="_blank" rel="noopener">Réserver un premier cours</a>
+            <a href="#reserver" class="btn btn-glam">Réserver un premier cours</a>
             <a href="#cours" class="btn">Voir les matières</a>
           </div>
 
           <!-- Ratios / KPI key features -->
           <div class="stat-row">
-            <div class="stat"><div class="num">30 €</div><div class="label">par heure</div></div>
-            <div class="stat"><div class="num">Lycée → BTS</div><div class="label">niveaux couverts</div></div>
+            <div class="stat"><div class="num">20 €</div><div class="label">par heure</div></div>
+            <div class="stat"><div class="num">Collège → Licence</div><div class="label">niveaux couverts</div></div>
             <div class="stat"><div class="num">100 %</div><div class="label">en ligne ou présentiel</div></div>
           </div>
         </div>
 
-        <!-- Carte latérale d'information -->
-        <aside class="hero-card">
-          <div class="kicker">Prochaine séance</div>
-          <h3>Un accompagnement sur mesure</h3>
-          <p>Chaque cours est préparé selon le niveau, les objectifs et le rythme de l'élève.</p>
-          <div class="mini-badges">
-            <span class="mini-badge">Mathématiques</span>
-            <span class="mini-badge">Physique</span>
-            <span class="mini-badge">Sciences de l'ingénieur</span>
+        <!-- Colonne Droite : Nos Engagements -->
+        <div class="engagements-dynamic-wrap">
+          <div class="engagements-bg-glow"></div>
+          
+          <h3 class="eng-title">Nos engagements</h3>
+
+          <div class="eng-cards-container">
+            <!-- Card 1 -->
+            <div class="eng-card-ultra">
+              <div class="eng-badge-pulse"></div>
+              <div class="eng-icon-box">
+                <svg viewBox="0 0 24 24"><path d="M13 2L3 14h7v8l10-12h-7z"/></svg>
+              </div>
+              <div class="eng-text-box">
+                <h4>Réponse sous 24h</h4>
+                <p>Prise en charge ultra-rapide</p>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="eng-card-ultra">
+              <div class="eng-badge-pulse"></div>
+              <div class="eng-icon-box">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/></svg>
+              </div>
+              <div class="eng-text-box">
+                <h4>Échange offert</h4>
+                <p>Bilan préalable personnalisé</p>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="eng-card-ultra">
+              <div class="eng-badge-pulse"></div>
+              <div class="eng-icon-box">
+                <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg>
+              </div>
+              <div class="eng-text-box">
+                <h4>Flexibilité totale</h4>
+                <p>À la séance ou accompagnement continu</p>
+              </div>
+            </div>
           </div>
-          <div class="divider-soft"></div>
-          <div class="row"><span>Format</span><strong>Individuel</strong></div>
-          <div class="row"><span>Durée</span><strong>1 heure</strong></div>
-          <div class="row" style="margin-bottom:0;"><span>Lieu</span><strong>Visio ou Toulouse</strong></div>
-        </aside>
+        </div>
+
       </div>
     </section>
 
@@ -165,7 +196,6 @@
           </article>
         </div>
 
-        
       </div>
     </section>
 
@@ -174,19 +204,27 @@
     <!-- SECTION À PROPOS -->
     <section id="apropos">
       <div class="wrap about-grid">
-        <div class="photo-frame">
-          [ Photo de profil ]<br>Said — Ingénieur systèmes embarqués
-        </div>
-        <div class="about-copy">
-          <h2><span class="gradient-text title-underline">Un ingénieur, pas seulement un professeur</span></h2>
-          <p style="margin-top: 22px;"><strong>Ingénieur en logiciel embarqué</strong> dans l'automobile, je conçois au quotidien les systèmes électroniques qui équipent les véhicules — de la logique de fonctionnement à la sécurité fonctionnelle. C'est ce regard de terrain que j'apporte aux cours : partir du concret pour aller vers la théorie, pas l'inverse.</p>
-          <p>J'accompagne des élèves du lycée au BTS en mathématiques, physique et sciences de l'ingénieur, avec une attention particulière portée à la méthode : comprendre pourquoi une formule fonctionne compte plus que de la mémoriser.</p>
+          <div class="photo-container-apropos">
+            <img src="photo-profile.png" alt="Said — Ingénieur systèmes embarqués" class="profile-img-apropos">
+            <p class="photo-caption">Said — Ingénieur logiciel</p>
+          </div>
           
+        <div class="about-copy">
+          <h2><span class="gradient-text title-underline">Un professeur particulier avec la rigueur d'un ingénieur</span></h2>
+          
+          <p style="margin-top: 22px;">
+            Je m'appelle <strong>Said</strong>, <strong>professeur particulier</strong> et <strong>ingénieur logiciel de formation</strong> (spécialisé en systèmes embarqués). Je mets la rigueur, la logique et l'esprit d'analyse développés dans l'ingénierie au service de la réussite de mes élèves, grâce à une méthode claire, structurée et adaptée au rythme de chacun.
+          </p>
+          
+          <p>
+            J'accompagne des étudiants <strong>du collège à la licence (Bac+3)</strong> en <strong>mathématiques, physique, sciences de l'ingénieur, SIN, NSI et I2D</strong>. Mon rôle est de rendre les sciences concrètes et accessibles, d'enseigner une véritable méthode de travail pas à pas et de redonner confiance. Qu'il s'agisse de combler des lacunes, de préparer des examens (Brevet, Bac, BTS) ou de viser l'excellence, chaque suivi est entièrement personnalisé.
+          </p>  
           <div class="tag-row">
-            <span class="tag">Approche par la pratique</span>
+            <span class="tag">Du Collège à la Licence</span>
             <span class="tag">Méthode structurée</span>
             <span class="tag">Suivi personnalisé</span>
           </div>
+          
           <a href="#contact" class="btn btn-solid">Discuter de vos besoins</a>
         </div>
       </div>
@@ -316,74 +354,58 @@
 
     <hr class="divider">
 
-    <!-- SECTION CONTACT & NOS ENGAGEMENTS -->
-    <section id="contact">
-      <div class="wrap contact-grid">
-        <div>
-          <div class="eyebrow">Contact direct</div>
-          <h2 style="margin-bottom: 28px;"><span class="gradient-text title-underline">Une question ? Écrivez-moi</span></h2>
-          
-          <form id="contactForm" action="#" method="POST">
-            <div class="field">
-              <label for="nom">Nom complet</label>
-              <input type="text" id="nom" name="nom" placeholder="Votre nom et prénom" required autocomplete="name">
-            </div>
-            <div class="field">
-              <label for="email">Adresse e-mail</label>
-              <input type="email" id="email" name="email" placeholder="votre@email.com" required autocomplete="email">
-            </div>
-            <div class="field">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" placeholder="Précisez la matière, la classe de l'élève et vos objectifs..." required></textarea>
-            </div>
-            <button type="submit" class="btn btn-solid" style="width: 100%;">Envoyer le message</button>
-          </form>
+    <!-- SECTION CONTACT -->
+    <section class="contact-section" id="contact">
+      <div class="wrap contact-container-centered">
+        
+        <!-- En-tête : Titre uniquement -->
+        <div class="contact-header">
+          <h2>Une question ? <span>Écrivez-moi</span></h2>
         </div>
 
-        <!-- NOS ENGAGEMENTS : SECTION ANIMÉE ET DYNAMIQUE -->
-        <div class="engagements-dynamic-wrap">
-          <div class="engagements-bg-glow"></div>
+        <!-- Formulaire centré avec tous les champs séparés -->
+        <form class="contact-form" action="#" method="POST">
           
-          <h3 class="eng-title">Nos engagements</h3>
-
-          <div class="eng-cards-container">
-            <!-- Card 1 -->
-            <div class="eng-card-ultra">
-              <div class="eng-badge-pulse"></div>
-              <div class="eng-icon-box">
-                <svg viewBox="0 0 24 24"><path d="M13 2L3 14h7v8l10-12h-7z"/></svg>
-              </div>
-              <div class="eng-text-box">
-                <h4>Réponse sous 24h</h4>
-                <p>Prise en charge ultra-rapide</p>
-              </div>
+          <!-- Nom & Prénom -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nom">Nom</label>
+              <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
             </div>
-
-            <!-- Card 2 -->
-            <div class="eng-card-ultra">
-              <div class="eng-badge-pulse"></div>
-              <div class="eng-icon-box">
-                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/></svg>
-              </div>
-              <div class="eng-text-box">
-                <h4>Échange offert</h4>
-                <p>Bilan préalable personnalisé</p>
-              </div>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="eng-card-ultra">
-              <div class="eng-badge-pulse"></div>
-              <div class="eng-icon-box">
-                <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg>
-              </div>
-              <div class="eng-text-box">
-                <h4>Flexibilité totale</h4>
-                <p>À la séance ou accompagnement continu</p>
-              </div>
+            <div class="form-group">
+              <label for="prenom">Prénom</label>
+              <input type="text" id="prenom" name="prenom" placeholder="Votre prénom" required>
             </div>
           </div>
-        </div>
+
+          <!-- Email & Téléphone -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Adresse e-mail</label>
+              <input type="email" id="email" name="email" placeholder="votre@email.com" required>
+            </div>
+            <div class="form-group">
+              <label for="telephone">Numéro de téléphone</label>
+              <input type="tel" id="telephone" name="telephone" placeholder="06 00 00 00 00">
+            </div>
+          </div>
+
+          <!-- Objet -->
+          <div class="form-group">
+            <label for="objet">Objet</label>
+            <input type="text" id="objet" name="objet" placeholder="Ex: Demande de cours de Maths" required>
+          </div>
+
+          <!-- Message -->
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Précisez la matière, la classe de l'élève et vos objectifs..." required></textarea>
+          </div>
+
+          <!-- Bouton d'envoi -->
+          <button type="submit" class="btn btn-glam btn-submit">Envoyer le message</button>
+        </form>
+
       </div>
     </section>
 
