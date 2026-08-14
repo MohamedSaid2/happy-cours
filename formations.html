@@ -66,9 +66,7 @@
       width: 100%;
     }
 
-    /* ==========================================================================
-       HEADER UNIFIÉ
-       ========================================================================== */
+    /* HEADER */
     header {
       background-color: #ffffff;
       border-bottom: 1px solid #e9ecef;
@@ -196,9 +194,7 @@
       .menu-toggle { display: block; }
     }
 
-    /* ==========================================================================
-       HERO & BARRE DE RECHERCHE
-       ========================================================================== */
+    /* HERO & RECHERCHE */
     .hero-section {
       text-align: center;
       padding: 50px 0 30px;
@@ -324,9 +320,7 @@
       padding-bottom: 90px;
     }
 
-    /* ==========================================================================
-       GRILLE & CARTES VIDÉO
-       ========================================================================== */
+    /* GRILLE & CARTES VIDÉO */
     .courses-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -418,16 +412,10 @@
       overflow: hidden;
     }
 
-    .video-thumb img {
+    .video-thumb img, .video-thumb video {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0.9;
-      transition: transform 0.4s ease;
-    }
-
-    .video-card:hover .video-thumb img {
-      transform: scale(1.04);
     }
 
     .play-overlay {
@@ -472,6 +460,7 @@
       border-radius: 100px;
       letter-spacing: 0.05em;
       text-transform: uppercase;
+      z-index: 2;
     }
 
     .card-body {
@@ -561,9 +550,7 @@
       grid-column: 1 / -1;
     }
 
-    /* ==========================================================================
-       FOOTER & WHATSAPP
-       ========================================================================== */
+    /* FOOTER & WHATSAPP */
     footer {
       background-color: #160c28;
       color: #ffffff;
@@ -614,9 +601,7 @@
     .whatsapp-exact-pill:hover { transform: scale(1.04); }
     .whatsapp-exact-pill svg { width: 20px; height: 20px; fill: currentColor; }
 
-    /* ==========================================================================
-       MODALE / POP-UP
-       ========================================================================== */
+    /* MODALE / POP-UP */
     .modal-overlay {
       position: fixed; inset: 0; background: rgba(17, 12, 36, 0.65); backdrop-filter: blur(6px); display: flex; align-items: center; justify-content: center; z-index: 2000; opacity: 0; visibility: hidden; transition: all 0.3s ease; padding: 20px;
     }
@@ -660,7 +645,7 @@
       <nav aria-label="Navigation principale" id="mainNav">
         <ul id="navList">
           <li><a href="index.html#cours">Cours particuliers</a></li>
-          <li><a href="formations.html" class="nav-highlight">Formations Vidéo</a></li>
+          <li><a href="formations.html" class="nav-highlight">Tutos vidéo</a></li>
           <li><a href="trouver-un-prof.html">Trouver un professeur</a></li>
           <li><a href="index.html#avis">Avis</a></li>
           <li><a href="index.html#contact">Contact</a></li>
@@ -795,7 +780,7 @@
     </div>
   </main>
 
-  <!-- POP-UP (MODALE) FORMULAIRE ENRICHI -->
+  <!-- POP-UP (MODALE) FORMULAIRE NODE.JS -->
   <div class="modal-overlay" id="videoModal" onclick="closeModalOnOverlay(event)">
     <div class="modal-container">
       <button type="button" class="modal-close" onclick="closeModal()" aria-label="Fermer">&times;</button>
@@ -804,11 +789,12 @@
         <span class="meta-item" style="background: rgba(92, 62, 189, 0.08); color: var(--violet-primary); padding: 6px 14px; border-radius: 100px; font-weight: 800;">Proposition de vidéo</span>
         <h2 style="font-size: 22px; font-weight: 800; color: var(--text); margin-top: 10px;">Proposez votre vidéo de cours</h2>
         <p style="color: var(--muted); font-size: 13.5px; margin-top: 4px;">
-          Complétez les informations sur vous et votre cours vidéo. Validation rapide sous 24h.
+          Complétez les informations sur vous et téléversez votre vidéo. Validation rapide sous 24h.
         </p>
       </div>
 
-      <form action="https://formspree.io/f/VOTRE_FORM_ID" method="POST" style="display: flex; flex-direction: column; gap: 12px;">
+      <!-- FORMULAIRE CONNECTÉ À NODE.JS -->
+      <form id="uploadVideoForm" style="display: flex; flex-direction: column; gap: 12px;">
         
         <!-- SECTION 1 : VOS INFORMATIONS -->
         <div class="form-section-title">1. Informations sur le Formateur</div>
@@ -841,11 +827,11 @@
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
           <div>
             <label style="font-weight: 700; font-size: 12px; color: var(--text);">Titre / Matière *</label>
-            <input type="text" name="titre_cours" required placeholder="Ex: Maths — Les Limites" style="width: 100%; padding: 9px 12px; border-radius: 8px; border: 1px solid var(--line); outline: none;">
+            <input type="text" id="titre_cours" name="titre_cours" required placeholder="Ex: Maths — Les Limites" style="width: 100%; padding: 9px 12px; border-radius: 8px; border: 1px solid var(--line); outline: none;">
           </div>
           <div>
             <label style="font-weight: 700; font-size: 12px; color: var(--text);">Durée de la vidéo *</label>
-            <input type="text" name="duree_video" required placeholder="Ex: 45 min, 1h15" style="width: 100%; padding: 9px 12px; border-radius: 8px; border: 1px solid var(--line); outline: none;">
+            <input type="text" id="duree_video" name="duree_video" required placeholder="Ex: 45 min, 1h15" style="width: 100%; padding: 9px 12px; border-radius: 8px; border: 1px solid var(--line); outline: none;">
           </div>
         </div>
 
@@ -865,11 +851,16 @@
 
         <div>
           <label style="font-weight: 700; font-size: 12px; color: var(--text);">Description simple du contenu *</label>
-          <textarea name="description_video" rows="2" required placeholder="Expliquez brièvement ce que l'élève va apprendre dans cette vidéo..." style="width: 100%; padding: 9px 12px; border-radius: 8px; border: 1px solid var(--line); font-family: inherit; outline: none; resize: vertical;"></textarea>
+          <textarea id="description_video" name="description_video" rows="2" required placeholder="Expliquez brièvement ce que l'élève va apprendre dans cette vidéo..." style="width: 100%; padding: 9px 12px; border-radius: 8px; border: 1px solid var(--line); font-family: inherit; outline: none; resize: vertical;"></textarea>
         </div>
 
-        <!-- SECTION 3 : DIFFUSION ET PAIEMENT -->
-        <div class="form-section-title">3. Diffusion & Lien</div>
+        <!-- SECTION 3 : IMPORTATION & DIFFUSION -->
+        <div class="form-section-title">3. Téléversement & Diffusion</div>
+
+        <div>
+          <label style="font-weight: 700; font-size: 12px; color: var(--text);">Sélectionner la vidéo (MP4, WEBM...) *</label>
+          <input type="file" id="videoFileInput" name="video" accept="video/*" required style="width: 100%; padding: 9px 12px; border-radius: 8px; border: 1px solid var(--line); background: #fff; outline: none;">
+        </div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
           <div>
@@ -880,18 +871,13 @@
             </select>
           </div>
           <div>
-            <label style="font-weight: 700; font-size: 12px; color: var(--text);">Lien du fichier (Drive, WeTransfer...) *</label>
-            <input type="url" name="lien_video" placeholder="https://..." required style="width: 100%; padding: 9px 12px; border-radius: 8px; border: 1px solid var(--line); outline: none;">
+            <label style="font-weight: 700; font-size: 12px; color: var(--text);">IBAN / Coordonnées (si payant)</label>
+            <input type="text" name="iban" placeholder="FR76 XXXX XXXX XXXX XXXX" style="width: 100%; padding: 9px 12px; border-radius: 8px; border: 1px solid var(--line); outline: none;">
           </div>
         </div>
 
-        <div>
-          <label style="font-weight: 700; font-size: 12px; color: var(--text);">IBAN / Coordonnées bancaires (si payant)</label>
-          <input type="text" name="iban" placeholder="FR76 XXXX XXXX XXXX XXXX XXXX XXX" style="width: 100%; padding: 9px 12px; border-radius: 8px; border: 1px solid var(--line); outline: none;">
-        </div>
-
-        <button type="submit" class="btn btn-add-action" style="width: 100%; padding: 12px; margin-top: 10px; text-align: center; justify-content: center;">
-          Soumettre la vidéo pour validation
+        <button type="submit" id="submitBtn" class="btn btn-add-action" style="width: 100%; padding: 12px; margin-top: 10px; text-align: center; justify-content: center;">
+          Envoyer et téléverser la vidéo
         </button>
 
       </form>
@@ -1003,6 +989,75 @@
         closeModal();
       }
     }
+
+    /* ENVOI DU FORMULAIRE VERS TON SERVEUR NODE.JS SUR RENDER */
+    const uploadForm = document.getElementById('uploadVideoForm');
+    const submitBtn = document.getElementById('submitBtn');
+
+    uploadForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // ⚠️ N'oublie pas de remplacer cette URL par celle que te donnera Render !
+      const RENDER_BACKEND_URL = 'https://happy-cours-backend.onrender.com/upload';
+
+      const formData = new FormData(uploadForm);
+
+      // Met à jour le texte du bouton pendant l'envoi
+      submitBtn.innerText = 'Envoi en cours... Patientez...';
+      submitBtn.disabled = true;
+
+      try {
+        const response = await fetch(RENDER_BACKEND_URL, {
+          method: 'POST',
+          body: formData
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          alert('Votre vidéo a été téléversée avec succès !');
+
+          // Crée dynamiquement la nouvelle carte vidéo et l'ajoute dans le catalogue
+          const newCardHTML = `
+            <article class="video-card" data-search="${data.title.toLowerCase()}">
+              <div class="video-thumb">
+                <video controls width="100%" height="100%" style="object-fit: cover;">
+                  <source src="${data.url}" type="video/mp4">
+                </video>
+                <span class="tag-badge">Nouveau</span>
+              </div>
+              <div class="card-body">
+                <h2 class="card-title">${data.title}</h2>
+                <p class="card-description">${data.description}</p>
+                <div class="card-meta">
+                  <span class="meta-item">⏱️ Durée : ${data.duration}</span>
+                  <span class="meta-item">🎥 1 Vidéo HD</span>
+                </div>
+                <div class="card-footer">
+                  <div class="card-price">Gratuit</div>
+                  <a href="${data.url}" target="_blank" class="btn btn-glam">Visionner</a>
+                </div>
+              </div>
+            </article>
+          `;
+
+          // Injecte la nouvelle carte juste après la carte "Proposer"
+          document.getElementById('coursesGrid').insertAdjacentHTML('beforeend', newCardHTML);
+
+          // Réinitialise et ferme la modale
+          uploadForm.reset();
+          closeModal();
+        } else {
+          alert('Une erreur est survenue sur le serveur.');
+        }
+      } catch (error) {
+        console.error('Erreur:', error);
+        alert('Impossible de contacter le serveur Node.js.');
+      } finally {
+        submitBtn.innerText = 'Envoyer et téléverser la vidéo';
+        submitBtn.disabled = false;
+      }
+    });
   </script>
 
 </body>
