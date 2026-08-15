@@ -1064,14 +1064,13 @@
       if (timeRemaining) timeRemaining.innerText = 'Calcul du temps restant...';
     }
 
-    /* ENVOI DU FORMULAIRE AVEC BARRE DE PROGRESSION & TEMPS RESTANT */
+    /* ENVOI DU FORMULAIRE DIRECTEMENT VERS CLOUDINARY AVEC BARRE DE PROGRESSION */
     const uploadForm = document.getElementById('uploadVideoForm');
     const submitBtn = document.getElementById('submitBtn');
 
     uploadForm.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      const RENDER_BACKEND_URL = 'https://happy-cours-backend.onrender.com/upload';
       const videoFileInput = document.getElementById('videoFileInput');
       const file = videoFileInput.files[0];
 
@@ -1082,21 +1081,24 @@
         return;
       }
 
-      const formData = new FormData(uploadForm);
-      const xhr = new XMLHttpRequest();
-
       const progressContainer = document.getElementById('progressContainer');
       const progressBarFill = document.getElementById('progressBarFill');
       const progressPercent = document.getElementById('progressPercent');
       const timeRemaining = document.getElementById('timeRemaining');
 
       progressContainer.style.display = 'block';
-      submitBtn.innerText = 'Téléversement en cours...';
+      submitBtn.innerText = 'Téléversement vers Cloudinary...';
       submitBtn.disabled = true;
 
+      // Préparation des données pour Cloudinary Direct Upload
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('upload_preset', 'happy_cours_preset');
+
+      const xhr = new XMLHttpRequest();
       const startTime = Date.now();
 
-      // Suivi de l'avancement du téléversement
+      // Suivi de l'avancement du téléversement vers Cloudinary
       xhr.upload.onprogress = (event) => {
         if (event.lengthComputable) {
           const percentComplete = Math.round((event.loaded / event.total) * 100);
@@ -1120,61 +1122,74 @@
         }
       };
 
-      xhr.onload = () => {
-        submitBtn.innerText = 'Envoyer et téléverser la vidéo';
-        submitBtn.disabled = false;
-
+      xhr.onload = async () => {
         if (xhr.status >= 200 && xhr.status < 300) {
           try {
-            const data = JSON.parse(xhr.responseText);
+            const cloudinaryData = JSON.parse(xhr.responseText);
+            const videoUrl = cloudinaryData.secure_url;
+            const titre = document.getElementById('titre_cours').value;
+            const description = document.getElementById('description_video').value;
+            const duree = document.getElementById('duree_video').value;
 
-            if (data.success) {
-              alert('Votre vidéo a été téléversée avec succès !');
+            // Notification du serveur Render avec les métadonnées de la vidéo
+            await fetch('https://happy-cours-backend.onrender.com/save-video', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                url: videoUrl,
+                title: titre,
+                description: description,
+                duration: duree
+              })
+            });
 
-              const newCardHTML = `
-                <article class="video-card" data-search="${data.title.toLowerCase()}">
-                  <div class="video-thumb">
-                    <video controls width="100%" height="100%" style="object-fit: cover;">
-                      <source src="${data.url}" type="video/mp4">
-                    </video>
-                    <span class="tag-badge">Nouveau</span>
+            alert('Votre vidéo a été téléversée avec succès sur Cloudinary !');
+
+            const newCardHTML = `
+              <article class="video-card" data-search="${titre.toLowerCase()}">
+                <div class="video-thumb">
+                  <video controls width="100%" height="100%" style="object-fit: cover;">
+                    <source src="${videoUrl}" type="video/mp4">
+                  </video>
+                  <span class="tag-badge">Nouveau</span>
+                </div>
+                <div class="card-body">
+                  <h2 class="card-title">${titre}</h2>
+                  <p class="card-description">${description}</p>
+                  <div class="card-meta">
+                    <span class="meta-item">⏱️ Durée : ${duree}</span>
+                    <span class="meta-item">🎥 1 Vidéo HD</span>
                   </div>
-                  <div class="card-body">
-                    <h2 class="card-title">${data.title}</h2>
-                    <p class="card-description">${data.description}</p>
-                    <div class="card-meta">
-                      <span class="meta-item">⏱️ Durée : ${data.duration}</span>
-                      <span class="meta-item">🎥 1 Vidéo HD</span>
-                    </div>
-                    <div class="card-footer">
-                      <div class="card-price">Gratuit</div>
-                      <a href="${data.url}" target="_blank" class="btn btn-glam">Visionner</a>
-                    </div>
+                  <div class="card-footer">
+                    <div class="card-price">Gratuit</div>
+                    <a href="${videoUrl}" target="_blank" class="btn btn-glam">Visionner</a>
                   </div>
-                </article>
-              `;
+                </div>
+              </article>
+            `;
 
-              document.getElementById('coursesGrid').insertAdjacentHTML('beforeend', newCardHTML);
-              uploadForm.reset();
-              closeModal();
-            } else {
-              alert('Une erreur est survenue sur le serveur.');
-            }
+            document.getElementById('coursesGrid').insertAdjacentHTML('beforeend', newCardHTML);
+            uploadForm.reset();
+            closeModal();
           } catch (e) {
-            alert('Réponse serveur invalide.');
+            alert('Erreur lors du traitement de la réponse Cloudinary.');
           }
         } else {
-          alert('Une erreur est survenue lors du téléversement.');
+          alert('Erreur lors du téléversement vers Cloudinary. Vérifiez la configuration de votre preset.');
         }
+
+        submitBtn.innerText = 'Envoyer et téléverser la vidéo';
+        submitBtn.disabled = false;
       };
 
       xhr.onerror = () => {
         submitBtn.innerText = 'Envoyer et téléverser la vidéo';
         submitBtn.disabled = false;
-        alert('Impossible de contacter le serveur Node.js.');
+        alert('Erreur réseau lors de la connexion à Cloudinary.');
       };
 
-      xhr.open('POST', RENDER_BACKEND_URL, true);
+      // Envoi direct vers l'API Cloudinary
+      xhr.open('POST', 'https://api.cloudinary.com/v1_1/ek0tmvd9/video/upload', true);
       xhr.send(formData);
     });
   </script>
