@@ -629,38 +629,6 @@
       padding-bottom: 4px;
       border-bottom: 1px solid var(--line);
     }
-
-    /* BARRE DE PROGRESSION DE TÉLÉVERSEMENT */
-    .progress-container {
-      display: none;
-      margin-top: 15px;
-      background: var(--panel-2);
-      border-radius: 12px;
-      padding: 14px;
-      border: 1px solid var(--line);
-    }
-    .progress-bar-bg {
-      width: 100%;
-      height: 10px;
-      background: #E9E3F5;
-      border-radius: 100px;
-      overflow: hidden;
-      margin: 8px 0 6px 0;
-    }
-    .progress-bar-fill {
-      width: 0%;
-      height: 100%;
-      background: var(--glam-gradient);
-      border-radius: 100px;
-      transition: width 0.2s ease;
-    }
-    .progress-info {
-      display: flex;
-      justify-content: space-between;
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--violet-primary);
-    }
   </style>
 </head>
 
@@ -890,10 +858,7 @@
         <div class="form-section-title">3. Téléversement & Diffusion</div>
 
         <div>
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-            <label style="font-weight: 700; font-size: 12px; color: var(--text);">Sélectionner la vidéo (MP4, WEBM...) *</label>
-            <span style="font-size: 11px; font-weight: 700; color: var(--muted);">Taille max : 300 Mo</span>
-          </div>
+          <label style="font-weight: 700; font-size: 12px; color: var(--text);">Sélectionner la vidéo (MP4, WEBM...) *</label>
           <input type="file" id="videoFileInput" name="video" accept="video/*" required style="width: 100%; padding: 9px 12px; border-radius: 8px; border: 1px solid var(--line); background: #fff; outline: none;">
         </div>
 
@@ -908,17 +873,6 @@
           <div>
             <label style="font-weight: 700; font-size: 12px; color: var(--text);">IBAN / Coordonnées (si payant)</label>
             <input type="text" name="iban" placeholder="FR76 XXXX XXXX XXXX XXXX" style="width: 100%; padding: 9px 12px; border-radius: 8px; border: 1px solid var(--line); outline: none;">
-          </div>
-        </div>
-
-        <!-- BLOC BARRE DE PROGRESSION & TEMPS RESTANT -->
-        <div class="progress-container" id="progressContainer">
-          <div class="progress-info">
-            <span id="progressPercent">0%</span>
-            <span id="timeRemaining">Calcul du temps restant...</span>
-          </div>
-          <div class="progress-bar-bg">
-            <div class="progress-bar-fill" id="progressBarFill"></div>
           </div>
         </div>
 
@@ -986,21 +940,6 @@
           mainNav.classList.toggle('is-open');
         });
       }
-
-      /* Vérification préalable de la taille maximale de la vidéo (300 Mo) à la sélection */
-      const videoFileInput = document.getElementById('videoFileInput');
-      if (videoFileInput) {
-        videoFileInput.addEventListener('change', function() {
-          const file = this.files[0];
-          const MAX_SIZE_MB = 300;
-          const MAX_SIZE_BYTES = MAX_SIZE_MB * 1024 * 1024;
-
-          if (file && file.size > MAX_SIZE_BYTES) {
-            alert(`La taille du fichier (${(file.size / (1024 * 1024)).toFixed(1)} Mo) dépasse la limite maximale autorisée de ${MAX_SIZE_MB} Mo.`);
-            this.value = '';
-          }
-        });
-      }
     });
 
     /* FILTRE DE RECHERCHE DYNAMIQUE */
@@ -1043,7 +982,6 @@
     function closeModal() {
       document.getElementById('videoModal').classList.remove('active');
       document.body.style.overflow = '';
-      resetProgress();
     }
 
     function closeModalOnOverlay(event) {
@@ -1052,126 +990,69 @@
       }
     }
 
-    function resetProgress() {
-      const progressContainer = document.getElementById('progressContainer');
-      const progressBarFill = document.getElementById('progressBarFill');
-      const progressPercent = document.getElementById('progressPercent');
-      const timeRemaining = document.getElementById('timeRemaining');
-      
-      if (progressContainer) progressContainer.style.display = 'none';
-      if (progressBarFill) progressBarFill.style.width = '0%';
-      if (progressPercent) progressPercent.innerText = '0%';
-      if (timeRemaining) timeRemaining.innerText = 'Calcul du temps restant...';
-    }
-
-    /* ENVOI DU FORMULAIRE VERS LE BACKEND NODE.JS (RENDER) */
+    /* ENVOI DU FORMULAIRE VERS TON SERVEUR NODE.JS SUR RENDER */
     const uploadForm = document.getElementById('uploadVideoForm');
     const submitBtn = document.getElementById('submitBtn');
 
-    uploadForm.addEventListener('submit', (e) => {
+    uploadForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      const videoFileInput = document.getElementById('videoFileInput');
-      const file = videoFileInput.files[0];
+      // ⚠️ Remplacez cette URL par l'URL officielle de votre application sur Render (ex: https://votre-app.onrender.com/upload-video)
+      const RENDER_BACKEND_URL = 'https://VOTRE-APPLICATION-RENDER.onrender.com/upload-video';
 
-      // Vérification finale de la taille de 300 Mo
-      const MAX_SIZE_MB = 300;
-      if (file && file.size > MAX_SIZE_MB * 1024 * 1024) {
-        alert(`La taille de la vidéo dépasse la limite autorisée de ${MAX_SIZE_MB} Mo.`);
-        return;
-      }
-
-      const progressContainer = document.getElementById('progressContainer');
-      const progressBarFill = document.getElementById('progressBarFill');
-      const progressPercent = document.getElementById('progressPercent');
-      const timeRemaining = document.getElementById('timeRemaining');
-
-      progressContainer.style.display = 'block';
-      submitBtn.innerText = 'Téléversement en cours...';
-      submitBtn.disabled = true;
-
-      // Préparation du FormData avec l'ensemble des champs du formulaire
       const formData = new FormData(uploadForm);
 
-      const xhr = new XMLHttpRequest();
-      const startTime = Date.now();
+      submitBtn.innerText = 'Envoi en cours... Patientez...';
+      submitBtn.disabled = true;
 
-      // Suivi de l'avancement du téléversement vers Render
-      xhr.upload.onprogress = (event) => {
-        if (event.lengthComputable) {
-          const percentComplete = Math.round((event.loaded / event.total) * 100);
-          progressBarFill.style.width = percentComplete + '%';
-          progressPercent.innerText = percentComplete + '%';
+      try {
+        const response = await fetch(RENDER_BACKEND_URL, {
+          method: 'POST',
+          body: formData
+        });
 
-          const elapsedTime = (Date.now() - startTime) / 1000;
-          const uploadSpeed = event.loaded / elapsedTime; // octets/sec
-          const bytesRemaining = event.total - event.loaded;
-          const secondsRemaining = Math.round(bytesRemaining / uploadSpeed);
+        const data = await response.json();
 
-          if (isFinite(secondsRemaining) && secondsRemaining >= 0) {
-            if (secondsRemaining < 60) {
-              timeRemaining.innerText = `${secondsRemaining}s restante${secondsRemaining > 1 ? 's' : ''}`;
-            } else {
-              const minutes = Math.floor(secondsRemaining / 60);
-              const remainingSecs = secondsRemaining % 60;
-              timeRemaining.innerText = `${minutes}m ${remainingSecs}s restante${remainingSecs > 1 ? 's' : ''}`;
-            }
-          }
-        }
-      };
+        if (data.success) {
+          alert('Votre vidéo a été téléversée avec succès !');
 
-      xhr.onload = () => {
-        if (xhr.status >= 200 && xhr.status < 300) {
-          try {
-            const response = JSON.parse(xhr.responseText);
-            alert('Votre vidéo a été téléversée avec succès !');
-
-            const newCardHTML = `
-              <article class="video-card" data-search="${(response.title || '').toLowerCase()}">
-                <div class="video-thumb">
-                  <video controls width="100%" height="100%" style="object-fit: cover;">
-                    <source src="${response.url}" type="video/mp4">
-                  </video>
-                  <span class="tag-badge">Nouveau</span>
+          const newCardHTML = `
+            <article class="video-card" data-search="${data.title.toLowerCase()}">
+              <div class="video-thumb">
+                <video controls width="100%" height="100%" style="object-fit: cover;">
+                  <source src="${data.url}" type="video/mp4">
+                </video>
+                <span class="tag-badge">Nouveau</span>
+              </div>
+              <div class="card-body">
+                <h2 class="card-title">${data.title}</h2>
+                <p class="card-description">${data.description}</p>
+                <div class="card-meta">
+                  <span class="meta-item">⏱️ Durée : ${data.duration}</span>
+                  <span class="meta-item">🎥 1 Vidéo HD</span>
                 </div>
-                <div class="card-body">
-                  <h2 class="card-title">${response.title}</h2>
-                  <p class="card-description">${response.description}</p>
-                  <div class="card-meta">
-                    <span class="meta-item">⏱️ Durée : ${response.duration}</span>
-                    <span class="meta-item">🎥 1 Vidéo HD</span>
-                  </div>
-                  <div class="card-footer">
-                    <div class="card-price">Gratuit</div>
-                    <a href="${response.url}" target="_blank" class="btn btn-glam">Visionner</a>
-                  </div>
+                <div class="card-footer">
+                  <div class="card-price">Gratuit</div>
+                  <a href="${data.url}" target="_blank" class="btn btn-glam">Visionner</a>
                 </div>
-              </article>
-            `;
+              </div>
+            </article>
+          `;
 
-            document.getElementById('coursesGrid').insertAdjacentHTML('beforeend', newCardHTML);
-            uploadForm.reset();
-            closeModal();
-          } catch (e) {
-            alert('Erreur lors de la lecture de la réponse du serveur.');
-          }
+          document.getElementById('coursesGrid').insertAdjacentHTML('beforeend', newCardHTML);
+
+          uploadForm.reset();
+          closeModal();
         } else {
-          alert('Erreur lors du téléversement vers le serveur backend.');
+          alert('Une erreur est survenue sur le serveur : ' + (data.error || ''));
         }
-
+      } catch (error) {
+        console.error('Erreur:', error);
+        alert('Impossible de contacter le serveur Node.js sur Render.');
+      } finally {
         submitBtn.innerText = 'Envoyer et téléverser la vidéo';
         submitBtn.disabled = false;
-      };
-
-      xhr.onerror = () => {
-        submitBtn.innerText = 'Envoyer et téléverser la vidéo';
-        submitBtn.disabled = false;
-        alert('Erreur réseau lors de la connexion au serveur.');
-      };
-
-      // Envoi direct vers la route d'upload de Render
-      xhr.open('POST', 'https://happy-cours-backend.onrender.com/upload-video', true);
-      xhr.send(formData);
+      }
     });
   </script>
 
