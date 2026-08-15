@@ -1064,7 +1064,7 @@
       if (timeRemaining) timeRemaining.innerText = 'Calcul du temps restant...';
     }
 
-    /* ENVOI DU FORMULAIRE DIRECTEMENT VERS CLOUDINARY AVEC BARRE DE PROGRESSION */
+    /* ENVOI DU FORMULAIRE VERS LE BACKEND NODE.JS (RENDER) */
     const uploadForm = document.getElementById('uploadVideoForm');
     const submitBtn = document.getElementById('submitBtn');
 
@@ -1074,7 +1074,7 @@
       const videoFileInput = document.getElementById('videoFileInput');
       const file = videoFileInput.files[0];
 
-      // Vérification finale de la taille de 300 Mo avant envoi
+      // Vérification finale de la taille de 300 Mo
       const MAX_SIZE_MB = 300;
       if (file && file.size > MAX_SIZE_MB * 1024 * 1024) {
         alert(`La taille de la vidéo dépasse la limite autorisée de ${MAX_SIZE_MB} Mo.`);
@@ -1087,18 +1087,16 @@
       const timeRemaining = document.getElementById('timeRemaining');
 
       progressContainer.style.display = 'block';
-      submitBtn.innerText = 'Téléversement vers Cloudinary...';
+      submitBtn.innerText = 'Téléversement en cours...';
       submitBtn.disabled = true;
 
-      // Préparation des données pour Cloudinary Direct Upload
-      const formData = new FormData();
-      formData.append('file', file);
-      formData.append('upload_preset', 'happy_cours_preset');
+      // Préparation du FormData avec l'ensemble des champs du formulaire
+      const formData = new FormData(uploadForm);
 
       const xhr = new XMLHttpRequest();
       const startTime = Date.now();
 
-      // Suivi de l'avancement du téléversement vers Cloudinary
+      // Suivi de l'avancement du téléversement vers Render
       xhr.upload.onprogress = (event) => {
         if (event.lengthComputable) {
           const percentComplete = Math.round((event.loaded / event.total) * 100);
@@ -1122,47 +1120,30 @@
         }
       };
 
-      xhr.onload = async () => {
+      xhr.onload = () => {
         if (xhr.status >= 200 && xhr.status < 300) {
           try {
-            const cloudinaryData = JSON.parse(xhr.responseText);
-            const videoUrl = cloudinaryData.secure_url;
-            const titre = document.getElementById('titre_cours').value;
-            const description = document.getElementById('description_video').value;
-            const duree = document.getElementById('duree_video').value;
-
-            // Notification du serveur Render avec les métadonnées de la vidéo
-            await fetch('https://happy-cours-backend.onrender.com/save-video', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                url: videoUrl,
-                title: titre,
-                description: description,
-                duration: duree
-              })
-            });
-
-            alert('Votre vidéo a été téléversée avec succès sur Cloudinary !');
+            const response = JSON.parse(xhr.responseText);
+            alert('Votre vidéo a été téléversée avec succès !');
 
             const newCardHTML = `
-              <article class="video-card" data-search="${titre.toLowerCase()}">
+              <article class="video-card" data-search="${(response.title || '').toLowerCase()}">
                 <div class="video-thumb">
                   <video controls width="100%" height="100%" style="object-fit: cover;">
-                    <source src="${videoUrl}" type="video/mp4">
+                    <source src="${response.url}" type="video/mp4">
                   </video>
                   <span class="tag-badge">Nouveau</span>
                 </div>
                 <div class="card-body">
-                  <h2 class="card-title">${titre}</h2>
-                  <p class="card-description">${description}</p>
+                  <h2 class="card-title">${response.title}</h2>
+                  <p class="card-description">${response.description}</p>
                   <div class="card-meta">
-                    <span class="meta-item">⏱️ Durée : ${duree}</span>
+                    <span class="meta-item">⏱️ Durée : ${response.duration}</span>
                     <span class="meta-item">🎥 1 Vidéo HD</span>
                   </div>
                   <div class="card-footer">
                     <div class="card-price">Gratuit</div>
-                    <a href="${videoUrl}" target="_blank" class="btn btn-glam">Visionner</a>
+                    <a href="${response.url}" target="_blank" class="btn btn-glam">Visionner</a>
                   </div>
                 </div>
               </article>
@@ -1172,10 +1153,10 @@
             uploadForm.reset();
             closeModal();
           } catch (e) {
-            alert('Erreur lors du traitement de la réponse Cloudinary.');
+            alert('Erreur lors de la lecture de la réponse du serveur.');
           }
         } else {
-          alert('Erreur lors du téléversement vers Cloudinary. Vérifiez la configuration de votre preset.');
+          alert('Erreur lors du téléversement vers le serveur backend.');
         }
 
         submitBtn.innerText = 'Envoyer et téléverser la vidéo';
@@ -1185,11 +1166,11 @@
       xhr.onerror = () => {
         submitBtn.innerText = 'Envoyer et téléverser la vidéo';
         submitBtn.disabled = false;
-        alert('Erreur réseau lors de la connexion à Cloudinary.');
+        alert('Erreur réseau lors de la connexion au serveur.');
       };
 
-      // Envoi direct vers l'API Cloudinary
-      xhr.open('POST', 'https://api.cloudinary.com/v1_1/ek0tmvd9/video/upload', true);
+      // Envoi direct vers la route d'upload de Render
+      xhr.open('POST', 'https://happy-cours-backend.onrender.com/upload-video', true);
       xhr.send(formData);
     });
   </script>
