@@ -927,9 +927,9 @@
       <section class="content-box section-methodo">
         <h2>Méthodologie 🧠</h2>
         <p style="margin-bottom: 15px;">Mes cours s'adressent aux élèves du primaire, du collège et du lycée en mathématiques.</p>
-        <p style="margin-bottom: 15px;">Les séances peuvent se dérouler en ligne, à mon domicile à Brest, ou chez l'élève.</p>
-        <p style="margin-bottom: 10px;"><strong>Déroulé type d'un cours :</strong></p>
-        <p>Analyse du besoin : j'évalue les points forts, les difficultés et les objectifs de l'élève.</p>
+        <p style="margin-bottom: 15px;"></p>
+        <p style="margin-bottom: 10px;"></p>
+        <p></p>
         
         <button class="btn-see-more">Voir plus</button>
 
@@ -990,7 +990,7 @@
       <!-- SECTION : ÉVALUATIONS -->
       <section class="content-box">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-          <h2 style="margin:0;">17 évaluations sur Abdel Majid ⭐️</h2>
+          <h2 style="margin:0;">17 évaluations sur <span id="eval-prof-name">ce professeur</span> ⭐️</h2>
           <span style="font-size: 1.8rem; font-weight: 800; color: var(--happy-text-dark);">★ 4.9</span>
         </div>
         <p style="font-size: 0.85rem; color: var(--happy-text-muted); margin-bottom: 20px;">
@@ -1230,6 +1230,12 @@
       const headerTitle = document.querySelector('.hero-header h1');
       if (headerTitle) {
         headerTitle.innerHTML = `${prof.prenom} ${prof.nom || ''} <i class="fa-solid fa-circle-check verified-icon" title="Profil Vérifié Happy Cours"></i>`;
+      }
+
+      // Mise à jour du nom du professeur dans la section Évaluations
+      const evalProfName = document.getElementById('eval-prof-name');
+      if (evalProfName) {
+        evalProfName.textContent = `${prof.prenom} ${prof.nom || ''}`.trim();
       }
       
       const headerSubtitle = document.querySelector('.hero-subtitle');

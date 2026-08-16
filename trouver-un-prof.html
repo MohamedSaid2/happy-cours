@@ -424,9 +424,18 @@
       font-size: 14px;
     }
 
-    .prof-name-bar {
+    /* CONTENEUR EN BAS DE LA PHOTO */
+    .prof-photo-bottom-bar {
       position: relative;
       z-index: 2;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      width: 100%;
+      gap: 8px;
+    }
+
+    .prof-name-bar {
       color: #FFFFFF;
       display: flex;
       align-items: center;
@@ -434,8 +443,9 @@
     }
 
     .prof-name-bar h2 {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 800;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
     }
 
     .check-badge {
@@ -449,6 +459,23 @@
       align-items: center;
       justify-content: center;
       font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    .prof-subjects-bar {
+      display: flex;
+      align-items: center;
+    }
+
+    .subject-tag {
+      background: rgba(255, 255, 255, 0.9);
+      color: #6C4CD8;
+      font-size: 11.5px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 8px;
+      backdrop-filter: blur(4px);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     }
 
     .prof-card-body {
@@ -530,23 +557,6 @@
       font-weight: 800;
       color: var(--text);
       margin-top: 4px;
-    }
-
-    .prof-subjects {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-      margin-bottom: 4px;
-    }
-
-    .subject-tag {
-      background: #F0EBFB;
-      color: #6C4CD8;
-      font-size: 11.5px;
-      font-weight: 800;
-      padding: 3px 9px;
-      border-radius: 8px;
-      border: 1px solid rgba(108, 76, 216, 0.15);
     }
 
     footer {
@@ -779,7 +789,7 @@
       <div class="search-bar-container">
         <div class="search-input-group">
           <span>🔍</span>
-          <input type="text" id="searchSubject" placeholder="Matière (ex: Maths, Physique...)" value="Maths">
+          <input type="text" id="searchSubject" placeholder="Matière (ex: Maths, Physique...)" value="">
         </div>
         <div class="search-divider"></div>
         <div class="search-input-group">
@@ -838,7 +848,7 @@
           <div class="filter-group">
               <h3>Tarif horaire</h3>
               <div class="price-range-inputs">
-                  <input type="text" id="priceMin" class="price-input" placeholder="Min €" value="15 €">
+                  <input type="text" id="priceMin" class="price-input" placeholder="Min €" value="0 €">
                   <input type="text" id="priceMax" class="price-input" placeholder="Max €" value="60 €">
               </div>
           </div>
@@ -1198,12 +1208,14 @@
                 <span class="badge-fast">⚡ Répond rapidement</span>
                 <button class="btn-heart" aria-label="Favoris" onclick="event.stopPropagation();">♡</button>
               </div>
-              <div class="prof-name-bar">
-                <h2>${name}</h2>
-                <span class="check-badge">✓</span>
-              </div>
-              <div class="prof-subjects">
-                <span class="subject-tag">${mainSubject}</span>
+              <div class="prof-photo-bottom-bar">
+                <div class="prof-name-bar">
+                  <h2>${name}</h2>
+                  <span class="check-badge">✓</span>
+                </div>
+                <div class="prof-subjects-bar">
+                  <span class="subject-tag">${mainSubject}</span>
+                </div>
               </div>
             </div>
             <div class="prof-card-body">
@@ -1222,7 +1234,6 @@
         `;
       }).join('');
 
-      // Déclencher un événement une fois les éléments injectés pour appliquer les filtres et comptages actuels
       window.dispatchEvent(new Event('apply-all-filters'));
 
     } catch (err) {
