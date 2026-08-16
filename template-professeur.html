@@ -383,6 +383,7 @@
     .level-pill-group {
       display: flex;
       gap: 10px;
+      flex-wrap: wrap;
     }
 
     .level-pill {
@@ -829,18 +830,18 @@
   <!-- HEADER OFFICIEL -->
   <header class="happy-header">
     <div class="header-container">
-      <a href="#" class="header-logo">
+      <a href="index.html" class="header-logo">
         <span class="logo-badge">H</span>
         <span>Happy Cours</span>
       </a>
 
       <nav class="header-nav">
-        <a href="#" class="nav-link">Matières</a>
-        <a href="#" class="nav-link active">Trouver un prof</a>
-        <a href="#" class="nav-link">Formations</a>
-        <a href="#" class="nav-link">À propos</a>
-        <a href="#" class="nav-link">Tarif</a>
-        <a href="#" class="nav-link">Contact</a>
+        <a href="index.html#cours" class="nav-link">Matières</a>
+        <a href="trouver-un-prof.html" class="nav-link active">Trouver un prof</a>
+        <a href="formations.html" class="nav-link">Formations</a>
+        <a href="index.html#a-propos" class="nav-link">À propos</a>
+        <a href="index.html#tarifs" class="nav-link">Tarif</a>
+        <a href="index.html#contact" class="nav-link">Contact</a>
         <a href="#" class="btn-header-reserve">Réserver</a>
       </nav>
     </div>
@@ -923,7 +924,7 @@
       </div>
 
       <!-- SECTION : MÉTHODOLOGIE -->
-      <section class="content-box">
+      <section class="content-box section-methodo">
         <h2>Méthodologie 🧠</h2>
         <p style="margin-bottom: 15px;">Mes cours s'adressent aux élèves du primaire, du collège et du lycée en mathématiques.</p>
         <p style="margin-bottom: 15px;">Les séances peuvent se dérouler en ligne, à mon domicile à Brest, ou chez l'élève.</p>
@@ -943,14 +944,14 @@
       </section>
 
       <!-- SECTION : DIPLÔMES -->
-      <section class="content-box">
+      <section class="content-box section-diplomes">
         <h2>Diplômes 🎓</h2>
 
         <div class="timeline-item">
           <div class="item-title">Université de Bretagne Occidentale - UFR Sciences et Techniques</div>
           <div class="item-subtitle">Doctorat en Physique et Sciences des matériaux<br>Novembre 2016 - Mars 2020 • 3 an(s) 5 mois</div>
           <div class="item-desc">
-            Je suis Docteur en physique et sciences des matériaux depuis 2020, diplômé de l'Université de Bretagne Occidentale (UBO). Ma thèse portait sur l'élaboration et la caractérisation des nanostructures magnétiques de FeCoB pour des applications en radiofréquence. Au cours de ce travail, j'ai acquis une expertise approfondie dans : La synthèse et optimisation des matériaux magnétiques, La caractérisation structurale, magnétique et magnéto-optique des couches minces, L'utilisation de techniques avancées telles que XRD, XRR, AFM, VSM, MFM, MOKE, FMR, ERP, La simulation électromagnétique 3D avec des logiciels comme Ansys HFSS. Cette formation et cette expérience m'ont permis de développer des compétences solides en physique appliquée et en sciences des matériaux, que je mets aujourd'hui au service de mes élèves pour les aider à comprendre les notions complexes de physique et d'électronique de manière claire et progressive.
+            Je suis Docteur en physique et sciences des matériaux depuis 2020, diplômé de l'Université de Bretagne Occidentale (UBO). Ma thèse portait sur l'élaboration et la caractérisation des nanostructures magnétiques de FeCoB pour des applications en radiofréquence.
           </div>
           <span class="verified-badge-pill"><i class="fa-solid fa-circle-check"></i> Vérifié</span>
         </div>
@@ -959,21 +960,21 @@
           <div class="item-title">Université de Bretagne Occidentale - UFR Sciences et Techniques</div>
           <div class="item-subtitle">Master en Physique - parcours Physique & Instrumentation<br>Septembre 2015 - Juin 2016 • 10 mois</div>
           <div class="item-desc">
-            J'ai obtenu un Master en Physique, spécialité Physique & Instrumentation, à l'Université de Bretagne Occidentale. Cette formation m'a permis de développer des compétences solides en métrologie, capteurs, acquisition et traitement de données, ainsi qu'en instrumentation expérimentale, renforçant ma capacité à transmettre des concepts complexes de manière claire et concrète.
+            J'ai obtenu un Master en Physique, spécialité Physique & Instrumentation, à l'Université de Bretagne Occidentale.
           </div>
           <span class="verified-badge-pill"><i class="fa-solid fa-circle-check"></i> Vérifié</span>
         </div>
       </section>
 
       <!-- SECTION : EXPÉRIENCES PROFESSIONNELLES -->
-      <section class="content-box">
+      <section class="content-box section-exp">
         <h2>Expériences professionnelles 🏢</h2>
 
         <div class="timeline-item">
           <div class="item-title">Attaché Temporaire d'Enseignement et de Recherche (ATER)</div>
           <div class="item-subtitle">LabSTICC-UBO - CDD<br>Septembre 2020 - Août 2022 • 2 an(s)</div>
           <div class="item-desc">
-            Durant mon poste d'ATER, j'ai enseigné et encadré des cours, TD et TP dans plusieurs domaines : Physique : mécanique du point, optique géométrique, électricité Électronique : analogique, numérique, FPGA et VHDL Mathématiques appliquées Parallèlement, j'ai poursuivi des travaux de recherche sur un nouveau matériau, afin de le comparer avec celui étudié durant ma thèse (FeCoB). Cette expérience m'a permis de renforcer mes compétences en physique, en particulier dans le domaine des matériaux magnétiques, et de développer des méthodes pédagogiques adaptées à différents niveaux. J'ai également eu l'occasion d'encadrer des stagiaires de Master 2 en physique, ce qui m'a permis de perfectionner mes compétences en supervision et transmission de savoirs scientifiques.
+            Durant mon poste d'ATER, j'ai enseigné et encadré des cours, TD et TP dans plusieurs domaines : Physique, Électronique, Mathématiques appliquées.
           </div>
         </div>
 
@@ -981,7 +982,7 @@
           <div class="item-title">Postdoc CNRS</div>
           <div class="item-subtitle">LabSTICC - UBO - CDD<br>Janvier 2023 - Août 2023 • 8 mois</div>
           <div class="item-desc">
-            Lors de mon post-doctorat au CNRS, j'ai poursuivi mes travaux sur la fabrication et la caractérisation de couches minces magnétiques, cette fois sur un matériau largement utilisé en spintronique. Cette expérience m'a permis de renforcer mes compétences en physique appliquée, en particulier dans les domaines de la physique quantique, l'optique et la magnétique, tout en approfondissant mon expertise en caractérisation expérimentale et instrumentation avancée.
+            Lors de mon post-doctorat au CNRS, j'ai poursuivi mes travaux sur la fabrication et la caractérisation de couches minces magnétiques.
           </div>
         </div>
       </section>
@@ -1194,7 +1195,7 @@
   </footer>
 
   <script>
-    const rates = {
+    let currentProfRates = {
       'En ligne': ['20,90 €/h', '26,60 €/h', '32,30 €/h'],
       'À domicile': ['25,00 €/h', '30,00 €/h', '38,00 €/h']
     };
@@ -1206,13 +1207,14 @@
 
       const mode = btnElement.textContent.trim();
       const priceVals = document.querySelectorAll('#priceList .price-val');
-      if (rates[mode] && priceVals.length === rates[mode].length) {
+      if (currentProfRates[mode] && priceVals.length === currentProfRates[mode].length) {
         priceVals.forEach((elem, index) => {
-          elem.textContent = rates[mode][index];
+          elem.textContent = currentProfRates[mode][index];
         });
       }
     }
   </script>
+  
   <script>
   async function chargerProfilProfesseur() {
     const params = new URLSearchParams(window.location.search);
@@ -1225,50 +1227,79 @@
       const prof = await res.json();
 
       // En-tête du profil
-      document.querySelector('.hero-header h1').innerHTML = `${prof.prenom} ${prof.nom || ''} <i class="fa-solid fa-circle-check verified-icon"></i>`;
-      document.querySelector('.hero-subtitle').textContent = `${prof.ville} • ${prof.matieres}`;
-      document.querySelector('.hero-headline').textContent = prof.titre_accroche;
+      const headerTitle = document.querySelector('.hero-header h1');
+      if (headerTitle) {
+        headerTitle.innerHTML = `${prof.prenom} ${prof.nom || ''} <i class="fa-solid fa-circle-check verified-icon" title="Profil Vérifié Happy Cours"></i>`;
+      }
+      
+      const headerSubtitle = document.querySelector('.hero-subtitle');
+      if (headerSubtitle) {
+        headerSubtitle.textContent = `${prof.ville || 'France'} • ${prof.matieres || 'Matières variées'}`;
+      }
+
+      const headerHeadline = document.querySelector('.hero-headline');
+      if (headerHeadline) {
+        headerHeadline.textContent = prof.titre_accroche || '';
+      }
 
       // Photo de profil & sidebar
       if (prof.photo_url) {
-        document.querySelector('.prof-image-header img').src = prof.photo_url;
+        const profImg = document.querySelector('.prof-image-header img');
+        if (profImg) profImg.src = prof.photo_url;
       }
-      document.querySelector('.prof-name-overlay').textContent = `${prof.prenom} ${prof.nom ? prof.nom.charAt(0) + '.' : ''} ✓`;
-      document.querySelector('.sidebar-meta').innerHTML = `<i class="fa-solid fa-location-dot"></i> ${prof.ville} • ${prof.etablissement}`;
+      
+      const overlayName = document.querySelector('.prof-name-overlay');
+      if (overlayName) {
+        overlayName.textContent = `${prof.prenom} ${prof.nom ? prof.nom.charAt(0) + '.' : ''} ✓`;
+      }
+
+      const sidebarMeta = document.querySelector('.sidebar-meta');
+      if (sidebarMeta) {
+        sidebarMeta.innerHTML = `<i class="fa-solid fa-location-dot"></i> ${prof.ville || 'France'} ${prof.etablissement ? '• ' + prof.etablissement : ''}`;
+      }
 
       // Modes de cours
       const tagsContainer = document.querySelector('.tags-container');
-      tagsContainer.innerHTML = (prof.modes || []).map(m => `
-        <span class="tag-item"><i class="fa-solid ${m === 'En ligne' ? 'fa-video' : 'fa-house'}"></i> ${m}</span>
-      `).join('');
-
-      // Méthodologie
-      const methodeSection = document.querySelector('.main-profile .content-box:nth-of-type(2)');
-      if (methodeSection) {
-        methodeSection.querySelector('p').textContent = prof.methodologie;
+      if (tagsContainer && prof.modes && prof.modes.length > 0) {
+        tagsContainer.innerHTML = prof.modes.map(m => `
+          <span class="tag-item"><i class="fa-solid ${m === 'En ligne' ? 'fa-video' : 'fa-house'}"></i> ${m}</span>
+        `).join('');
       }
 
-      // Tarifs
-      const priceList = document.getElementById('priceList');
-      if (priceList) {
-        priceList.innerHTML = `
-          <div class="price-row"><span>Primaire</span> <span class="price-val">${prof.tarif_primaire} €/h</span></div>
-          <div class="price-row"><span>Collège</span> <span class="price-val">${prof.tarif_college} €/h</span></div>
-          <div class="price-row"><span>Lycée</span> <span class="price-val">${prof.tarif_lycee} €/h</span></div>
-        `;
+      // Méthodologie
+      const methodeSection = document.querySelector('.section-methodo');
+      if (methodeSection && prof.methodologie) {
+        const paragraphs = methodeSection.querySelectorAll('p');
+        if (paragraphs.length > 0) {
+          paragraphs[0].textContent = prof.methodologie;
+        }
+      }
+
+      // Mettre à jour les tarifs dans l'objet global et l'interface
+      if (prof.tarif_primaire || prof.tarif_college || prof.tarif_lycee) {
+        const pPrimaire = prof.tarif_primaire ? `${parseFloat(prof.tarif_primaire).toFixed(2).replace('.', ',')} €/h` : '20,00 €/h';
+        const pCollege = prof.tarif_college ? `${parseFloat(prof.tarif_college).toFixed(2).replace('.', ',')} €/h` : '25,00 €/h';
+        const pLycee = prof.tarif_lycee ? `${parseFloat(prof.tarif_lycee).toFixed(2).replace('.', ',')} €/h` : '30,00 €/h';
+
+        currentProfRates['En ligne'] = [pPrimaire, pCollege, pLycee];
+        
+        const activeBtn = document.querySelector('.mode-btn.active');
+        if (activeBtn && activeBtn.textContent.trim() === 'En ligne') {
+          toggleMode(activeBtn);
+        }
       }
 
       // Diplômes
-      const diplomesContainer = document.querySelectorAll('.content-box')[2];
+      const diplomesContainer = document.querySelector('.section-diplomes');
       if (diplomesContainer && prof.diplomes && prof.diplomes.length > 0) {
         let html = '<h2>Diplômes 🎓</h2>';
         prof.diplomes.forEach(d => {
           html += `
             <div class="timeline-item">
-              <div class="item-title">${d.ecole}</div>
-              <div class="item-subtitle">${d.titre} - ${d.dates}</div>
+              <div class="item-title">${d.ecole || ''}</div>
+              <div class="item-subtitle">${d.titre || ''} ${d.dates ? '- ' + d.dates : ''}</div>
               <div class="item-desc">${d.description || ''}</div>
-              ${d.justificatif_url ? `<a href="${d.justificatif_url}" target="_blank" class="verified-badge-pill" style="text-decoration:none;"><i class="fa-solid fa-file-pdf"></i> Voir le justificatif</a>` : ''}
+              ${d.justificatif_url ? `<a href="${d.justificatif_url}" target="_blank" class="verified-badge-pill" style="text-decoration:none;"><i class="fa-solid fa-file-pdf"></i> Voir le justificatif</a>` : '<span class="verified-badge-pill"><i class="fa-solid fa-circle-check"></i> Vérifié</span>'}
             </div>
           `;
         });
@@ -1276,14 +1307,14 @@
       }
 
       // Expériences
-      const expContainer = document.querySelectorAll('.content-box')[3];
+      const expContainer = document.querySelector('.section-exp');
       if (expContainer && prof.experiences && prof.experiences.length > 0) {
         let html = '<h2>Expériences professionnelles 🏢</h2>';
         prof.experiences.forEach(e => {
           html += `
             <div class="timeline-item">
-              <div class="item-title">${e.titre}</div>
-              <div class="item-subtitle">${e.structure} - ${e.dates}</div>
+              <div class="item-title">${e.titre || ''}</div>
+              <div class="item-subtitle">${e.structure || ''} ${e.dates ? '- ' + e.dates : ''}</div>
               <div class="item-desc">${e.description || ''}</div>
             </div>
           `;

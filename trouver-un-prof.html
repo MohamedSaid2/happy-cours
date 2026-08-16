@@ -857,7 +857,7 @@
         <!-- COLONNE DES ANNONCES PROFESSEURS -->
         <section>
           <div class="results-header">
-            <div class="results-count">529 professeurs particuliers disponibles</div>
+            <div class="results-count">Chargement des professeurs...</div>
             <div class="results-sort">
               <select>
                 <option>Trier par pertinence</option>
@@ -869,95 +869,7 @@
           </div>
 
           <div class="profs-grid">
-
-            <!-- CARTE PROFESSEURS 1 -->
-            <article class="prof-card" data-levels="college lycee" data-price="10.9" data-verified="true" data-fast="true">
-              <div class="prof-photo-wrap" style="background-image: url('https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=500&q=80');">
-                <div class="prof-photo-overlay"></div>
-                <div style="display:flex; justify-content: space-between; width:100%;">
-                  <button class="btn-heart" aria-label="Favoris">♡</button>
-                </div>
-                <div class="prof-name-bar">
-                  <h2>Paolo</h2>
-                  <span class="check-badge">✓</span>
-                </div>
-              </div>
-              <div class="prof-card-body">
-                <div class="prof-info-line">
-                  <span>📍 Paris</span>
-                  <span>🎓 École Polytechnique</span>
-                </div>
-                <div class="prof-badge-new">Nouveau professeur</div>
-                <p class="prof-description">Professeur particulier de maths tous niveaux en ligne, étudiant à l'EPFL avec 3 ans d'expérience...</p>
-                <div class="prof-tags">
-                  <span class="prof-tag">En ligne</span>
-                </div>
-                <div class="prof-price-line">10,90 €/h</div>
-              </div>
-            </article>
-
-            <!-- CARTE PROFESSEUR 2 -->
-            <article class="prof-card" data-levels="lycee prepa" data-price="25.9" data-verified="false" data-fast="true">
-              <div class="prof-photo-wrap" style="background-image: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=500&q=80');">
-                <div class="prof-photo-overlay"></div>
-                <div style="display:flex; justify-content: space-between; width:100%;">
-                  <span class="badge-fast">⚡ Répond rapidement</span>
-                  <button class="btn-heart" aria-label="Favoris">♡</button>
-                </div>
-                <div class="prof-name-bar">
-                  <h2>Sarah</h2>
-                  <span class="check-badge">✓</span>
-                </div>
-              </div>
-              <div class="prof-card-body">
-                <div class="prof-info-line">
-                  <span>📍 Évry</span>
-                  <span>🎓 École d'ingénieurs</span>
-                </div>
-                <div class="prof-info-line" style="color:var(--violet-primary);">⏱️ 1h donnée</div>
-                <p class="prof-description">Étudiante en école d'ingénieur, cours de maths, physique et chimie. Pédagogie adaptée...</p>
-                <div class="prof-tags">
-                  <span class="prof-tag">En ligne</span>
-                  <span class="prof-tag">À domicile</span>
-                </div>
-                <div class="prof-price-line">À partir de 25,90 €/h</div>
-              </div>
-            </article>
-
-            <!-- CARTE PROFESSEUR 3 -->
-            <article class="prof-card" data-levels="college lycee prepa superieur" data-price="20.9" data-verified="true" data-fast="true">
-              <div class="prof-photo-wrap" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80');">
-                <div class="prof-photo-overlay"></div>
-                <div style="display:flex; justify-content: space-between; width:100%;">
-                  <span class="badge-fast">⚡ Répond rapidement</span>
-                  <button class="btn-heart" aria-label="Favoris">♡</button>
-                </div>
-                <div class="prof-name-bar">
-                  <h2>Aymen</h2>
-                  <span class="check-badge">✓</span>
-                </div>
-                <div class="prof-subjects">
-                    <span class="subject-tag">Mathématiques</span>
-                    <span class="subject-tag">Informatique</span>
-                </div>
-              </div>
-
-              <div class="prof-card-body">
-                <div class="prof-info-line">
-                  <span>📍 Bron</span>
-                  <span>🎓 EMLYON Business School</span>
-                </div>
-                <div class="prof-rating">
-                  <span class="star">★</span> 5.0 <span style="color:var(--muted); font-weight:500;">(1 avis · 74h données)</span>
-                </div>
-                <p class="prof-description">Cours particuliers d'été de Maths pour collégien, lycéen, CPGE ECG à distance...</p>
-                <div class="prof-tags">
-                  <span class="prof-tag">En ligne</span>
-                </div>
-                <div class="prof-price-line">À partir de 20,90 €/h</div>
-              </div>
-            </article>
-
+            <!-- Rempli dynamiquement par l'API Backend -->
           </div>
         </section>
 
@@ -1042,17 +954,8 @@
     const profsContainer = document.querySelector('.profs-grid') || document.getElementById('profsContainer');
 
     if (sortSelect && profsContainer) {
-      const originalCards = Array.from(profsContainer.children);
-
-      originalCards.forEach((card, index) => {
-        if (!card.hasAttribute('data-original-index')) {
-          card.setAttribute('data-original-index', index);
-        }
-      });
-
       function getCardPrice(card) {
         if (card.dataset.price) return parseFloat(card.dataset.price);
-        
         const priceElement = card.querySelector('.prof-price-line');
         if (priceElement) {
           const match = priceElement.textContent.match(/(\d+[\.,]?\d*)/);
@@ -1063,7 +966,6 @@
 
       function getCardRating(card) {
         if (card.dataset.rating) return parseFloat(card.dataset.rating);
-
         const ratingElement = card.querySelector('.prof-rating');
         if (ratingElement) {
           const match = ratingElement.textContent.match(/(\d+[\.,]?\d*)/);
@@ -1082,8 +984,8 @@
           const priceB = getCardPrice(b);
           const ratingA = getCardRating(a);
           const ratingB = getCardRating(b);
-          const indexA = parseInt(a.getAttribute('data-original-index'));
-          const indexB = parseInt(b.getAttribute('data-original-index'));
+          const indexA = parseInt(a.getAttribute('data-original-index') || '0');
+          const indexB = parseInt(b.getAttribute('data-original-index') || '0');
 
           if (selectedOption.includes('asc') || (selectedText.includes('croissant') && !selectedText.includes('décroissant'))) {
             return priceA - priceB;
@@ -1116,8 +1018,8 @@
     function applyGlobalFilters() {
       const cards = Array.from(profsContainer.children);
 
-      const subjectInput = document.getElementById('searchSubject') || document.querySelector('.hero-search input[placeholder*="physique"], .hero-search input[type="text"]:first-of-type');
-      const locationInput = document.getElementById('searchLocation') || document.querySelector('.hero-search input[placeholder*="Toulouse"], .hero-search input[type="text"]:last-of-type');
+      const subjectInput = document.getElementById('searchSubject');
+      const locationInput = document.getElementById('searchLocation');
 
       const searchSubject = subjectInput ? subjectInput.value.toLowerCase().trim() : '';
       const searchLocation = locationInput ? locationInput.value.toLowerCase().trim() : '';
@@ -1204,7 +1106,7 @@
       }
     });
 
-    const searchBtn = document.querySelector('.hero-search button') || document.getElementById('searchBtn');
+    const searchBtn = document.getElementById('searchBtn');
     if (searchBtn) {
       searchBtn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -1253,105 +1155,78 @@
     }
   });
 
-  // SCRIPT 5 : SYNCHRONISATION DU PRIX
-  document.addEventListener('DOMContentLoaded', () => {
-    const profsContainer = document.querySelector('.profs-grid') || document.getElementById('profsContainer');
-
-    if (profsContainer) {
-      const cards = Array.from(profsContainer.querySelectorAll('.prof-card'));
-
-      cards.forEach(card => {
-        const rawPrice = card.getAttribute('data-price');
-
-        if (rawPrice !== null) {
-          const priceNum = parseFloat(rawPrice);
-          const formattedPrice = priceNum.toFixed(2).replace('.', ',');
-
-          let priceLine = card.querySelector('.prof-price-line');
-          
-          if (!priceLine) {
-            priceLine = document.createElement('div');
-            priceLine.className = 'prof-price-line';
-            const body = card.querySelector('.prof-card-body') || card;
-            body.appendChild(priceLine);
-          }
-
-          priceLine.textContent = `${formattedPrice} €/h`;
-        }
-      });
-    }
-  });
-
-  // SCRIPT 6 : BADGES VISUELS "RÉPOND RAPIDEMENT"
-  document.addEventListener('DOMContentLoaded', () => {
-    const profCards = document.querySelectorAll('.prof-card');
-
-    if (profCards.length > 0) {
-      profCards.forEach(card => {
-        const isFast = card.getAttribute('data-fast') === 'true';
-        const photoWrap = card.querySelector('.prof-photo-wrap');
-
-        if (photoWrap) {
-          let badge = photoWrap.querySelector('.badge-fast');
-
-          if (isFast) {
-            if (!badge) {
-              badge = document.createElement('span');
-              badge.className = 'badge-fast';
-              badge.innerHTML = '⚡ Répond rapidement';
-              photoWrap.insertBefore(badge, photoWrap.firstChild);
-            }
-            badge.style.display = 'inline-flex';
-          } else if (badge) {
-            badge.style.display = 'none';
-          }
-        }
-      });
-    }
-  });
-</script>
-
-<script>
+  // SCRIPT 5 : CHARGEMENT DES PROFESSEURS DEPUIS L'API
   async function chargerProfesseurs() {
+    const grid = document.querySelector('.profs-grid');
+    if (!grid) return;
+
     try {
       const response = await fetch('https://happy-cours-backend.onrender.com/api/annonces');
+      if (!response.ok) throw new Error('Erreur réseau');
+      
       const profs = await response.json();
       
-      const grid = document.querySelector('.profs-grid');
-      if (!profs || profs.length === 0) return;
+      if (!profs || profs.length === 0) {
+        grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 20px;">Aucun professeur trouvé pour le moment.</p>';
+        return;
+      }
 
-      grid.innerHTML = profs.map(prof => `
-        <article class="prof-card" onclick="window.location.href='template-professeur.html?id=${prof.id}'" style="cursor:pointer;">
-          <div class="prof-photo-wrap" style="background-image: url('${prof.photo_url || 'https://via.placeholder.com/300'}');">
-            <div class="prof-photo-overlay"></div>
-            <div style="display:flex; justify-content: space-between; width:100%;">
-              <span class="badge-fast">⚡ Répond rapidement</span>
-              <button class="btn-heart" aria-label="Favoris">♡</button>
+      grid.innerHTML = profs.map((prof, index) => {
+        const price = prof.tarif_primaire || prof.tarif_college || prof.tarif_lycee || 20;
+        const mainSubject = prof.matieres || 'Matières variées';
+        const photo = prof.photo_url || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=500&q=80';
+        const city = prof.ville || 'France';
+        const school = prof.etablissement || 'Enseignant Certifié';
+        const headline = prof.titre_accroche || 'Professeur passionné et expérimenté.';
+        const modes = prof.modes && prof.modes.length > 0 ? prof.modes : ['En ligne'];
+        const name = `${prof.prenom} ${prof.nom ? prof.nom.charAt(0) + '.' : ''}`;
+
+        return `
+          <article class="prof-card" 
+                   data-original-index="${index}"
+                   data-price="${price}" 
+                   data-verified="true" 
+                   data-fast="true"
+                   data-subject="${mainSubject}"
+                   data-city="${city}"
+                   data-levels="${prof.niveaux || 'primaire college lycee'}"
+                   onclick="window.location.href='template-professeur.html?id=${prof.id}'" 
+                   style="cursor:pointer;">
+            <div class="prof-photo-wrap" style="background-image: url('${photo}');">
+              <div class="prof-photo-overlay"></div>
+              <div style="display:flex; justify-content: space-between; width:100%;">
+                <span class="badge-fast">⚡ Répond rapidement</span>
+                <button class="btn-heart" aria-label="Favoris" onclick="event.stopPropagation();">♡</button>
+              </div>
+              <div class="prof-name-bar">
+                <h2>${name}</h2>
+                <span class="check-badge">✓</span>
+              </div>
+              <div class="prof-subjects">
+                <span class="subject-tag">${mainSubject}</span>
+              </div>
             </div>
-            <div class="prof-name-bar">
-              <h2>${prof.prenom} ${prof.nom ? prof.nom.charAt(0) + '.' : ''}</h2>
-              <span class="check-badge">✓</span>
+            <div class="prof-card-body">
+              <div class="prof-info-line">
+                <span>📍 ${city}</span>
+                <span>🎓 ${school}</span>
+              </div>
+              <div class="prof-badge-new">Professeur certifié</div>
+              <p class="prof-description">${headline}</p>
+              <div class="prof-tags">
+                ${modes.map(m => `<span class="prof-tag">${m}</span>`).join('')}
+              </div>
+              <div class="prof-price-line">À partir de ${parseFloat(price).toFixed(2).replace('.', ',')} €/h</div>
             </div>
-            <div class="prof-subjects">
-              <span class="subject-tag">${prof.matieres}</span>
-            </div>
-          </div>
-          <div class="prof-card-body">
-            <div class="prof-info-line">
-              <span>📍 ${prof.ville}</span>
-              <span>🎓 ${prof.etablissement}</span>
-            </div>
-            <div class="prof-badge-new">Nouveau professeur</div>
-            <p class="prof-description">${prof.titre_accroche}</p>
-            <div class="prof-tags">
-              ${(prof.modes || []).map(m => `<span class="prof-tag">${m}</span>`).join('')}
-            </div>
-            <div class="prof-price-line">À partir de ${prof.tarif_primaire || prof.tarif_college || prof.tarif_lycee} €/h</div>
-          </div>
-        </article>
-      `).join('');
+          </article>
+        `;
+      }).join('');
+
+      // Déclencher un événement une fois les éléments injectés pour appliquer les filtres et comptages actuels
+      window.dispatchEvent(new Event('apply-all-filters'));
+
     } catch (err) {
-      console.error('Erreur de chargement des profs:', err);
+      console.error('Erreur lors du chargement des professeurs:', err);
     }
   }
 
