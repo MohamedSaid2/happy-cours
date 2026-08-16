@@ -584,158 +584,148 @@
     </div>
   </footer>
 
-  <script>
-    let photoBase64 = "";
-
-    // Prévisualiser et lire la photo de profil sous forme DataURL (Base64)
-    function previewImage(event) {
-      const file = event.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          photoBase64 = e.target.result;
-          const imgPreview = document.getElementById('imagePreview');
-          imgPreview.src = photoBase64;
-          imgPreview.style.display = 'block';
-        };
-        reader.readAsDataURL(file);
-      }
-    }
-
-    // Gestion de l'import du fichier justificatif pour chaque diplôme
-    function handleDiplomaFile(input, infoId, dataHolderId) {
-      const file = input.files[0];
-      const infoElem = document.getElementById(infoId);
-      const dataHolder = document.getElementById(dataHolderId);
-
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          dataHolder.value = e.target.result; // Stocke la chaîne Base64 du PDF ou de l'image
-          infoElem.innerHTML = `<i class="fa-solid fa-circle-check"></i> Fichier chargé : ${file.name}`;
-          infoElem.style.display = 'block';
-        };
-        reader.readAsDataURL(file);
-      }
-    }
-
+    <script>
     function addDiplome() {
-      const container = document.getElementById('diplomesContainer');
-      const uniqueId = 'dip_file_' + Date.now() + '_' + Math.floor(Math.random() * 1000);
-      const div = document.createElement('div');
-      div.className = 'dynamic-item diplome-item';
-      div.innerHTML = `
+        const container = document.getElementById('diplomesContainer');
+        const uniqueId = 'dip_file_' + Date.now();
+        const div = document.createElement('div');
+        div.className = 'dynamic-item diplome-item';
+        div.innerHTML = `
         <button type="button" class="btn-remove" onclick="this.parentElement.remove()">×</button>
         <div class="form-group">
-          <input type="text" class="dip-titre" placeholder="Intitulé du diplôme (ex: Master en Physique)" required>
+            <input type="text" class="dip-titre" placeholder="Intitulé du diplôme (ex: Master en Physique)" required>
         </div>
         <div class="form-row">
-          <input type="text" class="dip-ecole" placeholder="Université / Établissement" required>
-          <input type="text" class="dip-dates" placeholder="Dates (ex: Sept 2015 - Juin 2016)" required>
+            <input type="text" class="dip-ecole" placeholder="Université / Établissement" required>
+            <input type="text" class="dip-dates" placeholder="Dates (ex: Sept 2015 - Juin 2016)" required>
         </div>
         <div class="form-group" style="margin-top:10px;">
-          <textarea class="dip-desc" rows="2" placeholder="Description de la formation..."></textarea>
+            <textarea class="dip-desc" rows="2" placeholder="Description de la formation..."></textarea>
         </div>
-        
-        <!-- CHAMP DE CHARGEMENT DE JUSTIFICATIF (PDF OU IMAGE) -->
         <div class="diploma-file-box" onclick="document.getElementById('${uniqueId}').click()">
-          <input type="file" id="${uniqueId}" accept=".pdf, image/*" onchange="handleDiplomaFile(this, 'info_${uniqueId}', 'data_${uniqueId}')">
-          <input type="hidden" class="dip-file-data" id="data_${uniqueId}">
-          <div class="diploma-file-label">
+            <input type="file" id="${uniqueId}" class="dip-file-input" accept=".pdf, image/*">
+            <div class="diploma-file-label">
             <i class="fa-solid fa-file-arrow-up"></i>
             <span>Joindre un justificatif (PDF ou Image)</span>
-          </div>
-          <div id="info_${uniqueId}" class="file-info"></div>
+            </div>
         </div>
-      `;
-      container.appendChild(div);
+        `;
+        container.appendChild(div);
     }
 
     function addExperience() {
-      const container = document.getElementById('experiencesContainer');
-      const div = document.createElement('div');
-      div.className = 'dynamic-item exp-item';
-      div.innerHTML = `
+        const container = document.getElementById('experiencesContainer');
+        const div = document.createElement('div');
+        div.className = 'dynamic-item exp-item';
+        div.innerHTML = `
         <button type="button" class="btn-remove" onclick="this.parentElement.remove()">×</button>
         <div class="form-group">
-          <input type="text" class="exp-titre" placeholder="Intitulé du poste (ex: Enseignant ATER)" required>
+            <input type="text" class="exp-titre" placeholder="Intitulé du poste" required>
         </div>
         <div class="form-row">
-          <input type="text" class="exp-structure" placeholder="Structure / Établissement" required>
-          <input type="text" class="exp-dates" placeholder="Dates (ex: Sept 2020 - Août 2022)" required>
+            <input type="text" class="exp-structure" placeholder="Structure / Établissement" required>
+            <input type="text" class="exp-dates" placeholder="Dates" required>
         </div>
         <div class="form-group" style="margin-top:10px;">
-          <textarea class="exp-desc" rows="2" placeholder="Missions et compétences..."></textarea>
+            <textarea class="exp-desc" rows="2" placeholder="Missions et compétences..."></textarea>
         </div>
-      `;
-      container.appendChild(div);
+        `;
+        container.appendChild(div);
     }
 
-    // Charger une ligne par défaut au lancement
     addDiplome();
     addExperience();
 
-    // Soumission du formulaire au backend
+    function previewImage(event) {
+        const file = event.target.files[0];
+        if (file) {
+        const reader = new FileReader();
+        reader.onload = e => {
+            const img = document.getElementById('imagePreview');
+            img.src = e.target.result;
+            img.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+        }
+    }
+
     document.getElementById('formAnnonce').addEventListener('submit', async (e) => {
-      e.preventDefault();
+        e.preventDefault();
 
-      const modes = Array.from(document.querySelectorAll('input[name="modes"]:checked')).map(cb => cb.value);
-      const niveaux = Array.from(document.querySelectorAll('input[name="niveaux"]:checked')).map(cb => cb.value);
+        const formData = new FormData();
 
-      const diplomes = Array.from(document.querySelectorAll('.diplome-item')).map(item => ({
-        titre: item.querySelector('.dip-titre').value,
-        ecole: item.querySelector('.dip-ecole').value,
-        dates: item.querySelector('.dip-dates').value,
-        description: item.querySelector('.dip-desc').value,
-        justificatif: item.querySelector('.dip-file-data').value // Contient le PDF ou l'Image sous forme de chaîne Base64
-      }));
+        // Champs textes simples
+        formData.append('prenom', document.getElementById('prenom').value);
+        formData.append('nom', document.getElementById('nom').value);
+        formData.append('email', document.getElementById('email').value);
+        formData.append('phone', document.getElementById('phone').value);
+        formData.append('ville', document.getElementById('ville').value);
+        formData.append('etablissement', document.getElementById('etablissement').value);
+        formData.append('matieres', document.getElementById('matieres').value);
+        formData.append('titre_accroche', document.getElementById('titre_accroche').value);
+        formData.append('methodologie', document.getElementById('methodologie').value);
+        formData.append('tarif_primaire', document.getElementById('tarif_primaire').value);
+        formData.append('tarif_college', document.getElementById('tarif_college').value);
+        formData.append('tarif_lycee', document.getElementById('tarif_lycee').value);
 
-      const experiences = Array.from(document.querySelectorAll('.exp-item')).map(item => ({
+        // Modes & Niveaux
+        document.querySelectorAll('input[name="modes"]:checked').forEach(cb => formData.append('modes', cb.value));
+        document.querySelectorAll('input[name="niveaux"]:checked').forEach(cb => formData.append('niveaux', cb.value));
+
+        // Photo
+        const photoFile = document.getElementById('photo_file').files[0];
+        if (photoFile) formData.append('photo_file', photoFile);
+
+        // Diplômes et Fichiers justificatifs
+        const diplomes = [];
+        document.querySelectorAll('.diplome-item').forEach(item => {
+        diplomes.push({
+            titre: item.querySelector('.dip-titre').value,
+            ecole: item.querySelector('.dip-ecole').value,
+            dates: item.querySelector('.dip-dates').value,
+            description: item.querySelector('.dip-desc').value
+        });
+        const fileInput = item.querySelector('.dip-file-input');
+        if (fileInput && fileInput.files[0]) {
+            formData.append('diploma_files', fileInput.files[0]);
+        }
+        });
+        formData.append('diplomes', JSON.stringify(diplomes));
+
+        // Expériences
+        const experiences = Array.from(document.querySelectorAll('.exp-item')).map(item => ({
         titre: item.querySelector('.exp-titre').value,
         structure: item.querySelector('.exp-structure').value,
         dates: item.querySelector('.exp-dates').value,
         description: item.querySelector('.exp-desc').value
-      }));
+        }));
+        formData.append('experiences', JSON.stringify(experiences));
 
-      const payload = {
-        prenom: document.getElementById('prenom').value,
-        nom: document.getElementById('nom').value,
-        email: document.getElementById('email').value,
-        telephone: document.getElementById('phone').value,
-        ville: document.getElementById('ville').value,
-        etablissement: document.getElementById('etablissement').value,
-        photo_url: photoBase64,
-        matieres: document.getElementById('matieres').value,
-        titre_accroche: document.getElementById('titre_accroche').value,
-        modes: modes,
-        niveaux: niveaux,
-        methodologie: document.getElementById('methodologie').value,
-        tarif_primaire: parseFloat(document.getElementById('tarif_primaire').value),
-        tarif_college: parseFloat(document.getElementById('tarif_college').value),
-        tarif_lycee: parseFloat(document.getElementById('tarif_lycee').value),
-        diplomes: diplomes,
-        experiences: experiences
-      };
-
-      try {
-        const response = await fetch('/api/annonces', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
+        try {
+        const response = await fetch('https://happy-cours-backend.onrender.com/api/annonces', {
+            method: 'POST',
+            body: formData
         });
 
         if (response.ok) {
-          const result = await response.json();
-          alert('Annonce publiée avec succès !');
-          window.location.href = `/profil.html?id=${result.id}`;
+            const result = await response.json();
+            alert('Annonce créée avec succès !');
+            window.location.href = `template-professeur.html?id=${result.id}`;
         } else {
-          alert('Erreur lors de la publication.');
+            alert('Erreur lors de la création de l\'annonce.');
         }
-      } catch (err) {
+        } catch (err) {
         console.error(err);
         alert('Erreur de connexion au serveur.');
-      }
+        }
     });
-  </script>
+    </script>
+
+
+
+
+
+
+
 </body>
 </html>

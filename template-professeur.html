@@ -320,7 +320,6 @@
       color: white;
     }
 
-    /* Styles sous-éléments (Diplômes / Expériences) */
     .timeline-item {
       margin-bottom: 20px;
     }
@@ -398,7 +397,6 @@
       color: var(--happy-text-dark);
     }
 
-    /* Avis & Evaluations */
     .review-card-item {
       background: #FAFAFA;
       border: 1px solid var(--happy-card-border);
@@ -451,7 +449,6 @@
       font-weight: 700;
     }
 
-    /* Carte de Réservation Sticky */
     .sticky-sidebar {
       position: sticky;
       top: 90px;
@@ -603,9 +600,6 @@
       margin-top: 10px;
     }
 
-    /* =========================================================
-       4. SECTION PROFESSEURS SIMILAIRES
-       ========================================================= */
     .similar-section {
       max-width: 1200px;
       margin: 0 auto 60px auto;
@@ -710,9 +704,6 @@
       color: var(--happy-text-dark);
     }
 
-    /* =========================================================
-       5. FOOTER OFFICIEL HAPPY COURS
-       ========================================================= */
     .happy-footer {
       background-color: var(--happy-dark-bg);
       color: white;
@@ -882,7 +873,7 @@
         </div>
       </header>
 
-      <!-- SECTION : DISPONIBILITÉS (PLACÉE DIRECTEMENT APRÈS À PROPOS) -->
+      <!-- SECTION : DISPONIBILITÉS -->
       <section class="content-box">
         <h2><i class="fa-solid fa-calendar-days" style="color:var(--happy-purple);"></i> Disponibilités pour un essai</h2>
         <div class="avail-box">
@@ -1062,10 +1053,10 @@
           <button class="mode-btn active" onclick="toggleMode(this)">En ligne</button>
         </div>
 
-        <div class="price-list">
-          <div class="price-row"><span>Primaire</span> <span>20,90 €/h</span></div>
-          <div class="price-row"><span>Collège</span> <span>26,60 €/h</span></div>
-          <div class="price-row"><span>Lycée</span> <span>32,30 €/h</span></div>
+        <div class="price-list" id="priceList">
+          <div class="price-row"><span>Primaire</span> <span class="price-val">20,90 €/h</span></div>
+          <div class="price-row"><span>Collège</span> <span class="price-val">26,60 €/h</span></div>
+          <div class="price-row"><span>Lycée</span> <span class="price-val">32,30 €/h</span></div>
         </div>
 
         <div class="free-trial-badge">
@@ -1203,11 +1194,109 @@
   </footer>
 
   <script>
+    const rates = {
+      'En ligne': ['20,90 €/h', '26,60 €/h', '32,30 €/h'],
+      'À domicile': ['25,00 €/h', '30,00 €/h', '38,00 €/h']
+    };
+
     function toggleMode(btnElement) {
       const buttons = document.querySelectorAll('.mode-btn');
       buttons.forEach(b => b.classList.remove('active'));
       btnElement.classList.add('active');
+
+      const mode = btnElement.textContent.trim();
+      const priceVals = document.querySelectorAll('#priceList .price-val');
+      if (rates[mode] && priceVals.length === rates[mode].length) {
+        priceVals.forEach((elem, index) => {
+          elem.textContent = rates[mode][index];
+        });
+      }
     }
   </script>
+  <script>
+  async function chargerProfilProfesseur() {
+    const params = new URLSearchParams(window.location.search);
+    const profId = params.get('id');
+    if (!profId) return;
+
+    try {
+      const res = await fetch(`https://happy-cours-backend.onrender.com/api/annonces/${profId}`);
+      if (!res.ok) return;
+      const prof = await res.json();
+
+      // En-tête du profil
+      document.querySelector('.hero-header h1').innerHTML = `${prof.prenom} ${prof.nom || ''} <i class="fa-solid fa-circle-check verified-icon"></i>`;
+      document.querySelector('.hero-subtitle').textContent = `${prof.ville} • ${prof.matieres}`;
+      document.querySelector('.hero-headline').textContent = prof.titre_accroche;
+
+      // Photo de profil & sidebar
+      if (prof.photo_url) {
+        document.querySelector('.prof-image-header img').src = prof.photo_url;
+      }
+      document.querySelector('.prof-name-overlay').textContent = `${prof.prenom} ${prof.nom ? prof.nom.charAt(0) + '.' : ''} ✓`;
+      document.querySelector('.sidebar-meta').innerHTML = `<i class="fa-solid fa-location-dot"></i> ${prof.ville} • ${prof.etablissement}`;
+
+      // Modes de cours
+      const tagsContainer = document.querySelector('.tags-container');
+      tagsContainer.innerHTML = (prof.modes || []).map(m => `
+        <span class="tag-item"><i class="fa-solid ${m === 'En ligne' ? 'fa-video' : 'fa-house'}"></i> ${m}</span>
+      `).join('');
+
+      // Méthodologie
+      const methodeSection = document.querySelector('.main-profile .content-box:nth-of-type(2)');
+      if (methodeSection) {
+        methodeSection.querySelector('p').textContent = prof.methodologie;
+      }
+
+      // Tarifs
+      const priceList = document.getElementById('priceList');
+      if (priceList) {
+        priceList.innerHTML = `
+          <div class="price-row"><span>Primaire</span> <span class="price-val">${prof.tarif_primaire} €/h</span></div>
+          <div class="price-row"><span>Collège</span> <span class="price-val">${prof.tarif_college} €/h</span></div>
+          <div class="price-row"><span>Lycée</span> <span class="price-val">${prof.tarif_lycee} €/h</span></div>
+        `;
+      }
+
+      // Diplômes
+      const diplomesContainer = document.querySelectorAll('.content-box')[2];
+      if (diplomesContainer && prof.diplomes && prof.diplomes.length > 0) {
+        let html = '<h2>Diplômes 🎓</h2>';
+        prof.diplomes.forEach(d => {
+          html += `
+            <div class="timeline-item">
+              <div class="item-title">${d.ecole}</div>
+              <div class="item-subtitle">${d.titre} - ${d.dates}</div>
+              <div class="item-desc">${d.description || ''}</div>
+              ${d.justificatif_url ? `<a href="${d.justificatif_url}" target="_blank" class="verified-badge-pill" style="text-decoration:none;"><i class="fa-solid fa-file-pdf"></i> Voir le justificatif</a>` : ''}
+            </div>
+          `;
+        });
+        diplomesContainer.innerHTML = html;
+      }
+
+      // Expériences
+      const expContainer = document.querySelectorAll('.content-box')[3];
+      if (expContainer && prof.experiences && prof.experiences.length > 0) {
+        let html = '<h2>Expériences professionnelles 🏢</h2>';
+        prof.experiences.forEach(e => {
+          html += `
+            <div class="timeline-item">
+              <div class="item-title">${e.titre}</div>
+              <div class="item-subtitle">${e.structure} - ${e.dates}</div>
+              <div class="item-desc">${e.description || ''}</div>
+            </div>
+          `;
+        });
+        expContainer.innerHTML = html;
+      }
+
+    } catch (err) {
+      console.error('Erreur lors du chargement du profil:', err);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', chargerProfilProfesseur);
+</script>
 </body>
 </html>
