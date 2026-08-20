@@ -56,14 +56,31 @@
     .cert-list { list-style: none; }
     .cert-list li { margin-bottom: 6px; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
     .cert-list li i { color: #10B981; }
-    .stat-number { font-size: 1.8rem; font-weight: 800; color: var(--happy-text-dark); }
-    .stat-label { font-size: 0.85rem; color: var(--happy-text-muted); }
 
     .content-box { background: white; border: 1px solid var(--happy-card-border); border-radius: var(--radius-large); padding: 24px; margin-bottom: 25px; box-shadow: var(--shadow-card); }
     .content-box h2 { font-size: 1.4rem; color: var(--happy-text-dark); margin-bottom: 18px; display: flex; align-items: center; gap: 10px; font-weight: 800; }
-    .avail-box { background: var(--happy-purple-light); border-radius: var(--radius-medium); padding: 15px 20px; display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
-    .avail-icon { background: var(--happy-purple); color: white; width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
-    
+
+    /* STYLES CALENDRIER DYNAMIQUE SHERPA */
+    .dispo-card { background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 18px; padding: 24px; }
+    .dispo-card h2 { font-size: 1.5rem; font-weight: 800; color: #111827; margin-bottom: 4px; }
+    .dispo-sub { color: #6B7280; font-size: 0.9rem; margin-bottom: 20px; }
+    .dispo-nav-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+    .nav-btn-group { display: flex; gap: 4px; }
+    .nav-arrow-btn { border: 1px solid #E5E7EB; background: white; width: 36px; height: 36px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; color: #374151; }
+    .nav-arrow-btn:hover { background: #F9FAFB; }
+    .current-range { font-weight: 700; font-size: 0.95rem; color: #111827; }
+    .tz-info { color: #2563EB; font-weight: 500; text-decoration: underline; font-size: 0.85rem; cursor: pointer; }
+    .filter-btn { border: none; background: transparent; font-weight: 600; font-size: 0.9rem; color: #374151; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+
+    .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; text-align: center; }
+    .day-col-header { margin-bottom: 12px; }
+    .day-name { font-weight: 700; font-size: 0.9rem; color: #111827; text-transform: lowercase; }
+    .day-date { font-size: 0.8rem; color: #6B7280; }
+
+    .slot-cell { background: #F9FAFB; border-radius: 8px; padding: 8px 4px; margin-bottom: 8px; font-size: 0.85rem; font-weight: 600; color: #111827; cursor: pointer; transition: all 0.2s; }
+    .slot-cell:hover { background: var(--happy-purple-light); color: var(--happy-purple); }
+    .slot-empty { background: transparent; color: #9CA3AF; cursor: default; }
+
     .timeline-item { margin-bottom: 20px; }
     .timeline-item:not(:last-child) { padding-bottom: 20px; border-bottom: 1px solid #F3F4F6; }
     .item-title { font-size: 1.1rem; font-weight: 700; color: var(--happy-text-dark); }
@@ -81,18 +98,15 @@
     .user-left { display: flex; align-items: center; gap: 10px; }
     .avatar-circle { width: 36px; height: 36px; border-radius: 50%; background: #10B981; color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; }
     .user-name { font-weight: 700; color: var(--happy-text-dark); }
-    .post-date { font-size: 0.75rem; color: var(--happy-text-muted); }
     .star-score { color: var(--happy-yellow); font-weight: 700; }
 
     .sticky-sidebar { position: sticky; top: 90px; background: white; border: 1px solid var(--happy-card-border); border-radius: var(--radius-large); overflow: hidden; box-shadow: var(--shadow-sticky); }
     .prof-image-header { position: relative; height: 260px; }
     .prof-image-header img { width: 100%; height: 100%; object-fit: cover; }
     .badge-fast-resp { position: absolute; top: 12px; left: 12px; background: var(--happy-yellow); color: #000; font-size: 0.75rem; font-weight: 800; padding: 6px 12px; border-radius: 20px; }
-    .btn-fav { position: absolute; top: 12px; right: 12px; background: rgba(255,255,255,0.85); border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; color: var(--happy-text-dark); }
     .prof-name-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px 15px 10px 15px; background: linear-gradient(transparent, rgba(18, 13, 38, 0.85)); color: white; font-size: 1.4rem; font-weight: 700; }
     .sidebar-body { padding: 20px; }
     .sidebar-meta { font-size: 0.85rem; color: var(--happy-text-muted); margin-bottom: 12px; }
-    .rating-line { display: flex; align-items: center; gap: 6px; font-weight: 700; margin-bottom: 15px; }
 
     .price-list { margin-bottom: 20px; }
     .price-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.9rem; font-weight: 600; }
@@ -100,17 +114,8 @@
     .btn-cta { width: 100%; background: var(--happy-purple); color: white; border: none; padding: 14px; border-radius: 25px; font-size: 1rem; font-weight: 700; cursor: pointer; box-shadow: 0 4px 12px rgba(124, 92, 252, 0.3); transition: background 0.3s; }
     .btn-cta:hover { background: var(--happy-purple-hover); }
 
-    .happy-footer { background-color: var(--happy-dark-bg); color: white; padding: 60px 20px 30px 20px; }
-    .footer-top { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 40px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-    .footer-col h3 { font-size: 1.3rem; margin-bottom: 12px; font-weight: 800; }
-    .footer-col h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.8px; color: #A78BFA; margin-bottom: 18px; font-weight: 700; }
-    .footer-col p { font-size: 0.9rem; color: #D1D5DB; }
-    .footer-col ul { list-style: none; }
-    .footer-col ul li { margin-bottom: 10px; font-size: 0.9rem; }
-    .footer-col ul li a { color: #D1D5DB; text-decoration: none; transition: color 0.2s; }
-    .social-links { display: flex; gap: 12px; }
-    .social-icon { width: 38px; height: 38px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; font-size: 0.95rem; }
-    .footer-bottom { max-width: 1100px; margin: 25px auto 0 auto; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; }
+    .happy-footer { background-color: var(--happy-dark-bg); color: white; padding: 60px 20px 30px 20px; margin-top: 40px; }
+    .footer-bottom { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; }
   </style>
 </head>
 <body>
@@ -139,6 +144,28 @@
       <div class="banner-offer">
         <i class="fa-solid fa-gift"></i> Cours d'essai offert par Happy Cours 🎁
       </div>
+
+      <!-- COMPOSANT DINAMIQUE DE DISPONIBILITÉS -->
+      <section class="dispo-card content-box">
+        <h2>Disponibilités pour un essai 🗓️</h2>
+        <div class="dispo-sub" id="dispo-prof-name">Disponibilités du professeur</div>
+
+        <div class="dispo-nav-bar">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <div class="nav-btn-group">
+              <button class="nav-arrow-btn" onclick="changerSemaine(-7)"><i class="fa-solid fa-chevron-left"></i></button>
+              <button class="nav-arrow-btn" onclick="changerSemaine(7)"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+            <span class="current-range" id="date-range-label">-- au --</span>
+            <span class="tz-info">(GMT+02:00)</span>
+          </div>
+          <button class="filter-btn"><i class="fa-solid fa-sliders"></i> Filtrer</button>
+        </div>
+
+        <div class="calendar-grid" id="calendar-grid-container">
+          <!-- Injecté dynamiquement par JS -->
+        </div>
+      </section>
 
       <header class="hero-header">
         <h1 id="prof-fullname">Chargement... <i class="fa-solid fa-circle-check verified-icon"></i></h1>
@@ -217,6 +244,77 @@
   </footer>
 
   <script>
+    let currentDateOffset = 0;
+    let profDisponibilites = [];
+
+    const defaultHours = [
+      "9:00", "9:30", "10:00", "10:30", "11:00", "11:30",
+      "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
+      "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30"
+    ];
+
+    function changerSemaine(days) {
+      currentDateOffset += days;
+      renderCalendar();
+    }
+
+    function renderCalendar() {
+      const container = document.getElementById('calendar-grid-container');
+      const labelRange = document.getElementById('date-range-label');
+      container.innerHTML = '';
+
+      const today = new Date();
+      today.setDate(today.getDate() + currentDateOffset);
+
+      const daysOfWeek = [];
+      for (let i = 0; i < 7; i++) {
+        const d = new Date(today);
+        d.setDate(today.getDate() + i);
+        daysOfWeek.push(d);
+      }
+
+      const optionsDay = { weekday: 'long' };
+      const optionsMonth = { month: 'long' };
+
+      const startDayNum = daysOfWeek[0].getDate();
+      const endDayNum = daysOfWeek[6].getDate();
+      const monthName = daysOfWeek[6].toLocaleDateString('fr-FR', optionsMonth);
+
+      labelRange.textContent = `Du ${startDayNum} au ${endDayNum} ${monthName}`;
+
+      daysOfWeek.forEach((dateObj) => {
+        const dateISO = dateObj.toISOString().split('T')[0];
+        const dayNameStr = dateObj.toLocaleDateString('fr-FR', optionsDay);
+        const dayDateStr = `${dateObj.getDate()} ${dateObj.toLocaleDateString('fr-FR', { month: 'short' })}`;
+
+        let colHtml = `<div class="day-col">
+          <div class="day-col-header">
+            <div class="day-name">${dayNameStr}</div>
+            <div class="day-date">${dayDateStr}</div>
+          </div>`;
+
+        defaultHours.forEach(heure => {
+          const isAvailable = profDisponibilites.some(d => {
+            const dDate = new Date(d.date).toISOString().split('T')[0];
+            return dDate === dateISO && d.heure === heure && d.statut === 'disponible';
+          });
+
+          if (isAvailable) {
+            colHtml += `<div class="slot-cell" onclick="reserverSlot('${dateISO}', '${heure}')">${heure}</div>`;
+          } else {
+            colHtml += `<div class="slot-cell slot-empty">—</div>`;
+          }
+        });
+
+        colHtml += `</div>`;
+        container.innerHTML += colHtml;
+      });
+    }
+
+    function reserverSlot(date, heure) {
+      alert(`Créneau sélectionné : le ${date} à ${heure}`);
+    }
+
     async function chargerProfilProfesseur() {
       const params = new URLSearchParams(window.location.search);
       const profId = params.get('id');
@@ -227,19 +325,19 @@
         if (!res.ok) return;
         const prof = await res.json();
 
-        // Informations personnelles
+        profDisponibilites = prof.disponibilites || [];
+
+        document.getElementById('dispo-prof-name').textContent = `Disponibilités de ${prof.prenom}`;
         document.getElementById('prof-fullname').innerHTML = `${prof.prenom} ${prof.nom || ''} <i class="fa-solid fa-circle-check verified-icon"></i>`;
         document.getElementById('prof-subtitle').textContent = `${prof.ville || 'France'} • ${prof.matieres || 'Matières non précisées'}`;
         document.getElementById('prof-headline').textContent = prof.titre_accroche || '';
         document.getElementById('prof-sidebar-name').textContent = `${prof.prenom} ${prof.nom ? prof.nom.charAt(0) + '.' : ''} ✓`;
         document.getElementById('prof-sidebar-meta').innerHTML = `<i class="fa-solid fa-location-dot"></i> ${prof.ville || 'France'} ${prof.etablissement ? '• ' + prof.etablissement : ''}`;
 
-        // Photo
         if (prof.photo_url) {
           document.getElementById('prof-photo').src = prof.photo_url;
         }
 
-        // Modes
         const modesContainer = document.getElementById('prof-modes');
         if (prof.modes && prof.modes.length > 0) {
           modesContainer.innerHTML = prof.modes.map(m => `
@@ -247,7 +345,6 @@
           `).join('');
         }
 
-        // Méthodologie & Niveaux
         document.getElementById('prof-methodologie').textContent = prof.methodologie || 'Aucune présentation renseignée.';
         const niveauxContainer = document.getElementById('prof-niveaux');
         if (prof.niveaux && prof.niveaux.length > 0) {
@@ -256,12 +353,10 @@
           `).join('');
         }
 
-        // Tarifs Horaires
         document.getElementById('price-primaire').textContent = prof.tarif_primaire ? `${parseFloat(prof.tarif_primaire).toFixed(2).replace('.', ',')} €/h` : 'Non renseigné';
         document.getElementById('price-college').textContent = prof.tarif_college ? `${parseFloat(prof.tarif_college).toFixed(2).replace('.', ',')} €/h` : 'Non renseigné';
         document.getElementById('price-lycee').textContent = prof.tarif_lycee ? `${parseFloat(prof.tarif_lycee).toFixed(2).replace('.', ',')} €/h` : 'Non renseigné';
 
-        // Diplômes
         const diplomesContainer = document.getElementById('diplomes-list');
         if (prof.diplomes && prof.diplomes.length > 0) {
           diplomesContainer.innerHTML = prof.diplomes.map(d => `
@@ -276,7 +371,6 @@
           diplomesContainer.innerHTML = '<p style="color:var(--happy-text-muted);">Aucun diplôme renseigné.</p>';
         }
 
-        // Expériences
         const expContainer = document.getElementById('exp-list');
         if (prof.experiences && prof.experiences.length > 0) {
           expContainer.innerHTML = prof.experiences.map(e => `
@@ -290,7 +384,6 @@
           expContainer.innerHTML = '<p style="color:var(--happy-text-muted);">Aucune expérience renseignée.</p>';
         }
 
-        // Avis
         const avisContainer = document.getElementById('avis-list');
         if (prof.avis && prof.avis.length > 0) {
           avisContainer.innerHTML = prof.avis.map(a => `
@@ -310,6 +403,8 @@
         } else {
           avisContainer.innerHTML = '<p style="color:var(--happy-text-muted);">Aucun avis pour le moment.</p>';
         }
+
+        renderCalendar();
 
       } catch (err) {
         console.error('Erreur lors du chargement du profil:', err);
