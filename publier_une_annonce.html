@@ -294,7 +294,6 @@
       cursor: pointer;
     }
 
-    /* BARRE D'OUTILS ET MODULE DE FILTRE */
     .filter-toolbar {
       display: flex;
       justify-content: space-between;
@@ -563,8 +562,8 @@
         <div class="form-group">
           <label>Mode de cours dispensé *</label>
           <div class="checkbox-group">
-            <label class="checkbox-item"><input type="checkbox" name="modes" value="En ligne" checked> En ligne</label>
-            <label class="checkbox-item"><input type="checkbox" name="modes" value="À domicile"> À domicile</label>
+            <label class="checkbox-item"><input type="checkbox" name="modes" value="En ligne" checked id="mode_enligne"> En ligne</label>
+            <label class="checkbox-item"><input type="checkbox" name="modes" value="À domicile" id="mode_domicile"> À domicile</label>
           </div>
         </div>
         <div class="form-group">
@@ -636,10 +635,12 @@
         </div>
       </div>
 
-      <!-- SECTION 4 : TARIFS -->
+      <!-- SECTION 4 : TARIFS EN LIGNE & À DOMICILE -->
       <div class="form-section">
         <h2><i class="fa-solid fa-euro-sign"></i> Tarifs Horaires (€/h)</h2>
-        <div class="form-row-3">
+        
+        <h3 style="font-size:1rem; color:var(--happy-purple); margin-bottom:10px;"><i class="fa-solid fa-video"></i> Tarifs En Ligne</h3>
+        <div class="form-row-3" style="margin-bottom:20px;">
           <div class="form-group">
             <label for="tarif_primaire">Primaire (€)</label>
             <input type="number" step="0.1" id="tarif_primaire" placeholder="20.90" required>
@@ -651,6 +652,22 @@
           <div class="form-group">
             <label for="tarif_lycee">Lycée (€)</label>
             <input type="number" step="0.1" id="tarif_lycee" placeholder="32.30" required>
+          </div>
+        </div>
+
+        <h3 style="font-size:1rem; color:var(--happy-purple); margin-bottom:10px;"><i class="fa-solid fa-house"></i> Tarifs À Domicile</h3>
+        <div class="form-row-3">
+          <div class="form-group">
+            <label for="tarif_domicile_primaire">Primaire (€)</label>
+            <input type="number" step="0.1" id="tarif_domicile_primaire" placeholder="25.00">
+          </div>
+          <div class="form-group">
+            <label for="tarif_domicile_college">Collège (€)</label>
+            <input type="number" step="0.1" id="tarif_domicile_college" placeholder="30.00">
+          </div>
+          <div class="form-group">
+            <label for="tarif_domicile_lycee">Lycée (€)</label>
+            <input type="number" step="0.1" id="tarif_domicile_lycee" placeholder="35.00">
           </div>
         </div>
       </div>
@@ -907,9 +924,16 @@
         formData.append('matieres', document.getElementById('matieres').value);
         formData.append('titre_accroche', document.getElementById('titre_accroche').value);
         formData.append('methodologie', document.getElementById('methodologie').value);
+        
+        // Tarifs En Ligne
         formData.append('tarif_primaire', document.getElementById('tarif_primaire').value);
         formData.append('tarif_college', document.getElementById('tarif_college').value);
         formData.append('tarif_lycee', document.getElementById('tarif_lycee').value);
+
+        // Tarifs À Domicile
+        formData.append('tarif_domicile_primaire', document.getElementById('tarif_domicile_primaire').value || 0);
+        formData.append('tarif_domicile_college', document.getElementById('tarif_domicile_college').value || 0);
+        formData.append('tarif_domicile_lycee', document.getElementById('tarif_domicile_lycee').value || 0);
 
         document.querySelectorAll('input[name="modes"]:checked').forEach(cb => formData.append('modes', cb.value));
         document.querySelectorAll('input[name="niveaux"]:checked').forEach(cb => formData.append('niveaux', cb.value));

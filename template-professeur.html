@@ -108,6 +108,17 @@
     .sidebar-body { padding: 20px; }
     .sidebar-meta { font-size: 0.85rem; color: var(--happy-text-muted); margin-bottom: 12px; }
 
+    .price-mode-select {
+      width: 100%;
+      padding: 8px 12px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid var(--happy-card-border);
+      font-weight: 600;
+      color: var(--happy-text-dark);
+      background-color: var(--happy-gray-bg);
+    }
+
     .price-list { margin-bottom: 20px; }
     .price-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.9rem; font-weight: 600; }
     .free-trial-badge { background: var(--happy-purple-light); color: var(--happy-purple); border: 1px dashed var(--happy-purple); text-align: center; padding: 8px; border-radius: var(--radius-medium); font-weight: 700; font-size: 0.85rem; margin-bottom: 15px; }
@@ -220,7 +231,6 @@
       font-size: 13px;
     }
 
-    /* BOUTON FLOTTANT WHATSAPP */
     .whatsapp-exact-pill {
       position: fixed;
       bottom: 25px;
@@ -374,6 +384,11 @@
           <i class="fa-solid fa-location-dot"></i> Ville non spécifiée
         </div>
 
+        <select id="modeTarifSelect" class="price-mode-select" onchange="mettreAJourTarifs()">
+          <option value="enligne">💻 Cours En ligne</option>
+          <option value="domicile">🏠 Cours À domicile</option>
+        </select>
+
         <div class="price-list" id="priceList">
           <div class="price-row"><span>Primaire</span> <span class="price-val" id="price-primaire">-- €/h</span></div>
           <div class="price-row"><span>Collège</span> <span class="price-val" id="price-college">-- €/h</span></div>
@@ -387,7 +402,6 @@
 
   </div>
 
-  <!-- FOOTER HAPPY COURS -->
   <footer>
     <div class="footer-content">
       <div class="footer-col">
@@ -433,7 +447,6 @@
     </div>
   </footer>
 
-  <!-- BOUTON FLOTTANT WHATSAPP -->
   <a href="https://wa.me/33771854804" class="whatsapp-exact-pill" target="_blank" rel="noopener" aria-label="WhatsApp">
     <svg viewBox="0 0 24 24">
       <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-1.14 4.162 4.195-1.102z"/>
@@ -444,11 +457,12 @@
   <script>
     let currentDateOffset = 0;
     let profDisponibilites = [];
+    let currentProfData = null;
 
     const defaultHours = [
-      "9:00", "9:30", "10:00", "10:30", "11:00", "11:30",
-      "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
-      "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30"
+      "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30",
+      "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", 
+      "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00"
     ];
 
     function openCookieBanner() {
@@ -486,7 +500,8 @@
 
       daysOfWeek.forEach((dateObj) => {
         const dateISO = dateObj.toISOString().split('T')[0];
-        const dayNameStr = dateObj.toLocaleDateString('fr-FR', optionsDay);
+        const dayNameStr = dateObj.toLocaleDateString('fr-FR', optionsDay); // ex: "lundi"
+        const dayNameFormatted = dayNameStr.charAt(0).toUpperCase() + dayNameStr.slice(1); // ex: "Lundi"
         const dayDateStr = `${dateObj.getDate()} ${dateObj.toLocaleDateString('fr-FR', { month: 'short' })}`;
 
         let colHtml = `<div class="day-col">
@@ -497,8 +512,15 @@
 
         defaultHours.forEach(heure => {
           const isAvailable = profDisponibilites.some(d => {
-            const dDate = new Date(d.date).toISOString().split('T')[0];
-            return dDate === dateISO && d.heure === heure && d.statut === 'disponible';
+            // Comparaison dynamique basée sur la date ISO OU le jour récurrent
+            if (d.date) {
+              const dDate = new Date(d.date).toISOString().split('T')[0];
+              return dDate === dateISO && d.heure === heure && d.statut === 'disponible';
+            }
+            if (d.jour) {
+              return d.jour.toLowerCase() === dayNameFormatted.toLowerCase() && d.heure === heure && d.statut === 'disponible';
+            }
+            return false;
           });
 
           if (isAvailable) {
@@ -517,6 +539,27 @@
       alert(`Créneau sélectionné : le ${date} à ${heure}`);
     }
 
+    function mettreAJourTarifs() {
+      if (!currentProfData) return;
+      const mode = document.getElementById('modeTarifSelect').value;
+      
+      let pPrimaire, pCollege, pLycee;
+
+      if (mode === 'domicile') {
+        pPrimaire = currentProfData.tarif_domicile_primaire || currentProfData.tarif_primaire;
+        pCollege = currentProfData.tarif_domicile_college || currentProfData.tarif_college;
+        pLycee = currentProfData.tarif_domicile_lycee || currentProfData.tarif_lycee;
+      } else {
+        pPrimaire = currentProfData.tarif_primaire;
+        pCollege = currentProfData.tarif_college;
+        pLycee = currentProfData.tarif_lycee;
+      }
+
+      document.getElementById('price-primaire').textContent = pPrimaire ? `${parseFloat(pPrimaire).toFixed(2).replace('.', ',')} €/h` : 'Non renseigné';
+      document.getElementById('price-college').textContent = pCollege ? `${parseFloat(pCollege).toFixed(2).replace('.', ',')} €/h` : 'Non renseigné';
+      document.getElementById('price-lycee').textContent = pLycee ? `${parseFloat(pLycee).toFixed(2).replace('.', ',')} €/h` : 'Non renseigné';
+    }
+
     async function chargerProfilProfesseur() {
       const params = new URLSearchParams(window.location.search);
       const profId = params.get('id');
@@ -526,6 +569,7 @@
         const res = await fetch(`https://happy-cours-backend.onrender.com/api/annonces/${profId}`);
         if (!res.ok) return;
         const prof = await res.json();
+        currentProfData = prof;
 
         profDisponibilites = prof.disponibilites || [];
 
@@ -555,9 +599,7 @@
           `).join('');
         }
 
-        document.getElementById('price-primaire').textContent = prof.tarif_primaire ? `${parseFloat(prof.tarif_primaire).toFixed(2).replace('.', ',')} €/h` : 'Non renseigné';
-        document.getElementById('price-college').textContent = prof.tarif_college ? `${parseFloat(prof.tarif_college).toFixed(2).replace('.', ',')} €/h` : 'Non renseigné';
-        document.getElementById('price-lycee').textContent = prof.tarif_lycee ? `${parseFloat(prof.tarif_lycee).toFixed(2).replace('.', ',')} €/h` : 'Non renseigné';
+        mettreAJourTarifs();
 
         const diplomesContainer = document.getElementById('diplomes-list');
         if (prof.diplomes && prof.diplomes.length > 0) {
