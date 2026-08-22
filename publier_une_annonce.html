@@ -913,6 +913,30 @@
     document.getElementById('formAnnonce').addEventListener('submit', async (e) => {
         e.preventDefault();
 
+        // Sécurité : si l'utilisateur a sélectionné des créneaux horaires sans
+        // cliquer sur "Ajouter ces créneaux à la semaine type", on les récupère
+        // quand même ici pour éviter de perdre silencieusement ces disponibilités.
+        const pendingPills = document.querySelectorAll('.time-slot-pill.selected');
+        if (pendingPills.length > 0) {
+          const pendingJour = document.getElementById('dispo-jour-select').value;
+          pendingPills.forEach(pill => {
+            const hour = pill.getAttribute('data-hour');
+            const exists = registeredSlots.some(s => s.jour === pendingJour && s.heure === hour);
+            if (!exists) {
+              registeredSlots.push({ jour: pendingJour, heure: hour, recurrent: true });
+            }
+          });
+        }
+
+        if (registeredSlots.length === 0) {
+          const continuer = confirm(
+            "Vous n'avez configuré aucun créneau de disponibilité. " +
+            "Les élèves ne pourront pas réserver de cours d'essai directement depuis votre profil. " +
+            "Voulez-vous quand même publier l'annonce sans disponibilités ?"
+          );
+          if (!continuer) return;
+        }
+
         const formData = new FormData();
 
         formData.append('prenom', document.getElementById('prenom').value);
@@ -974,11 +998,26 @@
               const result = await response.json();
 
               if (registeredSlots.length > 0) {
-                await fetch(`https://happy-cours-backend.onrender.com/api/annonces/${result.id}/disponibilites`, {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({ slots: registeredSlots })
-                });
+                try {
+                  const dispoResponse = await fetch(`https://happy-cours-backend.onrender.com/api/annonces/${result.id}/disponibilites`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ slots: registeredSlots })
+                  });
+
+                  if (!dispoResponse.ok) {
+                    alert(
+                      "Votre annonce a été créée, mais l'enregistrement de vos disponibilités a échoué. " +
+                      "Vous pourrez les configurer à nouveau depuis votre profil."
+                    );
+                  }
+                } catch (dispoErr) {
+                  console.error('Erreur enregistrement disponibilités:', dispoErr);
+                  alert(
+                    "Votre annonce a été créée, mais vos disponibilités n'ont pas pu être enregistrées " +
+                    "(problème de connexion). Vous pourrez les configurer à nouveau depuis votre profil."
+                  );
+                }
               }
 
               alert('Annonce créée avec succès !');
