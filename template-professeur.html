@@ -83,6 +83,8 @@
     .slot-cell { background: #F9FAFB; border-radius: 8px; padding: 8px 4px; margin-bottom: 8px; font-size: 0.85rem; font-weight: 600; color: #111827; cursor: pointer; transition: all 0.2s; }
     .slot-cell:hover { background: var(--happy-purple-light); color: var(--happy-purple); }
     .slot-empty { background: transparent; color: #9CA3AF; cursor: default; }
+    .slot-reserved { background: #FEE2E2; color: #B91C1C; cursor: not-allowed; }
+    .slot-reserved:hover { background: #FEE2E2; color: #B91C1C; }
 
     .timeline-item { margin-bottom: 20px; }
     .timeline-item:not(:last-child) { padding-bottom: 20px; border-bottom: 1px solid #F3F4F6; }
@@ -471,6 +473,7 @@
   <script>
     let currentDateOffset = 0;
     let profDisponibilites = [];
+    let profReservations = [];
     let currentProfData = null;
     let selectedReservationSlot = null;
 
@@ -566,8 +569,15 @@
             return false;
           });
 
-          if (isAvailable) {
+          const isReserved = profReservations.some(r => {
+            if (r.statut && (r.statut === 'annulee' || r.statut === 'refusee')) return false;
+            return r.dateCours === dateISO && r.heureCours === heure;
+          });
+
+          if (isAvailable && !isReserved) {
             colHtml += `<div class="slot-cell" onclick="reserverSlot('${dateISO}', '${heure}')">${heure}</div>`;
+          } else if (isAvailable && isReserved) {
+            colHtml += `<div class="slot-cell slot-reserved" title="Déjà réservé">Réservé</div>`;
           } else {
             colHtml += `<div class="slot-cell slot-empty">—</div>`;
           }
@@ -616,6 +626,16 @@
 
         if (res.ok) {
           alert('Votre demande de cours d\'essai a bien été envoyée !');
+
+          if (selectedReservationSlot && selectedReservationSlot.date && selectedReservationSlot.heure) {
+            profReservations.push({
+              dateCours: selectedReservationSlot.date,
+              heureCours: selectedReservationSlot.heure,
+              statut: 'en_attente'
+            });
+            renderCalendar();
+          }
+
           fermerModalReservation();
           document.getElementById('formReservation').reset();
         } else {
@@ -691,6 +711,7 @@
         currentProfData = prof;
 
         profDisponibilites = prof.disponibilites || [];
+        profReservations = prof.reservations || [];
 
         document.getElementById('dispo-prof-name').textContent = `Disponibilités de ${prof.prenom}`;
         document.getElementById('prof-fullname').innerHTML = `${prof.prenom} ${prof.nom || ''} <i class="fa-solid fa-circle-check verified-icon"></i>`;
