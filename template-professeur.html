@@ -64,13 +64,17 @@
     .dispo-card { background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 18px; padding: 24px; }
     .dispo-card h2 { font-size: 1.5rem; font-weight: 800; color: #111827; margin-bottom: 4px; }
     .dispo-sub { color: #6B7280; font-size: 0.9rem; margin-bottom: 20px; }
-    .dispo-nav-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+    .dispo-nav-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; position: relative; }
     .nav-btn-group { display: flex; gap: 4px; }
     .nav-arrow-btn { border: 1px solid #E5E7EB; background: white; width: 36px; height: 36px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; color: #374151; }
     .nav-arrow-btn:hover { background: #F9FAFB; }
     .current-range { font-weight: 700; font-size: 0.95rem; color: #111827; }
     .tz-info { color: #2563EB; font-weight: 500; text-decoration: underline; font-size: 0.85rem; cursor: pointer; }
-    .filter-btn { border: none; background: transparent; font-weight: 600; font-size: 0.9rem; color: #374151; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+    .filter-btn { border: 1px solid var(--happy-card-border); background: white; border-radius: 8px; padding: 6px 12px; font-weight: 600; font-size: 0.9rem; color: #374151; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+    
+    .filter-dropdown-menu { display: none; position: absolute; top: 110%; right: 0; background: white; border: 1px solid var(--happy-card-border); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-radius: var(--radius-medium); padding: 12px 16px; z-index: 100; width: 180px; }
+    .filter-dropdown-menu.show { display: block; }
+    .filter-option { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 0.88rem; font-weight: 600; cursor: pointer; }
 
     .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; text-align: center; }
     .day-col-header { margin-bottom: 12px; }
@@ -124,6 +128,15 @@
     .free-trial-badge { background: var(--happy-purple-light); color: var(--happy-purple); border: 1px dashed var(--happy-purple); text-align: center; padding: 8px; border-radius: var(--radius-medium); font-weight: 700; font-size: 0.85rem; margin-bottom: 15px; }
     .btn-cta { width: 100%; background: var(--happy-purple); color: white; border: none; padding: 14px; border-radius: 25px; font-size: 1rem; font-weight: 700; cursor: pointer; box-shadow: 0 4px 12px rgba(124, 92, 252, 0.3); transition: background 0.3s; }
     .btn-cta:hover { background: var(--happy-purple-hover); }
+
+    /* MODALE DE RÉSERVATION */
+    .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center; padding: 20px; }
+    .modal-overlay.active { display: flex; }
+    .modal-card { background: white; border-radius: var(--radius-large); max-width: 480px; width: 100%; padding: 25px; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+    .modal-close { position: absolute; top: 15px; right: 15px; border: none; background: #F3F4F6; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-weight: bold; }
+    .form-group-modal { margin-bottom: 14px; }
+    .form-group-modal label { display: block; font-size: 0.88rem; font-weight: 700; margin-bottom: 5px; }
+    .form-group-modal input, .form-group-modal textarea { width: 100%; padding: 10px 12px; border: 1px solid var(--happy-card-border); border-radius: 8px; font-size: 0.9rem; }
 
     /* STYLES FOOTER HAPPY COURS */
     footer {
@@ -338,7 +351,23 @@
             <span class="current-range" id="date-range-label">-- au --</span>
             <span class="tz-info">(GMT+02:00)</span>
           </div>
-          <button class="filter-btn"><i class="fa-solid fa-sliders"></i> Filtrer</button>
+
+          <div style="position: relative;">
+            <button type="button" class="filter-btn" onclick="toggleCalendarFilterMenu()">
+              <i class="fa-solid fa-sliders"></i> Filtrer
+            </button>
+            <div class="filter-dropdown-menu" id="calFilterMenu">
+              <label class="filter-option">
+                <input type="checkbox" id="cal-filter-matin" checked onchange="renderCalendar()"> Matin
+              </label>
+              <label class="filter-option">
+                <input type="checkbox" id="cal-filter-apres-midi" checked onchange="renderCalendar()"> Après-midi
+              </label>
+              <label class="filter-option">
+                <input type="checkbox" id="cal-filter-soir" checked onchange="renderCalendar()"> Soir
+              </label>
+            </div>
+          </div>
         </div>
 
         <div class="calendar-grid" id="calendar-grid-container">
@@ -368,6 +397,25 @@
       <section class="content-box">
         <h2>Évaluations ⭐️</h2>
         <div id="avis-list"></div>
+
+        <!-- FORMULAIRE AJOUT D'AVIS -->
+        <div style="margin-top:25px; padding-top:20px; border-top:1px solid var(--happy-card-border);">
+          <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:12px;">Laisser un avis</h3>
+          <form id="formAvis" onsubmit="soumettreAvis(event)">
+            <div style="display:grid; grid-template-columns: 1fr 120px; gap:12px; margin-bottom:10px;">
+              <input type="text" id="avisAuteur" placeholder="Votre prénom" required style="padding:8px 12px; border:1px solid var(--happy-card-border); border-radius:8px;">
+              <select id="avisNote" style="padding:8px 12px; border:1px solid var(--happy-card-border); border-radius:8px;">
+                <option value="5">5 ★★★★★</option>
+                <option value="4">4 ★★★★</option>
+                <option value="3">3 ★★★</option>
+                <option value="2">2 ★★</option>
+                <option value="1">1 ★</option>
+              </select>
+            </div>
+            <textarea id="avisCommentaire" rows="3" placeholder="Votre commentaire..." required style="width:100%; padding:8px 12px; border:1px solid var(--happy-card-border); border-radius:8px; margin-bottom:10px;"></textarea>
+            <button type="submit" class="btn-cta" style="padding:10px; font-size:0.9rem; width:auto;">Publier mon avis</button>
+          </form>
+        </div>
       </section>
     </main>
 
@@ -395,10 +443,39 @@
         </div>
 
         <div class="free-trial-badge">🎁 1<sup>er</sup> Cours d'essai offert</div>
-        <button class="btn-cta" onclick="alert('Demande envoyée !')">Demander un cours d'essai</button>
+        <button class="btn-cta" onclick="ouvrirModalReservation()">Demander un cours d'essai</button>
       </div>
     </aside>
 
+  </div>
+
+  <!-- MODALE INTERACTIVE DE RÉSERVATION -->
+  <div class="modal-overlay" id="modalReservation">
+    <div class="modal-card">
+      <button class="modal-close" onclick="fermerModalReservation()">×</button>
+      <h3 style="font-size:1.2rem; font-weight:800; margin-bottom:15px; color:var(--happy-purple);">
+        <i class="fa-solid fa-calendar-check"></i> Réserver votre cours d'essai
+      </h3>
+      <form id="formReservation" onsubmit="soumettreReservation(event)">
+        <div class="form-group-modal">
+          <label>Créneau sélectionné</label>
+          <input type="text" id="resSlotDisplay" readonly style="background:#F3F4F6; font-weight:700;">
+        </div>
+        <div class="form-group-modal">
+          <label for="resNom">Nom & Prénom *</label>
+          <input type="text" id="resNom" required placeholder="ex: Jean Dupont">
+        </div>
+        <div class="form-group-modal">
+          <label for="resEmail">Email *</label>
+          <input type="email" id="resEmail" required placeholder="ex: jean.dupont@email.com">
+        </div>
+        <div class="form-group-modal">
+          <label for="resPhone">Téléphone</label>
+          <input type="tel" id="resPhone" placeholder="ex: 06 12 34 56 78">
+        </div>
+        <button type="submit" class="btn-cta" style="margin-top:10px;">Valider la réservation</button>
+      </form>
+    </div>
   </div>
 
   <footer>
@@ -457,6 +534,7 @@
     let currentDateOffset = 0;
     let profDisponibilites = [];
     let currentProfData = null;
+    let selectedReservationSlot = null;
 
     const defaultHours = [
       "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30",
@@ -468,15 +546,30 @@
       alert("Gestionnaire de cookies en cours de chargement.");
     }
 
+    function toggleCalendarFilterMenu() {
+      document.getElementById('calFilterMenu').classList.toggle('show');
+    }
+
     function changerSemaine(days) {
       currentDateOffset += days;
       renderCalendar();
+    }
+
+    function getTimeCategory(hourStr) {
+      const hour = parseInt(hourStr.split(':')[0], 10);
+      if (hour < 12) return 'matin';
+      if (hour >= 12 && hour < 17) return 'apres-midi';
+      return 'soir';
     }
 
     function renderCalendar() {
       const container = document.getElementById('calendar-grid-container');
       const labelRange = document.getElementById('date-range-label');
       container.innerHTML = '';
+
+      const showMatin = document.getElementById('cal-filter-matin') ? document.getElementById('cal-filter-matin').checked : true;
+      const showApresMidi = document.getElementById('cal-filter-apres-midi') ? document.getElementById('cal-filter-apres-midi').checked : true;
+      const showSoir = document.getElementById('cal-filter-soir') ? document.getElementById('cal-filter-soir').checked : true;
 
       const today = new Date();
       today.setDate(today.getDate() + currentDateOffset);
@@ -499,8 +592,8 @@
 
       daysOfWeek.forEach((dateObj) => {
         const dateISO = dateObj.toISOString().split('T')[0];
-        const dayNameStr = dateObj.toLocaleDateString('fr-FR', optionsDay); // ex: "lundi"
-        const dayNameFormatted = dayNameStr.charAt(0).toUpperCase() + dayNameStr.slice(1); // ex: "Lundi"
+        const dayNameStr = dateObj.toLocaleDateString('fr-FR', optionsDay);
+        const dayNameFormatted = dayNameStr.charAt(0).toUpperCase() + dayNameStr.slice(1);
         const dayDateStr = `${dateObj.getDate()} ${dateObj.toLocaleDateString('fr-FR', { month: 'short' })}`;
 
         let colHtml = `<div class="day-col">
@@ -510,8 +603,12 @@
           </div>`;
 
         defaultHours.forEach(heure => {
+          const cat = getTimeCategory(heure);
+          if ((cat === 'matin' && !showMatin) || (cat === 'apres-midi' && !showApresMidi) || (cat === 'soir' && !showSoir)) {
+            return;
+          }
+
           const isAvailable = profDisponibilites.some(d => {
-            // Comparaison dynamique basée sur la date ISO OU le jour récurrent
             if (d.date) {
               const dDate = new Date(d.date).toISOString().split('T')[0];
               return dDate === dateISO && d.heure === heure && d.statut === 'disponible';
@@ -535,7 +632,83 @@
     }
 
     function reserverSlot(date, heure) {
-      alert(`Créneau sélectionné : le ${date} à ${heure}`);
+      selectedReservationSlot = { date, heure };
+      document.getElementById('resSlotDisplay').value = `Le ${date} à ${heure}`;
+      document.getElementById('modalReservation').classList.add('active');
+    }
+
+    function ouvrirModalReservation() {
+      document.getElementById('resSlotDisplay').value = "Premier créneau disponible";
+      selectedReservationSlot = { date: 'A convenir', heure: 'A convenir' };
+      document.getElementById('modalReservation').classList.add('active');
+    }
+
+    function fermerModalReservation() {
+      document.getElementById('modalReservation').classList.remove('active');
+    }
+
+    async function soumettreReservation(event) {
+      event.preventDefault();
+      const params = new URLSearchParams(window.location.search);
+      const profId = params.get('id');
+
+      const data = {
+        nomEleve: document.getElementById('resNom').value,
+        emailEleve: document.getElementById('resEmail').value,
+        phoneEleve: document.getElementById('resPhone').value,
+        dateCours: selectedReservationSlot ? selectedReservationSlot.date : 'Prochaine disponibilité',
+        heureCours: selectedReservationSlot ? selectedReservationSlot.heure : 'À définir'
+      };
+
+      try {
+        const res = await fetch(`https://happy-cours-backend.onrender.com/api/annonces/${profId}/reservations`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        if (res.ok) {
+          alert('Votre demande de cours d\'essai a bien été envoyée !');
+          fermerModalReservation();
+          document.getElementById('formReservation').reset();
+        } else {
+          alert('Erreur lors de la réservation.');
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Erreur réseau lors de la réservation.');
+      }
+    }
+
+    async function soumettreAvis(event) {
+      event.preventDefault();
+      const params = new URLSearchParams(window.location.search);
+      const profId = params.get('id');
+
+      const data = {
+        auteur: document.getElementById('avisAuteur').value,
+        note: document.getElementById('avisNote').value,
+        commentaire: document.getElementById('avisCommentaire').value
+      };
+
+      try {
+        const res = await fetch(`https://happy-cours-backend.onrender.com/api/annonces/${profId}/avis`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        if (res.ok) {
+          alert('Merci ! Votre avis a été publié.');
+          document.getElementById('formAvis').reset();
+          chargerProfilProfesseur();
+        } else {
+          alert('Erreur lors de l\'envoi de l\'avis.');
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Erreur réseau.');
+      }
     }
 
     function mettreAJourTarifs() {
