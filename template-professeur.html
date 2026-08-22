@@ -60,7 +60,6 @@
     .content-box { background: white; border: 1px solid var(--happy-card-border); border-radius: var(--radius-large); padding: 24px; margin-bottom: 25px; box-shadow: var(--shadow-card); }
     .content-box h2 { font-size: 1.4rem; color: var(--happy-text-dark); margin-bottom: 18px; display: flex; align-items: center; gap: 10px; font-weight: 800; }
 
-    /* STYLES CALENDRIER DYNAMIQUE SHERPA */
     .dispo-card { background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 18px; padding: 24px; }
     .dispo-card h2 { font-size: 1.5rem; font-weight: 800; color: #111827; margin-bottom: 4px; }
     .dispo-sub { color: #6B7280; font-size: 0.9rem; margin-bottom: 20px; }
@@ -78,7 +77,7 @@
 
     .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; text-align: center; }
     .day-col-header { margin-bottom: 12px; }
-    .day-name { font-weight: 700; font-size: 0.9rem; color: #111827; text-transform: lowercase; }
+    .day-name { font-weight: 700; font-size: 0.9rem; color: #111827; text-transform: capitalize; }
     .day-date { font-size: 0.8rem; color: #6B7280; }
 
     .slot-cell { background: #F9FAFB; border-radius: 8px; padding: 8px 4px; margin-bottom: 8px; font-size: 0.85rem; font-weight: 600; color: #111827; cursor: pointer; transition: all 0.2s; }
@@ -129,7 +128,6 @@
     .btn-cta { width: 100%; background: var(--happy-purple); color: white; border: none; padding: 14px; border-radius: 25px; font-size: 1rem; font-weight: 700; cursor: pointer; box-shadow: 0 4px 12px rgba(124, 92, 252, 0.3); transition: background 0.3s; }
     .btn-cta:hover { background: var(--happy-purple-hover); }
 
-    /* MODALE DE RÉSERVATION */
     .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center; padding: 20px; }
     .modal-overlay.active { display: flex; }
     .modal-card { background: white; border-radius: var(--radius-large); max-width: 480px; width: 100%; padding: 25px; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
@@ -138,7 +136,6 @@
     .form-group-modal label { display: block; font-size: 0.88rem; font-weight: 700; margin-bottom: 5px; }
     .form-group-modal input, .form-group-modal textarea { width: 100%; padding: 10px 12px; border: 1px solid var(--happy-card-border); border-radius: 8px; font-size: 0.9rem; }
 
-    /* STYLES FOOTER HAPPY COURS */
     footer {
       background-color: #160c28;
       color: #ffffff;
@@ -157,31 +154,11 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.12);
     }
 
-    .footer-col h3 {
-      margin: 0 0 10px 0;
-      font-size: 20px;
-      font-weight: 800;
-      color: #ffffff;
-    }
+    .footer-col h3 { margin: 0 0 10px 0; font-size: 20px; font-weight: 800; color: #ffffff; }
+    .footer-col h4 { margin: 0 0 15px 0; font-size: 15px; font-weight: 700; color: #a78bfa; text-transform: uppercase; letter-spacing: 0.5px; }
+    .footer-slogan { color: #a78bfa; margin: 0; font-size: 14px; }
 
-    .footer-col h4 {
-      margin: 0 0 15px 0;
-      font-size: 15px;
-      font-weight: 700;
-      color: #a78bfa;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .footer-slogan {
-      color: #a78bfa;
-      margin: 0;
-      font-size: 14px;
-    }
-
-    .footer-col p, 
-    .footer-col a, 
-    .btn-cookie-manage {
+    .footer-col p, .footer-col a, .btn-cookie-manage {
       color: #e2e8f0;
       text-decoration: none;
       display: block;
@@ -195,19 +172,9 @@
       transition: color 0.2s ease-in-out;
     }
 
-    .footer-col a:hover, 
-    .btn-cookie-manage:hover {
-      color: #a78bfa;
-      text-decoration: underline;
-    }
+    .footer-col a:hover, .btn-cookie-manage:hover { color: #a78bfa; text-decoration: underline; }
 
-    .social-links {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
+    .social-links { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
     .social-links a {
       display: flex !important;
       align-items: center;
@@ -221,12 +188,7 @@
       transition: all 0.25s ease-in-out;
     }
 
-    .social-icon {
-      width: 20px;
-      height: 20px;
-      color: #ffffff;
-    }
-
+    .social-icon { width: 20px; height: 20px; color: #ffffff; }
     .social-links a:hover {
       background-color: #5c3ebd;
       border-color: #5c3ebd;
@@ -263,32 +225,13 @@
       transition: transform 0.2s ease;
     }
 
-    .whatsapp-exact-pill:hover {
-      transform: scale(1.04);
-    }
+    .whatsapp-exact-pill:hover { transform: scale(1.04); }
+    .whatsapp-exact-pill svg { width: 20px; height: 20px; fill: currentColor; }
 
-    .whatsapp-exact-pill svg {
-      width: 20px;
-      height: 20px;
-      fill: currentColor;
-    }
-
-    @media (max-width: 850px) {
-      .profile-container {
-        grid-template-columns: 1fr;
-      }
-    }
-
+    @media (max-width: 850px) { .profile-container { grid-template-columns: 1fr; } }
     @media (max-width: 600px) {
-      .footer-content {
-        grid-template-columns: 1fr;
-        gap: 25px;
-      }
-      .footer-bottom {
-        flex-direction: column;
-        gap: 10px;
-        text-align: center;
-      }
+      .footer-content { grid-template-columns: 1fr; gap: 25px; }
+      .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
     }
   </style>
 </head>
@@ -337,7 +280,6 @@
         </div>
       </div>
 
-      <!-- COMPOSANT DYNAMIQUE DE DISPONIBILITÉS -->
       <section class="dispo-card content-box">
         <h2>Disponibilités pour un essai 🗓️</h2>
         <div class="dispo-sub" id="dispo-prof-name">Disponibilités du professeur</div>
@@ -370,9 +312,7 @@
           </div>
         </div>
 
-        <div class="calendar-grid" id="calendar-grid-container">
-          <!-- Injecté dynamiquement par JS -->
-        </div>
+        <div class="calendar-grid" id="calendar-grid-container"></div>
       </section>
 
       <section class="content-box">
@@ -398,7 +338,6 @@
         <h2>Évaluations ⭐️</h2>
         <div id="avis-list"></div>
 
-        <!-- FORMULAIRE AJOUT D'AVIS -->
         <div style="margin-top:25px; padding-top:20px; border-top:1px solid var(--happy-card-border);">
           <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:12px;">Laisser un avis</h3>
           <form id="formAvis" onsubmit="soumettreAvis(event)">
@@ -449,7 +388,6 @@
 
   </div>
 
-  <!-- MODALE INTERACTIVE DE RÉSERVATION -->
   <div class="modal-overlay" id="modalReservation">
     <div class="modal-card">
       <button class="modal-close" onclick="fermerModalReservation()">×</button>
@@ -562,6 +500,13 @@
       return 'soir';
     }
 
+    function formatLocalDateISO(d) {
+      const year = d.getFullYear();
+      const month = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    }
+
     function renderCalendar() {
       const container = document.getElementById('calendar-grid-container');
       const labelRange = document.getElementById('date-range-label');
@@ -591,9 +536,8 @@
       labelRange.textContent = `Du ${startDayNum} au ${endDayNum} ${monthName}`;
 
       daysOfWeek.forEach((dateObj) => {
-        const dateISO = dateObj.toISOString().split('T')[0];
+        const dateISO = formatLocalDateISO(dateObj);
         const dayNameStr = dateObj.toLocaleDateString('fr-FR', optionsDay);
-        const dayNameFormatted = dayNameStr.charAt(0).toUpperCase() + dayNameStr.slice(1);
         const dayDateStr = `${dateObj.getDate()} ${dateObj.toLocaleDateString('fr-FR', { month: 'short' })}`;
 
         let colHtml = `<div class="day-col">
@@ -609,12 +553,15 @@
           }
 
           const isAvailable = profDisponibilites.some(d => {
+            if (d.statut && d.statut !== 'disponible') return false;
+            
             if (d.date) {
               const dDate = new Date(d.date).toISOString().split('T')[0];
-              return dDate === dateISO && d.heure === heure && d.statut === 'disponible';
+              return dDate === dateISO && d.heure === heure;
             }
+            
             if (d.jour) {
-              return d.jour.toLowerCase() === dayNameFormatted.toLowerCase() && d.heure === heure && d.statut === 'disponible';
+              return d.jour.trim().toLowerCase() === dayNameStr.trim().toLowerCase() && d.heure === heure;
             }
             return false;
           });
