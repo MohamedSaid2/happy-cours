@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Happy Cours — Cours Particuliers Maths, Physique & SI à Toulouse</title>
+  <title>Happy Cours — Cours particuliers de Mathématiques, Physique, STI2D, NSI, Physique-Chimie à distance ou en présentiel</title>
   <meta name="description" content="Cours particuliers en mathématiques, physique et sciences de l'ingénieur à Toulouse et en ligne. Du collège au supérieur par un ingénieur.">
   <meta name="keywords" content="cours particuliers toulouse, cours maths, soutien scolaire, physique chimie, sciences de l ingenieur, STI2D, BTS, prepa, visio">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -71,7 +71,7 @@
     .banner-frame {
       position: relative;
       width: 100%;
-      height: 200px; /* Ajuste la hauteur si tu souhaites un cadre plus haut ou plus bas */
+      height: 200px;
       border-radius: 20px;
       overflow: hidden;
       border: 2px dashed rgba(44, 7, 177, 0.25);
@@ -89,8 +89,8 @@
     .banner-img {
       width: 100%;
       height: 100%;
-      object-fit: cover; /* Remplit tout le cadre sans espace blanc */
-      object-position: center; /* Centre l'image dans le cadre */
+      object-fit: cover;
+      object-position: center;
       display: block;
       transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
     }
@@ -99,7 +99,6 @@
       transform: scale(1.03);
     }
 
-    /* Effet de balayage lumineux dynamique */
     .banner-frame::after {
       content: '';
       position: absolute;
@@ -123,7 +122,7 @@
       transition: all 0.85s ease-in-out;
     }
 
-    /* BANNIÈRE COOKIES */
+    /* BANNIÈRE COOKIES - CORRIGÉE POUR S'AFFICHER PAR DÉFAUT SI ACTIVÉE */
     .cookie-banner {
       position: fixed;
       bottom: 20px;
@@ -139,19 +138,23 @@
       display: none;
       font-family: 'Inter', sans-serif;
     }
+
     .cookie-banner.active {
       display: block !important;
     }
+
     .cookie-banner p {
       font-size: 0.95rem;
       color: #334155;
       margin: 0 0 14px 0;
       line-height: 1.4;
     }
+
     .cookie-btns {
       display: flex;
       gap: 10px;
     }
+
     .cookie-btn {
       flex: 1;
       padding: 8px 12px;
@@ -162,10 +165,12 @@
       text-align: center;
       border: none;
     }
+
     .cookie-accept {
       background-color: #2c07b1;
       color: #ffffff;
     }
+
     .cookie-refuse {
       background-color: #f1f5f9;
       color: #475569;
@@ -180,35 +185,32 @@
       width: 90%;
       max-width: 400px;
       background: #ffffff;
-      border: 1px solid #e2e8f0;
+      border: 2px solid #2c07b1;
       border-radius: 16px;
-      padding: 24px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      padding: 28px 24px;
+      box-shadow: 0 20px 40px rgba(44, 7, 177, 0.25);
       z-index: 100000;
       display: none;
       text-align: center;
       font-family: 'Inter', sans-serif;
       animation: fadeIn 0.3s ease-out;
+      cursor: pointer;
     }
+
     .form-popup.active {
-      display: block;
+      display: block !important;
     }
+
     .form-popup p {
-      font-size: 1rem;
-      color: #334155;
-      margin: 0 0 16px 0;
+      font-size: 1.05rem;
+      color: #2c07b1;
+      margin: 0;
       line-height: 1.5;
     }
-    .popup-btn {
-      width: 100%;
-      padding: 10px 16px;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      cursor: pointer;
-      border: none;
-      background-color: #2c07b1;
-      color: #ffffff;
+
+    .form-popup p strong {
+      color: #2c07b1;
+      font-size: 1.2rem;
     }
 
     @keyframes fadeIn {
@@ -384,7 +386,7 @@
                 <svg viewBox="0 0 24 24"><path d="M13 2L3 14h7v8l10-12h-7z"/></svg>
               </div>
               <div class="eng-text-box">
-                <h4>Réponse sous 24h</h4>
+                <h4>Réponse sous 1h</h4>
                 <p>Prise en charge ultra-rapide</p>
               </div>
             </div>
@@ -451,7 +453,7 @@
           
           <article class="card">
             <div class="icon" aria-hidden="true">⚙</div>
-            <h3>SIN (STI2D)</h3>
+            <h3>SIN</h3>
             <p>Acquérez les compétences clés en réseaux, microcontrôleurs et logique de programmation pour réussir votre option et vos projets.</p>
             <div class="card-overlay">
               <h4>SIN (Systèmes d'Info)</h4>
@@ -462,7 +464,7 @@
           
           <article class="card">
             <div class="icon" aria-hidden="true">📐</div>
-            <h3>I2D (STI2D)</h3>
+            <h3>I2D</h3>
             <p>Décryptez la chaîne d'énergie, l'Analyse du Cycle de Vie et l'éco-conception avec un spécialiste des systèmes industriels.</p>
             <div class="card-overlay">
               <h4>I2D (Ingénierie & DD)</h4>
@@ -511,7 +513,7 @@
           <h2><span class="gradient-text title-underline">Un professeur particulier avec la rigueur d'un ingénieur</span></h2>
           
           <p style="margin-top: 22px;">
-            Je m'appelle <strong>Said</strong>, <strong>professeur particulier</strong> et <strong>ingénieur logiciel de formation</strong> (spécialisé en systèmes embarqués). Je mets la rigueur, la logique et l'esprit d'analyse développés dans l'ingénierie au service de la réussite de mes élèves, grâce à une méthode claire, structurée et adaptée au rythme de chacun.
+          <strong>Said</strong>, <strong>professeur particulier</strong> et <strong>ingénieur logiciel de formation</strong>. Je mets la rigueur, la logique et l'esprit d'analyse développés dans l'ingénierie au service de la réussite de mes élèves, grâce à une méthode claire, structurée et adaptée au rythme de chacun.
           </p>
           
           <p>
@@ -653,12 +655,10 @@
       <div class="wrap contact-container-centered">
         
         <div class="contact-header">
-          <h2>Une question ? <span>Écrivez-moi</span></h2>
+          <h2>Une question ? <span>Écrivez-nous</span></h2>
         </div>
 
-        <!-- FORMULAIRE CONNECTÉ À FORMSUBMIT (RECEPTION SUR GMAIL) -->
         <form class="contact-form" id="contactForm" action="https://formsubmit.co/happy.cours.2026@gmail.com" method="POST">
-          <!-- Empêche le spam et le captcha sur formsubmit -->
           <input type="hidden" name="_captcha" value="false">
           <input type="hidden" name="_template" value="table">
           
@@ -779,70 +779,22 @@
 
   <!-- POP-UP CONFIRMATION MESSAGE ENVOYÉ -->
   <div class="form-popup" id="messagePopup">
-    <p><strong>Message envoyé !</strong><br>Merci de m'avoir contacté, je vous répondrai sous 24h.</p>
-    <button class="popup-btn" id="closePopup">Fermer</button>
+    <p><strong>Message envoyé !</strong><br>Merci de nous avoir contactés, nous vous répondrons sous 1h.</p>
   </div>
 
   <!-- SCRIPTS JAVASCRIPT -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
 
-      // 1. SCROLL AUTOMATIQUE IMMÉDIAT VERS LA SECTION MATIÈRES (si pas d'ancre)
-      if (!window.location.hash) {
-        const coursSection = document.getElementById('cours');
-        if (coursSection) {
-          setTimeout(() => {
-            coursSection.scrollIntoView({ behavior: 'smooth' });
-          }, 100);
-        }
-      }
-
-      // 2. SUPPORT TACTILE SUR MOBILE POUR LES CARTES
-      const cards = document.querySelectorAll('.cards3 .card');
-      cards.forEach(card => {
-        card.addEventListener('touchstart', function() {
-          cards.forEach(c => c.classList.remove('touch-active'));
-          this.classList.add('touch-active');
-        }, {passive: true});
-      });
-
-      // 3. MENU MOBILE
-      const menuToggle = document.getElementById('menuToggle');
-      const navList = document.getElementById('navList');
-      if (menuToggle && navList) {
-        menuToggle.addEventListener('click', () => {
-          navList.classList.toggle('open');
-        });
-      }
-
-      // 4. BOUTON FLOTTANT DYNAMIQUE (AVIS / WHATSAPP)
-      const avisSection = document.getElementById('avis');
-      const floatingBtn = document.getElementById('floatingReviewBtn');
-      const whatsappBtn = document.getElementById('whatsappBtn');
-
-      if (avisSection) {
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              if (whatsappBtn) whatsappBtn.classList.add('is-hidden');
-              if (floatingBtn) floatingBtn.classList.add('is-visible');
-            } else {
-              if (whatsappBtn) whatsappBtn.classList.remove('is-hidden');
-              if (floatingBtn) floatingBtn.classList.remove('is-visible');
-            }
-          });
-        }, { threshold: 0.15 });
-
-        observer.observe(avisSection);
-      }
-
-      // 5. GESTIONNAIRE DE COOKIES
+      // 1. GESTIONNAIRE DE COOKIES (CORRIGÉ POUR AFFICHAGE SYSTÉMATIQUE NOUVEAU VISITEUR)
       const cookieBanner = document.getElementById('cookieBanner');
       const acceptBtn = document.getElementById('acceptCookies');
       const refuseBtn = document.getElementById('refuseCookies');
       const openCookieBanner = document.getElementById('openCookieBanner');
 
       const cookieChoice = localStorage.getItem('happy_cours_cookies');
+      
+      // Si aucun choix n'est stocké, on force l'ajout de la classe active
       if (!cookieChoice && cookieBanner) {
         cookieBanner.classList.add('active');
       }
@@ -868,10 +820,58 @@
         });
       }
 
+      // 2. SCROLL AUTOMATIQUE IMMÉDIAT VERS LA SECTION MATIÈRES (si pas d'ancre)
+      if (!window.location.hash) {
+        const coursSection = document.getElementById('cours');
+        if (coursSection) {
+          setTimeout(() => {
+            coursSection.scrollIntoView({ behavior: 'smooth' });
+          }, 100);
+        }
+      }
+
+      // 3. SUPPORT TACTILE SUR MOBILE POUR LES CARTES
+      const cards = document.querySelectorAll('.cards3 .card');
+      cards.forEach(card => {
+        card.addEventListener('touchstart', function() {
+          cards.forEach(c => c.classList.remove('touch-active'));
+          this.classList.add('touch-active');
+        }, {passive: true});
+      });
+
+      // 4. MENU MOBILE
+      const menuToggle = document.getElementById('menuToggle');
+      const navList = document.getElementById('navList');
+      if (menuToggle && navList) {
+        menuToggle.addEventListener('click', () => {
+          navList.classList.toggle('open');
+        });
+      }
+
+      // 5. BOUTON FLOTTANT DYNAMIQUE (AVIS / WHATSAPP)
+      const avisSection = document.getElementById('avis');
+      const floatingBtn = document.getElementById('floatingReviewBtn');
+      const whatsappBtn = document.getElementById('whatsappBtn');
+
+      if (avisSection) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              if (whatsappBtn) whatsappBtn.classList.add('is-hidden');
+              if (floatingBtn) floatingBtn.classList.add('is-visible');
+            } else {
+              if (whatsappBtn) whatsappBtn.classList.remove('is-hidden');
+              if (floatingBtn) floatingBtn.classList.remove('is-visible');
+            }
+          });
+        }, { threshold: 0.15 });
+
+        observer.observe(avisSection);
+      }
+
       // 6. ENVOI DU FORMULAIRE DE CONTACT PAR EMAIL
       const contactForm = document.getElementById('contactForm');
       const messagePopup = document.getElementById('messagePopup');
-      const closePopup = document.getElementById('closePopup');
       let popupTimer;
 
       if (contactForm && messagePopup) {
@@ -900,10 +900,8 @@
             alert("Erreur réseau. Veuillez vérifier votre connexion.");
           });
         });
-      }
 
-      if (closePopup && messagePopup) {
-        closePopup.addEventListener('click', () => {
+        messagePopup.addEventListener('click', () => {
           messagePopup.classList.remove('active');
           clearTimeout(popupTimer);
         });
