@@ -6,10 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Happy Cours — Cours Particuliers Maths, Physique & SI à Toulouse</title>
-  <meta name="description" content="Cours particuliers en mathématiques, physique et sciences de l'ingénieur à Toulouse et en ligne. Du lycée au BTS/Prépa par un ingénieur.">
+  <meta name="description" content="Cours particuliers en mathématiques, physique et sciences de l'ingénieur à Toulouse et en ligne. Du collège au supérieur par un ingénieur.">
   <meta name="keywords" content="cours particuliers toulouse, cours maths, soutien scolaire, physique chimie, sciences de l ingenieur, STI2D, BTS, prepa, visio">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://www.happycours.fr/">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://www.happy-cours.com/">
 
   <!-- LIAISON DU FICHIER CSS EXTERNE -->
   <link rel="stylesheet" href="style.css">
@@ -25,7 +25,7 @@
     "@context": "https://schema.org",
     "@type": "EducationalOrganization",
     "name": "Happy Cours",
-    "url": "https://www.happy-cours.com",
+    "url": "https://www.happy-cours.com/",
     "logo": "https://www.happy-cours.com/logo.png",
     "description": "Cours particuliers et tutoriels vidéo en mathématiques, physique et sciences de l'ingénieur pour réviser du collège au supérieur en France et au Maroc.",
     "areaServed": [
@@ -52,34 +52,225 @@
     ]
   }
   </script>
+
+  <!-- STYLES DÉDIÉS AUX POP-UPS & CARTES INTERACTIVES -->
+  <style>
+    /* BANNIÈRE COOKIES */
+    .cookie-banner {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      max-width: 420px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 18px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      z-index: 99999;
+      display: none;
+      font-family: 'Inter', sans-serif;
+    }
+    .cookie-banner.active {
+      display: block !important;
+    }
+    .cookie-banner p {
+      font-size: 0.95rem;
+      color: #334155;
+      margin: 0 0 14px 0;
+      line-height: 1.4;
+    }
+    .cookie-btns {
+      display: flex;
+      gap: 10px;
+    }
+    .cookie-btn {
+      flex: 1;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      border: none;
+    }
+    .cookie-accept {
+      background-color: #2c07b1;
+      color: #ffffff;
+    }
+    .cookie-refuse {
+      background-color: #f1f5f9;
+      color: #475569;
+    }
+
+    /* POP-UP MESSAGE ENVOYÉ */
+    .form-popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      max-width: 400px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      z-index: 100000;
+      display: none;
+      text-align: center;
+      font-family: 'Inter', sans-serif;
+      animation: fadeIn 0.3s ease-out;
+    }
+    .form-popup.active {
+      display: block;
+    }
+    .form-popup p {
+      font-size: 1rem;
+      color: #334155;
+      margin: 0 0 16px 0;
+      line-height: 1.5;
+    }
+    .popup-btn {
+      width: 100%;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      background-color: #2c07b1;
+      color: #ffffff;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translate(-50%, -46%);
+      }
+      to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    /* MATIÈRES : CARTES ET OVERLAY AU SURVOL */
+    .cards3 .card {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      min-height: 280px;
+    }
+
+    .cards3 .card .icon,
+    .cards3 .card h3,
+    .cards3 .card p {
+      transition: opacity 0.25s ease;
+    }
+
+    .cards3 .card:hover .icon,
+    .cards3 .card:hover h3,
+    .cards3 .card:hover p,
+    .cards3 .card.touch-active .icon,
+    .cards3 .card.touch-active h3,
+    .cards3 .card.touch-active p {
+      opacity: 0;
+    }
+
+    .card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #2c07b1 0%, #1a0470 100%);
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 20px;
+      text-align: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      z-index: 10;
+      border-radius: inherit;
+    }
+
+    .cards3 .card:hover .card-overlay,
+    .cards3 .card:focus-within .card-overlay,
+    .cards3 .card.touch-active .card-overlay {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .card-overlay h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin: 0 0 10px 0;
+    }
+
+    .card-overlay p {
+      font-size: 0.9rem;
+      color: #e2e8f0;
+      line-height: 1.4;
+      margin: 0 0 20px 0;
+      opacity: 1 !important;
+    }
+
+    .card-overlay .btn-reserve-matiere {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 210px;
+      height: 48px;
+      background-color: #ffffff;
+      color: #2c07b1 !important;
+      border-radius: 10px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .card-overlay .btn-reserve-matiere:hover {
+      background-color: #f8fafc;
+      transform: translateY(-2px);
+    }
+  </style>
 </head>
 
 <body>
 
   <!-- EN-TÊTE / NAVIGATION STICKY -->
-<header>
-  <div class="wrap nav">
-    <a href="index.html" class="logo" aria-label="Retour à l'accueil Happy Cours">
-      <span class="logo-mark" aria-hidden="true">H</span>
-      Happy Cours
-    </a>
+  <header>
+    <div class="wrap nav">
+      <a href="index.html" class="logo" aria-label="Retour à l'accueil Happy Cours">
+        <span class="logo-mark" aria-hidden="true">H</span>
+        Happy Cours
+      </a>
 
-    <nav aria-label="Navigation principale">
-      <ul id="navList">
-        <li><a href="#cours">Cours particuliers</a></li>
-        <li><a href="trouver-un-prof.html">Trouver un professeur</a></li>
-        <li><a href="formations.html" class="nav-highlight">Tutos vidéo</a></li>
-        <li><a href="#avis">Avis</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+      <nav aria-label="Navigation principale">
+        <ul id="navList">
+          <li><a href="#cours">Cours particuliers</a></li>
+          <li><a href="trouver-un-prof.html">Trouver un professeur</a></li>
+          <li><a href="formations.html" class="nav-highlight">Tutos vidéo</a></li>
+          <li><a href="#avis">Avis</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
 
-    <div class="nav-actions">
-      <a href="#reserver" class="btn btn-solid">Réserver</a>
-      <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu mobile">☰</button>
+      <div class="nav-actions">
+        <a href="#reserver" class="btn btn-solid">Réserver</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu mobile">☰</button>
+      </div>
     </div>
-  </div>
-</header>
+  </header>
 
   <!-- BANNIÈRE VISUELLE TOP -->
   <section class="top-banner" aria-label="Bannière principale">
@@ -93,12 +284,10 @@
   <!-- CONTENU PRINCIPAL DE LA PAGE -->
   <main id="contenu">
 
-    <!-- HERO SECTION (Accroche principale) -->
-<!-- HERO SECTION (2 colonnes : Texte + Nos Engagements) -->
+    <!-- HERO SECTION -->
     <section class="hero" id="accueil">
       <div class="wrap hero-grid">
         
-        <!-- Colonne Gauche : Présentation -->
         <div class="hero-content">
           <h1>Progresser avec <span class="accent">clarté</span>,<br>et sans stress.</h1>
           <p class="lede">Cours de mathématiques, physique, sciences de l'ingénieur, NSI, SIN et I2D, du collège à la licence. Enseignés par un ingénieur logiciel basé à Toulouse, habitué à rendre la technique concrète et méthodique.</p>
@@ -108,7 +297,6 @@
             <a href="#cours" class="btn">Voir les matières</a>
           </div>
 
-          <!-- Ratios / KPI key features -->
           <div class="stat-row">
             <div class="stat"><div class="num">20 €</div><div class="label">par heure</div></div>
             <div class="stat"><div class="num">Collège → Licence</div><div class="label">niveaux couverts</div></div>
@@ -116,14 +304,12 @@
           </div>
         </div>
 
-        <!-- Colonne Droite : Nos Engagements -->
         <div class="engagements-dynamic-wrap">
           <div class="engagements-bg-glow"></div>
           
           <h3 class="eng-title">Nos engagements</h3>
 
           <div class="eng-cards-container">
-            <!-- Card 1 -->
             <div class="eng-card-ultra">
               <div class="eng-badge-pulse"></div>
               <div class="eng-icon-box">
@@ -135,7 +321,6 @@
               </div>
             </div>
 
-            <!-- Card 2 -->
             <div class="eng-card-ultra">
               <div class="eng-badge-pulse"></div>
               <div class="eng-icon-box">
@@ -147,7 +332,6 @@
               </div>
             </div>
 
-            <!-- Card 3 -->
             <div class="eng-card-ultra">
               <div class="eng-badge-pulse"></div>
               <div class="eng-icon-box">
@@ -178,37 +362,67 @@
           <article class="card">
             <div class="icon" aria-hidden="true">∑</div>
             <h3>Mathématiques</h3>
-            <p>Méthodes de résolution, exercices guidés, préparation aux contrôles et aux épreuves du bac ou du BTS.</p>
+            <p>Maîtrisez les théories, automatisez vos méthodes de calcul et gagnez des points précieux aux examens grâce à un entraînement ciblé.</p>
+            <div class="card-overlay">
+              <h4>Mathématiques</h4>
+              <p>Séance sur-mesure pour maîtriser le cours et réussir vos contrôles.</p>
+              <a href="#reserver" class="btn-reserve-matiere">Réserver une séance</a>
+            </div>
           </article>
           
           <article class="card">
             <div class="icon" aria-hidden="true">⚛</div>
-            <h3>Physique</h3>
-            <p>Phénomènes expliqués avec des exemples concrets, applications numériques, méthode de résolution de problèmes.</p>
+            <h3>Physique-Chimie</h3>
+            <p>Comprenez concrètement les lois physiques et développez un raisonnement scientifique rigoureux pour aborder chaque devoir sereinement.</p>
+            <div class="card-overlay">
+              <h4>Physique-Chimie</h4>
+              <p>Explications claires et résolution d'exercices type BAC / BTS.</p>
+              <a href="#reserver" class="btn-reserve-matiere">Réserver une séance</a>
+            </div>
           </article>
           
           <article class="card">
             <div class="icon" aria-hidden="true">⚙</div>
-            <h3>SIN</h3>
-            <p>Systèmes d'information et numérique : programmation, réseaux et logique fonctionnelle des systèmes.</p>
+            <h3>SIN (STI2D)</h3>
+            <p>Acquérez les compétences clés en réseaux, microcontrôleurs et logique de programmation pour réussir votre option et vos projets.</p>
+            <div class="card-overlay">
+              <h4>SIN (Systèmes d'Info)</h4>
+              <p>Accompagnement théorique et pratique sur vos projets technologiques.</p>
+              <a href="#reserver" class="btn-reserve-matiere">Réserver une séance</a>
+            </div>
           </article>
           
           <article class="card">
             <div class="icon" aria-hidden="true">📐</div>
-            <h3>I2D</h3>
-            <p>Ingénierie et développement durable : analyse structurelle, étude d'énergie et éco-conception.</p>
+            <h3>I2D (STI2D)</h3>
+            <p>Décryptez la chaîne d'énergie, l'Analyse du Cycle de Vie et l'éco-conception avec un spécialiste des systèmes industriels.</p>
+            <div class="card-overlay">
+              <h4>I2D (Ingénierie & DD)</h4>
+              <p>Méthodologie structurée pour assimiler rapidement tout le programme.</p>
+              <a href="#reserver" class="btn-reserve-matiere">Réserver une séance</a>
+            </div>
           </article>
           
           <article class="card">
             <div class="icon" aria-hidden="true">💻</div>
-            <h3>NSI</h3>
-            <p>Numérique et sciences informatiques : algorithmique, langages Python/C et structures de données.</p>
+            <h3>NSI (Lycée & Sup)</h3>
+            <p>Domptez la programmation Python, l'algorithmique et la gestion de bases de données avec un ingénieur logiciel en activité.</p>
+            <div class="card-overlay">
+              <h4>NSI (Informatique)</h4>
+              <p>Apprenez à coder sans bloquer et préparez les épreuves pratiques.</p>
+              <a href="#reserver" class="btn-reserve-matiere">Réserver une séance</a>
+            </div>
           </article>
           
           <article class="card">
             <div class="icon" aria-hidden="true">⌁</div>
-            <h3>Sciences de l'ingénieur</h3>
-            <p>Systèmes embarqués, électronique, logique de fonctionnement — enseignées par un praticien du secteur.</p>
+            <h3>Sciences de l'Ingénieur</h3>
+            <p>Modélisez les systèmes embarqués et perfectionnez votre analyse mécanique et électronique pour viser le haut du classement.</p>
+            <div class="card-overlay">
+              <h4>Sciences de l'Ingénieur</h4>
+              <p>Soutien renforcé du Lycée à la Prépa / Licence de Technologie.</p>
+              <a href="#reserver" class="btn-reserve-matiere">Réserver une séance</a>
+            </div>
           </article>
         </div>
 
@@ -248,16 +462,14 @@
 
     <hr class="divider">
 
-    <!-- SECTION Reservation -->
+    <!-- SECTION RESERVATION -->
     <section id="reserver">
       <div class="wrap">
         <div class="section-head">
           <h2><span class="gradient-text title-underline">Réserver un rendez-vous</span></h2>
         </div>
 
-        <!-- EMBED CAL -->
         <div class="container-cal">
-          <!-- Cal inline embed code begins -->
           <div style="width:100%;height:100%;overflow:scroll" id="my-cal-inline-happy-cours"></div>
           <script type="text/javascript">
             (function (C, A, L) { 
@@ -306,7 +518,6 @@
               "layout":"month_view"
             });
           </script>
-          <!-- Cal inline embed code ends -->
         </div>
       </div>
     </section>
@@ -321,7 +532,6 @@
           <h2><span class="gradient-text title-underline">Ce que disent les élèves et les parents</span></h2>
         </div>
 
-        <!-- CARTES D'AVIS -->
         <div class="reviews-grid">
           <div class="review-card">
             <div>
@@ -370,19 +580,20 @@
 
     <hr class="divider">
 
-    <!-- SECTION CONTACT -->
+    <!-- SECTION CONTACT CONNECTÉE À GMAIL -->
     <section class="contact-section" id="contact">
       <div class="wrap contact-container-centered">
         
-        <!-- En-tête : Titre uniquement -->
         <div class="contact-header">
           <h2>Une question ? <span>Écrivez-moi</span></h2>
         </div>
 
-        <!-- Formulaire centré avec tous les champs séparés -->
-        <form class="contact-form" action="#" method="POST">
+        <!-- FORMULAIRE CONNECTÉ À FORMSUBMIT (RECEPTION SUR GMAIL) -->
+        <form class="contact-form" id="contactForm" action="https://formsubmit.co/happy.cours.2026@gmail.com" method="POST">
+          <!-- Empêche le spam et le captcha sur formsubmit -->
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
           
-          <!-- Nom & Prénom -->
           <div class="form-row">
             <div class="form-group">
               <label for="nom">Nom</label>
@@ -394,7 +605,6 @@
             </div>
           </div>
 
-          <!-- Email & Téléphone -->
           <div class="form-row">
             <div class="form-group">
               <label for="email">Adresse e-mail</label>
@@ -406,19 +616,16 @@
             </div>
           </div>
 
-          <!-- Objet -->
           <div class="form-group">
             <label for="objet">Objet</label>
-            <input type="text" id="objet" name="objet" placeholder="Ex: Demande de cours de Maths" required>
+            <input type="text" id="objet" name="_subject" placeholder="Ex: Demande de cours de Maths" required>
           </div>
 
-          <!-- Message -->
           <div class="form-group">
             <label for="message">Message</label>
             <textarea id="message" name="message" rows="5" placeholder="Précisez la matière, la classe de l'élève et vos objectifs..." required></textarea>
           </div>
 
-          <!-- Bouton d'envoi -->
           <button type="submit" class="btn btn-glam btn-submit">Envoyer le message</button>
         </form>
 
@@ -431,32 +638,28 @@
   <footer class="exact-footer">
     <div class="wrap">
       <div class="footer-grid-4">
-        <!-- COLONNE 1 : BRANDING -->
         <div>
           <div class="footer-brand-title">Happy Cours</div>
           <div class="footer-brand-sub">Réfléchir, Comprendre, Réussir.</div>
         </div>
 
-        <!-- COLONNE 2 : CONTACT -->
         <div>
           <div class="footer-col-title">CONTACT</div>
           <ul class="footer-links">
             <li style="margin-bottom: 8px;"><a href="tel:+33771854804">+33 (0)7 71 85 48 04</a></li>
-            <li><a href="mailto:contact@happycours.com">contact@happycours.com</a></li>
+            <li><a href="mailto:happy.cours.2026@gmail.com">happy.cours.2026@gmail.com</a></li>
           </ul>
         </div>
 
-        <!-- COLONNE 3 : INFORMATIONS SITES -->
         <div>
           <div class="footer-col-title">INFORMATIONS</div>
           <ul class="footer-links">
             <li><a href="#">Mentions légales</a></li>
             <li><a href="#">Politique de confidentialité</a></li>
-            <li><a href="#">Gérer les cookies</a></li>
+            <li><a href="#" id="openCookieBanner">Gérer les cookies</a></li>
           </ul>
         </div>
 
-        <!-- COLONNE 4 : RÉSEAUX SOCIAUX -->
         <div>
           <div class="footer-col-title">SUIVEZ-NOUS</div>
           <div class="social-circle-list">
@@ -476,7 +679,6 @@
         </div>
       </div>
 
-      <!-- COPYRIGHT -->
       <div class="footer-bottom-bar">
         <div>© 2026 Happy Cours</div>
         <div>Tous droits réservés</div>
@@ -498,10 +700,45 @@
     <span>Laissez un avis</span>
   </a>
 
-  <!-- SCRIPTS JAVASCRIPT UNIFIÉS -->
+  <!-- BANNIÈRE DE COOKIES -->
+  <div class="cookie-banner" id="cookieBanner">
+    <p>Nous utilisons des cookies pour améliorer votre expérience et mesurer l'audience de notre site.</p>
+    <div class="cookie-btns">
+      <button class="cookie-btn cookie-accept" id="acceptCookies">Accepter</button>
+      <button class="cookie-btn cookie-refuse" id="refuseCookies">Refuser</button>
+    </div>
+  </div>
+
+  <!-- POP-UP CONFIRMATION MESSAGE ENVOYÉ -->
+  <div class="form-popup" id="messagePopup">
+    <p><strong>Message envoyé !</strong><br>Merci de m'avoir contacté, je vous répondrai sous 24h.</p>
+    <button class="popup-btn" id="closePopup">Fermer</button>
+  </div>
+
+  <!-- SCRIPTS JAVASCRIPT CORRIGÉS ET OPTIMISÉS -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // 1. Menu Mobile
+
+      // 1. SCROLL AUTOMATIQUE IMMÉDIAT VERS LA SECTION MATIÈRES (si pas d'ancre)
+      if (!window.location.hash) {
+        const coursSection = document.getElementById('cours');
+        if (coursSection) {
+          setTimeout(() => {
+            coursSection.scrollIntoView({ behavior: 'smooth' });
+          }, 100);
+        }
+      }
+
+      // 2. SUPPORT TACTILE SUR MOBILE POUR LES CARTES
+      const cards = document.querySelectorAll('.cards3 .card');
+      cards.forEach(card => {
+        card.addEventListener('touchstart', function() {
+          cards.forEach(c => c.classList.remove('touch-active'));
+          this.classList.add('touch-active');
+        }, {passive: true});
+      });
+
+      // 3. MENU MOBILE
       const menuToggle = document.getElementById('menuToggle');
       const navList = document.getElementById('navList');
       if (menuToggle && navList) {
@@ -510,20 +747,18 @@
         });
       }
 
-      // 2. Basculement dynamique WhatsApp / Bouton Avis
+      // 4. BOUTON FLOTTANT DYNAMIQUE (AVIS / WHATSAPP)
       const avisSection = document.getElementById('avis');
       const floatingBtn = document.getElementById('floatingReviewBtn');
-      const whatsappBtn = document.getElementById('whatsappBtn') || document.querySelector('.whatsapp-exact-pill');
+      const whatsappBtn = document.getElementById('whatsappBtn');
 
       if (avisSection) {
         const observer = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
-              // Dans la section Avis : Masquer WhatsApp & Afficher Avis
               if (whatsappBtn) whatsappBtn.classList.add('is-hidden');
               if (floatingBtn) floatingBtn.classList.add('is-visible');
             } else {
-              // Hors de la section Avis : Réafficher WhatsApp & Masquer Avis
               if (whatsappBtn) whatsappBtn.classList.remove('is-hidden');
               if (floatingBtn) floatingBtn.classList.remove('is-visible');
             }
@@ -531,6 +766,79 @@
         }, { threshold: 0.15 });
 
         observer.observe(avisSection);
+      }
+
+      // 5. GESTIONNAIRE DE COOKIES (CORRIGÉ ET FIABLE)
+      const cookieBanner = document.getElementById('cookieBanner');
+      const acceptBtn = document.getElementById('acceptCookies');
+      const refuseBtn = document.getElementById('refuseCookies');
+      const openCookieBanner = document.getElementById('openCookieBanner');
+
+      const cookieChoice = localStorage.getItem('happy_cours_cookies');
+      if (!cookieChoice && cookieBanner) {
+        cookieBanner.classList.add('active');
+      }
+
+      if (acceptBtn) {
+        acceptBtn.addEventListener('click', () => {
+          localStorage.setItem('happy_cours_cookies', 'accepted');
+          cookieBanner.classList.remove('active');
+        });
+      }
+
+      if (refuseBtn) {
+        refuseBtn.addEventListener('click', () => {
+          localStorage.setItem('happy_cours_cookies', 'refused');
+          cookieBanner.classList.remove('active');
+        });
+      }
+
+      if (openCookieBanner) {
+        openCookieBanner.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (cookieBanner) cookieBanner.classList.add('active');
+        });
+      }
+
+      // 6. ENVOI DU FORMULAIRE DE CONTACT PAR EMAIL
+      const contactForm = document.getElementById('contactForm');
+      const messagePopup = document.getElementById('messagePopup');
+      const closePopup = document.getElementById('closePopup');
+      let popupTimer;
+
+      if (contactForm && messagePopup) {
+        contactForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          const form = this;
+          
+          fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: {
+              'Accept': 'application/json'
+            }
+          }).then(response => {
+            if (response.ok) {
+              messagePopup.classList.add('active');
+              form.reset();
+              clearTimeout(popupTimer);
+              popupTimer = setTimeout(() => {
+                messagePopup.classList.remove('active');
+              }, 4000);
+            } else {
+              alert("Erreur lors de l'envoi. Veuillez réessayer ou contacter directement par email.");
+            }
+          }).catch(error => {
+            alert("Erreur réseau. Veuillez vérifier votre connexion.");
+          });
+        });
+      }
+
+      if (closePopup && messagePopup) {
+        closePopup.addEventListener('click', () => {
+          messagePopup.classList.remove('active');
+          clearTimeout(popupTimer);
+        });
       }
     });
   </script>
