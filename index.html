@@ -54,7 +54,7 @@
   }
   </script>
 
-  <!-- STYLES DÉDIÉS AUX POP-UPS, BANNIÈRE & CARTES INTERACTIVES -->
+  <!-- STYLES DÉDIÉS AUX POP-UPS, BANNIÈRE, ENGAGEMENTS ET CARTES -->
   <style>
     /* CADRAGE PLEIN FORMAT POUR L'IMAGE (SANS BLANC) */
     .top-banner {
@@ -75,16 +75,16 @@
       height: 200px;
       border-radius: 20px;
       overflow: hidden;
-      border: 2px dashed rgba(44, 7, 177, 0.25);
-      box-shadow: 0 10px 30px rgba(44, 7, 177, 0.08);
+      border: 2px dashed rgba(147, 51, 234, 0.3);
+      box-shadow: 0 10px 30px rgba(126, 34, 206, 0.12);
       transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
       background: #ffffff;
     }
 
     .banner-frame:hover {
       transform: translateY(-4px);
-      box-shadow: 0 20px 45px rgba(44, 7, 177, 0.18);
-      border-color: rgba(44, 7, 177, 0.5);
+      box-shadow: 0 20px 45px rgba(147, 51, 234, 0.25);
+      border-color: rgba(168, 85, 247, 0.6);
     }
 
     .banner-img {
@@ -131,7 +131,7 @@
       min-height: 420px;
       border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 12px 32px rgba(44, 7, 177, 0.12);
+      box-shadow: 0 12px 32px rgba(126, 34, 206, 0.15);
       background: #f8fafc;
       display: flex;
       flex-direction: column;
@@ -144,20 +144,6 @@
       object-position: center;
       display: block;
       flex: 1;
-    }
-
-    .photo-caption {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
-      color: #ffffff;
-      padding: 20px 15px 12px 15px;
-      margin: 0;
-      text-align: center;
-      font-size: 0.95rem;
-      font-weight: 600;
     }
 
     /* BANNIÈRE COOKIES */
@@ -205,7 +191,7 @@
     }
 
     .cookie-accept {
-      background-color: #2c07b1;
+      background-color: #8b5cf6;
       color: #ffffff;
     }
 
@@ -223,10 +209,10 @@
       width: 90%;
       max-width: 400px;
       background: #ffffff;
-      border: 2px solid #2c07b1;
+      border: 2px solid #8b5cf6;
       border-radius: 16px;
       padding: 28px 24px;
-      box-shadow: 0 20px 40px rgba(44, 7, 177, 0.25);
+      box-shadow: 0 20px 40px rgba(139, 92, 246, 0.3);
       z-index: 100000;
       display: none;
       text-align: center;
@@ -241,13 +227,13 @@
 
     .form-popup p {
       font-size: 1.05rem;
-      color: #2c07b1;
+      color: #6d28d9;
       margin: 0;
       line-height: 1.5;
     }
 
     .form-popup p strong {
-      color: #2c07b1;
+      color: #6d28d9;
       font-size: 1.2rem;
     }
 
@@ -262,36 +248,258 @@
       }
     }
 
-    /* MATIÈRES : CARTES ET OVERLAY AU SURVOL */
+    /* ANIMATION ET DYNAMISME SECTION ENGAGEMENTS */
+    .engagements-dynamic-wrap {
+      position: relative;
+      background: linear-gradient(160deg, #120626 0%, #0d031a 100%);
+      border-radius: 24px;
+      padding: 30px 24px;
+      border: 1px solid rgba(168, 85, 247, 0.35);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 25px rgba(168, 85, 247, 0.2);
+      animation: floatContainer 5s ease-in-out infinite alternate;
+      overflow: hidden;
+    }
+
+    @keyframes floatContainer {
+      0% { transform: translateY(0px); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 20px rgba(147, 51, 234, 0.2); }
+      100% { transform: translateY(-8px); box-shadow: 0 25px 45px rgba(0, 0, 0, 0.5), 0 0 35px rgba(168, 85, 247, 0.4); }
+    }
+
+    .engagements-bg-glow {
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(168, 85, 247, 0.18) 0%, transparent 60%);
+      animation: pulseGlow 4s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+
+    @keyframes pulseGlow {
+      0% { opacity: 0.4; transform: scale(0.95); }
+      100% { opacity: 0.9; transform: scale(1.05); }
+    }
+
+    .eng-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #ffffff;
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin: 0 0 20px 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .eng-cards-container {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .eng-card-ultra {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(168, 85, 247, 0.25);
+      border-radius: 16px;
+      padding: 14px 18px;
+      backdrop-filter: blur(8px);
+      overflow: hidden;
+      animation: shimmerEngage 4s infinite linear;
+    }
+
+    .eng-card-ultra::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -150%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+      transform: skewX(-20deg);
+      animation: engShimmerLoop 4s infinite;
+    }
+
+    @keyframes engShimmerLoop {
+      0% { left: -150%; }
+      35% { left: 150%; }
+      100% { left: 150%; }
+    }
+
+    .eng-icon-box {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(168, 85, 247, 0.4);
+      flex-shrink: 0;
+    }
+
+    .eng-icon-box svg {
+      width: 22px;
+      height: 22px;
+      fill: #ffffff;
+    }
+
+    .eng-text-box h4 {
+      margin: 0;
+      color: #ffffff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.98rem;
+      font-weight: 700;
+    }
+
+    .eng-text-box p {
+      margin: 2px 0 0 0;
+      color: #cbd5e1;
+      font-size: 0.82rem;
+    }
+
+    .eng-badge-pulse {
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: #c084fc;
+      box-shadow: 0 0 8px #c084fc;
+      animation: dotPulse 1.8s infinite alternate;
+    }
+
+    @keyframes dotPulse {
+      0% { transform: scale(0.8); opacity: 0.5; }
+      100% { transform: scale(1.4); opacity: 1; box-shadow: 0 0 12px #c084fc; }
+    }
+
+    /* MATIÈRES : CARTES VIOLETTES DYNAMIQUES & MISE EN FORME NIVEAUX */
     .cards3 .card {
       position: relative;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      min-height: 280px;
+      min-height: 330px;
+      border-radius: 20px;
+      border: 1px solid rgba(168, 85, 247, 0.3);
+      background: linear-gradient(145deg, #120826 0%, #1e0e3e 100%);
+      padding: 26px;
+      box-shadow: 0 12px 30px rgba(18, 8, 38, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+      animation: cardPulseMotionViolet 4s ease-in-out infinite alternate;
+      transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .cards3 .card h3 {
+      color: #ffffff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin: 12px 0 8px 0;
+    }
+
+    .cards3 .card p {
+      color: #cbd5e1;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .cards3 .card .icon {
+      font-size: 2rem;
+      color: #c084fc;
+      text-shadow: 0 0 12px rgba(192, 132, 252, 0.5);
+    }
+
+    .cards3 .card:nth-child(2n) { animation-delay: 0.7s; }
+    .cards3 .card:nth-child(3n) { animation-delay: 1.4s; }
+
+    @keyframes cardPulseMotionViolet {
+      0% {
+        transform: translateY(0px);
+        box-shadow: 0 10px 28px rgba(18, 8, 38, 0.4);
+        border-color: rgba(168, 85, 247, 0.3);
+      }
+      50% {
+        transform: translateY(-5px);
+        box-shadow: 0 18px 38px rgba(168, 85, 247, 0.25);
+        border-color: rgba(192, 132, 252, 0.6);
+      }
+      100% {
+        transform: translateY(0px);
+        box-shadow: 0 10px 28px rgba(18, 8, 38, 0.4);
+        border-color: rgba(168, 85, 247, 0.3);
+      }
+    }
+
+    .cards3 .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -150%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(192, 132, 252, 0.12), transparent);
+      transform: skewX(-20deg);
+      animation: shimmerLoopViolet 5s infinite;
+      pointer-events: none;
+    }
+
+    @keyframes shimmerLoopViolet {
+      0% { left: -150%; }
+      30% { left: 150%; }
+      100% { left: 150%; }
     }
 
     .cards3 .card .icon,
     .cards3 .card h3,
-    .cards3 .card p {
-      transition: opacity 0.25s ease;
+    .cards3 .card p,
+    .cards3 .card .level-badge-front {
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    /* BADGES ET MISE EN FORME DES NIVEAUX SUR LE RECTO */
+    .level-badge-front {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      align-self: flex-start;
+      margin-top: 16px;
+      padding: 6px 14px;
+      background: rgba(168, 85, 247, 0.2);
+      border: 1px solid rgba(192, 132, 252, 0.4);
+      color: #f3e8ff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      border-radius: 20px;
+      letter-spacing: 0.2px;
+      backdrop-filter: blur(4px);
     }
 
     .cards3 .card:hover .icon,
     .cards3 .card:hover h3,
     .cards3 .card:hover p,
+    .cards3 .card:hover .level-badge-front,
     .cards3 .card.touch-active .icon,
     .cards3 .card.touch-active h3,
-    .cards3 .card.touch-active p {
+    .cards3 .card.touch-active p,
+    .cards3 .card.touch-active .level-badge-front {
       opacity: 0;
+      transform: translateY(-6px);
     }
 
+    /* OVERLAY AU SURVOL DES CARTES (VERSO) */
     .card-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, #2c07b1 0%, #1a0470 100%);
+      background: linear-gradient(135deg, #2e1065 0%, #0f051d 100%);
       color: #ffffff;
       display: flex;
       flex-direction: column;
@@ -315,18 +523,39 @@
 
     .card-overlay h4 {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       font-weight: 800;
       color: #ffffff;
-      margin: 0 0 10px 0;
+      margin: 0 0 6px 0;
     }
 
-    .card-overlay p {
+    .card-overlay h5 {
+      font-family: 'Inter', sans-serif;
       font-size: 0.9rem;
-      color: #e2e8f0;
-      line-height: 1.4;
-      margin: 0 0 20px 0;
-      opacity: 1 !important;
+      font-weight: 600;
+      color: #e9d5ff;
+      margin: 0 0 14px 0;
+    }
+
+    /* MISE EN FORME SPÉCIFIQUE DES NIVEAUX DANS L'OVERLAY */
+    .level-pills-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 20px;
+      max-width: 95%;
+    }
+
+    .level-pill {
+      background: rgba(168, 85, 247, 0.25);
+      border: 1px solid rgba(216, 180, 254, 0.4);
+      color: #f3e8ff;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
     .card-overlay .btn-reserve-matiere {
@@ -334,21 +563,21 @@
       align-items: center;
       justify-content: center;
       width: 210px;
-      height: 48px;
-      background-color: #ffffff;
-      color: #2c07b1 !important;
+      height: 46px;
+      background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+      color: #ffffff !important;
       border-radius: 10px;
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 800;
       text-decoration: none;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-      transition: transform 0.2s ease, background-color 0.2s ease;
+      box-shadow: 0 6px 18px rgba(124, 58, 237, 0.4);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .card-overlay .btn-reserve-matiere:hover {
-      background-color: #f8fafc;
       transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(168, 85, 247, 0.6);
     }
   </style>
 </head>
@@ -412,6 +641,7 @@
           </div>
         </div>
 
+        <!-- BLOC ENGAGEMENTS AVEC MOUVEMENT ET VIOLET NEON -->
         <div class="engagements-dynamic-wrap">
           <div class="engagements-bg-glow"></div>
           
@@ -458,7 +688,7 @@
 
     <hr class="divider">
 
-    <!-- SECTION MATIÈRES -->
+    <!-- SECTION MATIÈRES EN VIOLET AVEC NIVEAUX STYLISÉS -->
     <section id="cours">
       <div class="wrap">
 
@@ -467,68 +697,142 @@
         </div>
 
         <div class="cards3">
+          <!-- CARD 1 -->
           <article class="card">
-            <div class="icon" aria-hidden="true">∑</div>
-            <h3>Mathématiques</h3>
-            <p>Maîtrisez les théories, automatisez vos méthodes de calcul et gagnez des points précieux aux examens grâce à un entraînement ciblé en visio ou présentiel.</p>
+            <div>
+              <div class="icon" aria-hidden="true">∑</div>
+              <h3>Mathématiques</h3>
+              <p>Maîtrisez votre cours, automatisez vos méthodes de calcul et gagnez en confiance. Des séances personnalisées pour progresser rapidement et préparer efficacement vos examens.</p>
+            </div>
+            <div class="level-badge-front">🎓 Brevet • Seconde → Licence</div>
             <div class="card-overlay">
               <h4>Mathématiques</h4>
-              <p>Séance sur-mesure pour maîtriser le cours et réussir vos contrôles.</p>
+              <h5>Progressez avec méthode</h5>
+              <div class="level-pills-container">
+                <span class="level-pill">Brevet</span>
+                <span class="level-pill">Seconde</span>
+                <span class="level-pill">Première</span>
+                <span class="level-pill">Terminale</span>
+                <span class="level-pill">BTS</span>
+                <span class="level-pill">Prépa</span>
+                <span class="level-pill">Licence</span>
+              </div>
               <a href="#reserver" class="btn-reserve-matiere">Réserver une séance</a>
             </div>
           </article>
           
+          <!-- CARD 2 -->
           <article class="card">
-            <div class="icon" aria-hidden="true">⚛</div>
-            <h3>Physique-Chimie</h3>
-            <p>Comprenez concrètement les lois physiques et développez un raisonnement scientifique rigoureux pour aborder chaque devoir sereinement.</p>
+            <div>
+              <div class="icon" aria-hidden="true">⚛</div>
+              <h3>Physique-Chimie</h3>
+              <p>Transformez les notions difficiles en méthodes simples et efficaces. Cours sur-mesure, exercices ciblés et préparation aux contrôles et examens.</p>
+            </div>
+            <div class="level-badge-front">🎓 Brevet • Seconde → Licence</div>
             <div class="card-overlay">
               <h4>Physique-Chimie</h4>
-              <p>Explications claires et résolution d'exercices type BAC / BTS.</p>
+              <h5>Comprenez, raisonnez et réussissez</h5>
+              <div class="level-pills-container">
+                <span class="level-pill">Brevet</span>
+                <span class="level-pill">Seconde</span>
+                <span class="level-pill">Première</span>
+                <span class="level-pill">Terminale</span>
+                <span class="level-pill">BTS</span>
+                <span class="level-pill">Prépa</span>
+                <span class="level-pill">Licence</span>
+              </div>
               <a href="#reserver" class="btn-reserve-matiere">Réserver une séance</a>
             </div>
           </article>
           
+          <!-- CARD 3 -->
           <article class="card">
-            <div class="icon" aria-hidden="true">⚙</div>
-            <h3>SIN</h3>
-            <p>Acquérez les compétences clés en réseaux, microcontrôleurs et logique de programmation pour réussir votre option et vos projets en ligne.</p>
+            <div>
+              <div class="icon" aria-hidden="true">⚙</div>
+              <h3>Systèmes d'Information et Numériques - SIN</h3>
+              <p>Programmation, réseaux, microcontrôleurs et systèmes numériques. Un accompagnement personnalisé pour réussir vos projets, devoirs et examens.</p>
+            </div>
+            <div class="level-badge-front">💻 Seconde → Licence</div>
             <div class="card-overlay">
-              <h4>SIN (Systèmes d'Info)</h4>
-              <p>Accompagnement théorique et pratique sur vos projets technologiques.</p>
+              <h4>Systèmes Numériques (SIN)</h4>
+              <h5>Progressez en informatique</h5>
+              <div class="level-pills-container">
+                <span class="level-pill">Seconde</span>
+                <span class="level-pill">Première</span>
+                <span class="level-pill">Terminale</span>
+                <span class="level-pill">BTS</span>
+                <span class="level-pill">Prépa</span>
+                <span class="level-pill">Licence</span>
+              </div>
               <a href="#reserver" class="btn-reserve-matiere">Réserver une séance</a>
             </div>
           </article>
           
+          <!-- CARD 4 -->
           <article class="card">
-            <div class="icon" aria-hidden="true">📐</div>
-            <h3>I2D</h3>
-            <p>Décryptez la chaîne d'énergie, l'Analyse du Cycle de Vie et l'éco-conception avec un spécialiste des systèmes industriels.</p>
+            <div>
+              <div class="icon" aria-hidden="true">📐</div>
+              <h3>Ingénierie & Développement Durable - I2D</h3>
+              <p>Analysez, modélisez et concevez des systèmes techniques en intégrant les enjeux durables. Des explications claires et des méthodes adaptées.</p>
+            </div>
+            <div class="level-badge-front">🌱 Seconde → Licence</div>
             <div class="card-overlay">
-              <h4>I2D (Ingénierie & DD)</h4>
-              <p>Méthodologie structurée pour assimiler rapidement tout le programme.</p>
+              <h4>Ingénierie & I2D</h4>
+              <h5>Concevez des solutions durables</h5>
+              <div class="level-pills-container">
+                <span class="level-pill">Seconde</span>
+                <span class="level-pill">Première</span>
+                <span class="level-pill">Terminale</span>
+                <span class="level-pill">BTS</span>
+                <span class="level-pill">Prépa</span>
+                <span class="level-pill">Licence</span>
+              </div>
               <a href="#reserver" class="btn-reserve-matiere">Réserver une séance</a>
             </div>
           </article>
           
+          <!-- CARD 5 -->
           <article class="card">
-            <div class="icon" aria-hidden="true">💻</div>
-            <h3>NSI (Lycée & Sup)</h3>
-            <p>Domptez la programmation Python, l'algorithmique et la gestion de bases de données avec un ingénieur logiciel en activité.</p>
+            <div>
+              <div class="icon" aria-hidden="true">💻</div>
+              <h3>Numérique & Sciences Informatiques - NSI</h3>
+              <p>Python, algorithmique, structures de données, bases de données… Progressez grâce à des explications claires et des exercices pratiques.</p>
+            </div>
+            <div class="level-badge-front">🐍 Seconde → Licence</div>
             <div class="card-overlay">
-              <h4>NSI (Informatique)</h4>
-              <p>Apprenez à coder sans bloquer et préparez les épreuves pratiques.</p>
+              <h4>Informatique & NSI</h4>
+              <h5>Apprenez à programmer</h5>
+              <div class="level-pills-container">
+                <span class="level-pill">Seconde</span>
+                <span class="level-pill">Première</span>
+                <span class="level-pill">Terminale</span>
+                <span class="level-pill">BTS</span>
+                <span class="level-pill">Prépa</span>
+                <span class="level-pill">Licence</span>
+              </div>
               <a href="#reserver" class="btn-reserve-matiere">Réserver une séance</a>
             </div>
           </article>
           
+          <!-- CARD 6 -->
           <article class="card">
-            <div class="icon" aria-hidden="true">⌁</div>
-            <h3>Sciences de l'Ingénieur</h3>
-            <p>Modélisez les systèmes embarqués et perfectionnez votre analyse mécanique et électronique pour viser le haut du classement.</p>
+            <div>
+              <div class="icon" aria-hidden="true">⌁</div>
+              <h3>Sciences de l'Ingénieur - SI</h3>
+              <p>Analyse mécanique, électronique, systèmes embarqués et modélisation : un accompagnement personnalisé pour réussir vos devoirs et concours.</p>
+            </div>
+            <div class="level-badge-front">⚙ Lycée → Prépa / Licence</div>
             <div class="card-overlay">
               <h4>Sciences de l'Ingénieur</h4>
-              <p>Soutien renforcé du Lycée à la Prépa / Licence de Technologie.</p>
+              <h5>Développez votre raisonnement</h5>
+              <div class="level-pills-container">
+                <span class="level-pill">Seconde</span>
+                <span class="level-pill">Première</span>
+                <span class="level-pill">Terminale</span>
+                <span class="level-pill">BTS</span>
+                <span class="level-pill">Prépa</span>
+                <span class="level-pill">Licence</span>
+              </div>
               <a href="#reserver" class="btn-reserve-matiere">Réserver une séance</a>
             </div>
           </article>
@@ -620,7 +924,7 @@
             });
 
             Cal.ns["happy-cours"]("ui", {
-              "cssVarsPerTheme":{"light":{"cal-brand":"#2c07b1"}},
+              "cssVarsPerTheme":{"light":{"cal-brand":"#8b5cf6"}},
               "hideEventTypeDetails":false,
               "layout":"month_view"
             });
@@ -819,7 +1123,7 @@
     <p><strong>Message envoyé !</strong><br>Merci de nous avoir contactés, nous vous répondrons sous 1h.</p>
   </div>
 
-  <!-- SCRIPTS JAVASCRIPT -->
+  <!-- SCRIPTS JAVASCRIPT CONSERVÉS A 100% -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
 
