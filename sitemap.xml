@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://courslive.com/</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://courslive.com/trouver-un-prof.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://courslive.com/formations.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://courslive.com/avis.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://courslive.com/mentions-legales.html</loc>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://courslive.com/politique-confidentialite.html</loc>
+    <priority>0.3</priority>
+  </url>
+</urlset>
