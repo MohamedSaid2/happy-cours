@@ -961,8 +961,7 @@
 
     <hr class="divider">
 
-    <!-- SECTION AVIS GOOGLE MAPS DYNAMIQUE -->
-    <!-- SECTION AVIS GOOGLE MAPS DYNAMIQUE -->
+    <!-- SECTION AVIS GOOGLE MAPS (WIDGET ELFSIGHT) -->
     <section id="avis">
       <div class="wrap">
         <div class="section-head">
@@ -970,9 +969,9 @@
           <h2><span class="gradient-text title-underline">Ce que disent les élèves et les parents</span></h2>
         </div>
 
-        <div class="reviews-grid" id="dynamic-reviews-container">
-          <!-- Les avis s'afficheront ici automatiquement -->
-        </div>
+        <!-- Widget Elfsight dynamique -->
+        <script src="https://elfsightcdn.com/platform.js" async></script>
+        <div class="elfsight-app-15a8b34e-9d12-4e80-a5f9-ce352ae59167" data-elfsight-app-lazy></div>
       </div>
     </section>
 
@@ -1233,49 +1232,6 @@
           clearTimeout(popupTimer);
         });
       }
-
-// CHARGEMENT DYNAMIQUE DES AVIS GOOGLE MAPS DEPUIS LE SERVEUR RENDER
-      const loadGoogleReviews = async () => {
-        const renderBackendUrl = 'https://happy-cours-backend.onrender.com/api/google-reviews';
-
-        try {
-          const res = await fetch(renderBackendUrl);
-          if (res.ok) {
-            const data = await res.json();
-            if (data.success && data.reviews && data.reviews.length > 0) {
-              const container = document.getElementById('dynamic-reviews-container');
-              if (container) {
-                container.innerHTML = ''; // Nettoie le conteneur
-
-                data.reviews.forEach(review => {
-                  const stars = '★'.repeat(review.rating || 5);
-                  const card = document.createElement('div');
-                  card.className = 'review-card';
-                  card.innerHTML = `
-                    <div>
-                      <div class="review-stars">${stars}</div>
-                      <p class="review-text">« ${review.text} »</p>
-                    </div>
-                    <div class="review-author">
-                      <img src="${review.profile_photo_url || 'Logo_Cours_Live.png'}" alt="${review.author_name}" class="avatar-img" style="border-radius: 50%; width: 40px; height: 40px; object-fit: cover;" onerror="this.style.display='none'" />
-                      <div class="author-info">
-                        <h4>${review.author_name}</h4>
-                        <span>${review.relative_time_description || 'Avis Google'}</span>
-                      </div>
-                    </div>
-                  `;
-                  container.appendChild(card);
-                });
-              }
-            }
-          }
-        } catch (e) {
-          console.error("Erreur chargement avis Google:", e);
-        }
-      };
-
-      loadGoogleReviews();
-
     });
   </script>
 </body>
