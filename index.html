@@ -1235,31 +1235,18 @@
       }
 
       // 7. CHARGEMENT DYNAMIQUE DES AVIS GOOGLE MAPS DEPUIS LE SERVEUR RENDER
+      // CHARGEMENT DYNAMIQUE DES AVIS GOOGLE MAPS DEPUIS LE SERVEUR RENDER
       const loadGoogleReviews = async () => {
-        const renderBackendUrl = 'https://cours-live-api.onrender.com/api/google-reviews'; // Ajustez si nécessaire le nom exact de votre app Render
-        let res;
+        const renderBackendUrl = 'https://happy-cours-backend.onrender.com/api/google-reviews';
 
         try {
-          // Essai 1 : Appel direct (si hébergé sur le même domaine ou proxy)
-          res = await fetch('/api/google-reviews');
-          if (!res.ok) throw new Error("Fallback vers Render");
-        } catch (e) {
-          try {
-            // Essai 2 : Appel vers l'URL backend complète sur Render
-            res = await fetch(renderBackendUrl);
-          } catch (err) {
-            console.error("Erreur de connexion au backend Render pour les avis Google :", err);
-            return; // Conserve les 3 avis statiques en cas d'erreur
-          }
-        }
-
-        try {
-          if (res && res.ok) {
+          const res = await fetch(renderBackendUrl);
+          if (res.ok) {
             const data = await res.json();
             if (data.success && data.reviews && data.reviews.length > 0) {
               const container = document.getElementById('dynamic-reviews-container');
               if (container) {
-                container.innerHTML = ''; // Nettoie la grille
+                container.innerHTML = ''; // Nettoie le conteneur
 
                 data.reviews.forEach(review => {
                   const stars = '★'.repeat(review.rating || 5);
@@ -1284,55 +1271,18 @@
             }
           }
         } catch (e) {
-          console.error("Impossible de parser les avis Google dynamiques :", e);
+          console.error("Erreur chargement avis Google:", e);
         }
       };
 
       loadGoogleReviews();
 
     });
+  </script>
+</body>
+</html>
 
-
-  // CHARGEMENT DYNAMIQUE DES AVIS GOOGLE MAPS DEPUIS LE SERVEUR RENDER
-      const loadGoogleReviews = async () => {
-        const renderBackendUrl = 'https://happy-cours-backend.onrender.com/api/google-reviews';
-
-        try {
-          const res = await fetch(renderBackendUrl);
-          if (res.ok) {
-            const data = await res.json();
-            if (data.success && data.reviews && data.reviews.length > 0) {
-              const container = document.getElementById('dynamic-reviews-container');
-              if (container) {
-                container.innerHTML = ''; // Nettoie le conteneur
-
-                data.reviews.forEach(review => {
-                  const stars = '★'.repeat(review.rating || 5);
-                  const card = document.createElement('div');
-                  card.className = 'review-card';
-                  card.innerHTML = `
-                    <div>
-                      <div class="review-stars">${stars}</div>
-                      <p class="review-text">« ${review.text} »</p>
-                    </div>
-                    <div class="review-author">
-                      <div class="author-info">
-                        <h4>${review.author_name}</h4>
-                        <span>${review.relative_time_description || 'Avis Google'}</span>
-                      </div>
-                    </div>
-                  `;
-                  container.appendChild(card);
-                });
-              }
-            }
-          }
-        } catch (e) {
-          console.error("Erreur chargement avis Google:", e);
-        }
-      };
-
-      loadGoogleReviews();  
+ 
   </script>
 
 </body>
