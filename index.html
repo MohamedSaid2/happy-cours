@@ -41,90 +41,27 @@
     "logo": "https://courslive.com/photo-profile.png",
     "description": "Cours particuliers à distance partout en France et en présentiel à Toulouse en mathématiques, physique, NSI, STI2D et SI du collège au supérieur.",
     "areaServed": [
-      {
-        "@type": "City",
-        "name": "Paris"
-      },
-      {
-        "@type": "City",
-        "name": "Lyon"
-      },
-      {
-        "@type": "City",
-        "name": "Marseille"
-      },
-      {
-        "@type": "City",
-        "name": "Toulouse"
-      },
-      {
-        "@type": "City",
-        "name": "Bordeaux"
-      },
-      {
-        "@type": "City",
-        "name": "Nice"
-      },
-      {
-        "@type": "City",
-        "name": "Nantes"
-      },
-      {
-        "@type": "City",
-        "name": "Strasbourg"
-      },
-      {
-        "@type": "City",
-        "name": "Montpellier"
-      },
-      {
-        "@type": "City",
-        "name": "Rennes"
-      },
-      {
-        "@type": "City",
-        "name": "Lille"
-      },
-      {
-        "@type": "City",
-        "name": "Casablanca"
-      },
-      {
-        "@type": "City",
-        "name": "Rabat"
-      },
-      {
-        "@type": "City",
-        "name": "Marrakech"
-      },
-      {
-        "@type": "City",
-        "name": "Fès"
-      },
-      {
-        "@type": "City",
-        "name": "Tanger"
-      },
-      {
-        "@type": "City",
-        "name": "Agadir"
-      },
-      {
-        "@type": "City",
-        "name": "Meknès"
-      },
-      {
-        "@type": "City",
-        "name": "Oujda"
-      },
-      {
-        "@type": "Country",
-        "name": "France"
-      },
-      {
-        "@type": "Country",
-        "name": "Maroc"
-      }
+      { "@type": "City", "name": "Paris" },
+      { "@type": "City", "name": "Lyon" },
+      { "@type": "City", "name": "Marseille" },
+      { "@type": "City", "name": "Toulouse" },
+      { "@type": "City", "name": "Bordeaux" },
+      { "@type": "City", "name": "Nice" },
+      { "@type": "City", "name": "Nantes" },
+      { "@type": "City", "name": "Strasbourg" },
+      { "@type": "City", "name": "Montpellier" },
+      { "@type": "City", "name": "Rennes" },
+      { "@type": "City", "name": "Lille" },
+      { "@type": "City", "name": "Casablanca" },
+      { "@type": "City", "name": "Rabat" },
+      { "@type": "City", "name": "Marrakech" },
+      { "@type": "City", "name": "Fès" },
+      { "@type": "City", "name": "Tanger" },
+      { "@type": "City", "name": "Agadir" },
+      { "@type": "City", "name": "Meknès" },
+      { "@type": "City", "name": "Oujda" },
+      { "@type": "Country", "name": "France" },
+      { "@type": "Country", "name": "Maroc" }
     ],
     "address": {
       "@type": "PostalAddress",
@@ -1024,56 +961,17 @@
 
     <hr class="divider">
 
-    <!-- SECTION AVIS -->
+    <!-- SECTION AVIS GOOGLE MAPS DYNAMIQUE -->
+    <!-- SECTION AVIS GOOGLE MAPS DYNAMIQUE -->
     <section id="avis">
       <div class="wrap">
         <div class="section-head">
-          <div class="eyebrow">Retours d'expérience</div>
+          <div class="eyebrow">Avis vérifiés Google Maps</div>
           <h2><span class="gradient-text title-underline">Ce que disent les élèves et les parents</span></h2>
         </div>
 
-        <div class="reviews-grid">
-          <div class="review-card">
-            <div>
-              <div class="review-stars">★★★★★</div>
-              <p class="review-text">« Grâce à Said, mon fils a repris confiance en Physique-Chimie et en Mathématiques dès le premier trimestre de Terminale. Ses explications sont très claires et méthodiques. »</p>
-            </div>
-            <div class="review-author">
-              <div class="avatar-initial">M</div>
-              <div class="author-info">
-                <h4>Marc D.</h4>
-                <span>Parent d'élève (Terminale STI2D)</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="review-card">
-            <div>
-              <div class="review-stars">★★★★★</div>
-              <p class="review-text">« Le fait qu'il soit ingénieur change tout : la SI devient concrète et facile à comprendre. Je suis passé de 9 à 15/20 de moyenne en BTS. Merci infiniment ! »</p>
-            </div>
-            <div class="review-author">
-              <div class="avatar-initial">L</div>
-              <div class="author-info">
-                <h4>Lucas B.</h4>
-                <span>Élève en BTS SN / Systèmes Embarqués</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="review-card">
-            <div>
-              <div class="review-stars">★★★★★</div>
-              <p class="review-text">« Très pédagogue et patient. Les cours en Visio se passent super bien avec l'écran partagé et la tablette graphique. Je recommande les yeux fermés. »</p>
-            </div>
-            <div class="review-author">
-              <div class="avatar-initial">S</div>
-              <div class="author-info">
-                <h4>Sophie T.</h4>
-                <span>Élève de 1ère Générale (Spé Maths)</span>
-              </div>
-            </div>
-          </div>
+        <div class="reviews-grid" id="dynamic-reviews-container">
+          <!-- Les avis s'afficheront ici automatiquement -->
         </div>
       </div>
     </section>
@@ -1212,7 +1110,7 @@
     <p><strong>Message envoyé !</strong><br>Merci de nous avoir contactés, nous vous répondrons sous 1h.</p>
   </div>
 
-  <!-- SCRIPTS JAVASCRIPT CONSERVÉS A 100% -->
+  <!-- SCRIPTS JAVASCRIPT -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
 
@@ -1335,7 +1233,106 @@
           clearTimeout(popupTimer);
         });
       }
+
+      // 7. CHARGEMENT DYNAMIQUE DES AVIS GOOGLE MAPS DEPUIS LE SERVEUR RENDER
+      const loadGoogleReviews = async () => {
+        const renderBackendUrl = 'https://cours-live-api.onrender.com/api/google-reviews'; // Ajustez si nécessaire le nom exact de votre app Render
+        let res;
+
+        try {
+          // Essai 1 : Appel direct (si hébergé sur le même domaine ou proxy)
+          res = await fetch('/api/google-reviews');
+          if (!res.ok) throw new Error("Fallback vers Render");
+        } catch (e) {
+          try {
+            // Essai 2 : Appel vers l'URL backend complète sur Render
+            res = await fetch(renderBackendUrl);
+          } catch (err) {
+            console.error("Erreur de connexion au backend Render pour les avis Google :", err);
+            return; // Conserve les 3 avis statiques en cas d'erreur
+          }
+        }
+
+        try {
+          if (res && res.ok) {
+            const data = await res.json();
+            if (data.success && data.reviews && data.reviews.length > 0) {
+              const container = document.getElementById('dynamic-reviews-container');
+              if (container) {
+                container.innerHTML = ''; // Nettoie la grille
+
+                data.reviews.forEach(review => {
+                  const stars = '★'.repeat(review.rating || 5);
+                  const card = document.createElement('div');
+                  card.className = 'review-card';
+                  card.innerHTML = `
+                    <div>
+                      <div class="review-stars">${stars}</div>
+                      <p class="review-text">« ${review.text} »</p>
+                    </div>
+                    <div class="review-author">
+                      <img src="${review.profile_photo_url || 'Logo_Cours_Live.png'}" alt="${review.author_name}" class="avatar-img" style="border-radius: 50%; width: 40px; height: 40px; object-fit: cover;" onerror="this.style.display='none'" />
+                      <div class="author-info">
+                        <h4>${review.author_name}</h4>
+                        <span>${review.relative_time_description || 'Avis Google'}</span>
+                      </div>
+                    </div>
+                  `;
+                  container.appendChild(card);
+                });
+              }
+            }
+          }
+        } catch (e) {
+          console.error("Impossible de parser les avis Google dynamiques :", e);
+        }
+      };
+
+      loadGoogleReviews();
+
     });
+
+
+  // CHARGEMENT DYNAMIQUE DES AVIS GOOGLE MAPS DEPUIS LE SERVEUR RENDER
+      const loadGoogleReviews = async () => {
+        const renderBackendUrl = 'https://happy-cours-backend.onrender.com/api/google-reviews';
+
+        try {
+          const res = await fetch(renderBackendUrl);
+          if (res.ok) {
+            const data = await res.json();
+            if (data.success && data.reviews && data.reviews.length > 0) {
+              const container = document.getElementById('dynamic-reviews-container');
+              if (container) {
+                container.innerHTML = ''; // Nettoie le conteneur
+
+                data.reviews.forEach(review => {
+                  const stars = '★'.repeat(review.rating || 5);
+                  const card = document.createElement('div');
+                  card.className = 'review-card';
+                  card.innerHTML = `
+                    <div>
+                      <div class="review-stars">${stars}</div>
+                      <p class="review-text">« ${review.text} »</p>
+                    </div>
+                    <div class="review-author">
+                      <div class="author-info">
+                        <h4>${review.author_name}</h4>
+                        <span>${review.relative_time_description || 'Avis Google'}</span>
+                      </div>
+                    </div>
+                  `;
+                  container.appendChild(card);
+                });
+              }
+            }
+          }
+        } catch (e) {
+          console.error("Erreur chargement avis Google:", e);
+        }
+      };
+
+      loadGoogleReviews();  
   </script>
 
 </body>
